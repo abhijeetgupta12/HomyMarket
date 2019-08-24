@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/bumperoffer"
+            android:icon="@drawable/bumperoffer"
+            android:title="Bumper Offer" />
+        <item
+            android:id="@+id/women"
+            android:icon="@drawable/ic_women"
+            android:title="Women Apparels" />
+        <item
+            android:id="@+id/men"
+            android:icon="@drawable/men"
+            android:title="Men Apparels" />
+        <item
+            android:id="@+id/kids"
+            android:icon="@drawable/kids"
+            android:title="Kids and Toys" />
+    </group>
+
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/myaccount"
+                android:icon="@drawable/myaccount"
+                android:title="My Account" />
+            <item
+                android:id="@+id/myorder"
+                android:icon="@drawable/order"
+                android:title="My Order" />
+            <item
+                android:id="@+id/wishlist"
+                android:icon="@drawable/wishlist"
+                android:title="My Wishlist" />
+        </menu>
+    </item>
+    <item android:title="Help Center">
+    <menu>
+        <item
+            android:id="@+id/helpcenter"
+            android:icon="@drawable/helpcenter"
+            android:title="Contact Us" />
+    </menu>
+    </item>
+
+
+</menu>
