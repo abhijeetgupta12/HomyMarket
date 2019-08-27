@@ -8,40 +8,46 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".HomePage"
-    tools:showIn="@layout/app_bar_main2">
+    tools:showIn="@layout/app_bar_main">
+
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="10dp"
-        app:cardElevation="10dp"
-        android:outlineSpotShadowColor="#525650"
-        app:cardCornerRadius="9dp">
+        android:layout_height="wrap_content">
 
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/search"
-            android:drawablePadding="15dp"
-            android:textColor="#525650"
-            android:fontFamily="@font/allcategoriesfont"
-            android:hint="Search here..."
-            />
-    </androidx.cardview.widget.CardView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        android:background="#FFF">
         <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+              <androidx.cardview.widget.CardView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:elevation="10dp"
+                     app:cardElevation="10dp"
+                     android:outlineSpotShadowColor="#525650"
+                     app:cardCornerRadius="9dp">
+
+                          <AutoCompleteTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:drawableLeft="@drawable/search"
+                                    android:drawablePadding="15dp"
+                                    android:textColor="#525650"
+                                    android:fontFamily="@font/allcategoriesfont"
+                                    android:hint="Search here..."/>
+
+              </androidx.cardview.widget.CardView>
+
+
+              <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal"
+                    android:weightSum="4"
+                    android:background="#FFF">
+
+                    <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -49,6 +55,7 @@
             android:orientation="vertical"
             android:background="#FFF"
             android:gravity="center">
+
             <ImageButton
                 android:layout_width="40dp"
                 android:paddingRight="30dp"
@@ -57,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.6"
                 android:background="@drawable/buttonshape"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,46 +72,56 @@
                 android:text="All Categories"
                 android:textColor="#000"
                 android:fontFamily="@font/allcategoriesfont"/>
+
         </LinearLayout>
-        <LinearLayout
+
+                    <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:weightSum="2"
             android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
                 android:layout_width="55dp"
                 android:layout_height="0dp"
                 android:layout_weight="1.6"
                 android:background="@drawable/womensection"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Women"
                 android:textColor="#000"
                 android:fontFamily="@font/allcategoriesfont"/>
+
         </LinearLayout>
-        <LinearLayout
+
+                    <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:weightSum="2"
             android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
                 android:layout_width="55dp"
                 android:layout_height="0dp"
                 android:layout_weight="1.6"
                 android:background="@drawable/mansection"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Men"
                 android:textColor="#000"
                 android:fontFamily="@font/allcategoriesfont"/>
+
         </LinearLayout>
-        <LinearLayout
+
+                    <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -123,24 +141,35 @@
                 android:fontFamily="@font/allcategoriesfont"/>
         </LinearLayout>
 
-    </LinearLayout>
-    <LinearLayout
+              </LinearLayout>
+
+
+
+
+              <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:orientation="vertical"
         android:id="@+id/linearslider"
         >
+
         <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/viewpager"></androidx.viewpager.widget.ViewPager>
+            android:id="@+id/viewpager">
+
+        </androidx.viewpager.widget.ViewPager>
+
     </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/gradientbackground"
-            android:padding="17dp"
+
+
+              <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:background="@drawable/gradientbackground"
+         android:padding="17dp"
             >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -149,6 +178,7 @@
             android:background="@drawable/gradientbackground"
             android:gravity="center"
             android:layout_gravity="center">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -157,15 +187,20 @@
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textColor="@color/sideone"
                 android:fontFamily="@font/abc"/>
+
         </LinearLayout>
+
         </LinearLayout>
 
 
 
-    </LinearLayout>
+         </LinearLayout>
+
     </ScrollView>
 
-    </LinearLayout>
+
+
+</LinearLayout>
 
 
 

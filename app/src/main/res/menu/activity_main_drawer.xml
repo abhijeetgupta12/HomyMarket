@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    >
 
     <group android:checkableBehavior="single">
         <item
@@ -22,7 +21,10 @@
             android:title="Kids and Toys" />
     </group>
 
+
+
     <item android:title="Account">
+
         <menu>
             <item
                 android:id="@+id/myaccount"
@@ -36,15 +38,26 @@
                 android:id="@+id/wishlist"
                 android:icon="@drawable/wishlist"
                 android:title="My Wishlist" />
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/logout"
+                android:title="Logout"/>
         </menu>
+
     </item>
+
+
+
     <item android:title="Help Center">
-    <menu>
-        <item
-            android:id="@+id/helpcenter"
-            android:icon="@drawable/helpcenter"
-            android:title="Contact Us" />
-    </menu>
+
+        <menu>
+
+            <item
+                android:id="@+id/helpcenter"
+                android:icon="@drawable/helpcenter"
+                android:title="Contact Us" />
+        </menu>
+
     </item>
 
 

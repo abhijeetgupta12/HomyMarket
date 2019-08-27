@@ -4,5 +4,5 @@
 
 
     >
-   <solid android:color="@color/colorpermanent"/>
+   <solid android:color="@color/colorPermanent"/>
 </shape>
