@@ -8,14 +8,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.navigation.NavigationView;
@@ -30,9 +32,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    LinearLayout txt;
+
     ViewPager mpager;
-    ImageView im1,im2,im3,im4,im5;
+
+    FragmentManager fm = getSupportFragmentManager();
 
 
     ProgressDialog progressDialog;
@@ -45,6 +48,10 @@ public class HomePage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fm.beginTransaction().replace(R.id.frame,new Fragment_Home()).commit();//by default this fragment is used
+
+
+
         //As soon as the app opens if the user is already logged in this page opens with user details and a
         //dialouge appears saying "Loading Please wait....
 
@@ -54,6 +61,7 @@ public class HomePage extends AppCompatActivity
         progressDialog.setMessage("Please wait");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+
 
         //The below coded lines are used to retrieve signed in user details ....
 
@@ -83,8 +91,6 @@ public class HomePage extends AppCompatActivity
 
 
 
-        txt=findViewById(R.id.todaysdeal);
-        startcoloranimation(txt);
 
 
 
@@ -98,7 +104,7 @@ public class HomePage extends AppCompatActivity
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.homeburgericon);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.homeburgericon);//orange colour
 
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -108,17 +114,7 @@ public class HomePage extends AppCompatActivity
 
 
 
-    public void startcoloranimation(View v){
 
-        int startcolor=0xffffffff;
-        int colorEnd=0xFFE9910C;
-        ValueAnimator coloranim= ObjectAnimator.ofInt(v,"backgroundColor",startcolor,colorEnd);
-        coloranim.setDuration(1500);
-        coloranim.setEvaluator(new ArgbEvaluator());
-        coloranim.setRepeatCount(1000);
-        coloranim.setRepeatMode(ValueAnimator.REVERSE);
-        coloranim.start();
-    }
 
 
     @Override
@@ -140,34 +136,45 @@ public class HomePage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         if (id == R.id.logout) {
 
             mAuth.signOut();
             startActivity(new Intent(HomePage.this,Login.class));
             finish();
 
-            // Handle the camera action
         } else if (id == R.id.women) {
 
+             fm.beginTransaction().replace(R.id.frame,new Fragment_Women_Apparels()).commit();
 
+        } else if (id == R.id.home) {
 
+            fm.beginTransaction().replace(R.id.frame,new Fragment_Home()).commit();
 
+        } else if (id == R.id.myaccount) {
 
+            fm.beginTransaction().replace(R.id.frame,new Fragment_MyAccount()).commit();
 
-        }/* else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.bumperoffer) {
 
-        } else if (id == R.id.nav_tools) {
+            fm.beginTransaction().replace(R.id.frame,new Fragment_BumperOffer()).commit();
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.men) {
 
-        } else if (id == R.id.nav_send) {
+            fm.beginTransaction().replace(R.id.frame,new Fragment_Men_Apparels()).commit();
 
-        }*/
+        }else if (id == R.id.kids) {
+
+            fm.beginTransaction().replace(R.id.frame,new Fragment_Kids_Toys()).commit();
+
+        }
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 
 
