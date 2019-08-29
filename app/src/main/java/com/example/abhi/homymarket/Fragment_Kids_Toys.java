@@ -107,7 +107,7 @@ public class Fragment_Kids_Toys extends Fragment {
 
                 Log.d("abcde","Sorry");
 
-                Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_SHORT).show();
 
             }
         });
