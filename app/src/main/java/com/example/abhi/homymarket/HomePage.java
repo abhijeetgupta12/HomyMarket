@@ -8,8 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +45,8 @@ public class HomePage extends AppCompatActivity
     ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
     private DatabaseReference db;
+    private ImageButton Cart;
+    private TextView Notification;
 
 
     @Override
@@ -84,10 +90,35 @@ public class HomePage extends AppCompatActivity
         });
 
 
+        //Below is the code for Custom_toolbar and its related component.........
 
-
+        Cart=findViewById(R.id.cart);
+        Notification=findViewById(R.id.notification);
         Toolbar toolbar = findViewById(R.id.toolbarcustom);
         setSupportActionBar(toolbar);
+
+        Cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(HomePage.this,"Cart",Toast.LENGTH_LONG).show();
+
+
+
+            }
+        });
+
+        Notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Toast.makeText(HomePage.this,"Notification",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+
 
 
 

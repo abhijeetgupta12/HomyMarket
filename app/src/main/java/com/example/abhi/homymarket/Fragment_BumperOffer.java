@@ -4,6 +4,7 @@ package com.example.abhi.homymarket;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -35,8 +39,21 @@ public class Fragment_BumperOffer extends Fragment {
     View v;
     RecyclerView recyclerView;
 
-    ArrayList<String> img,name,brand,price;
+    ArrayList<String> name;
+    ArrayList<String> color;
+    ArrayList<String> brand;
+    ArrayList<String> size;
+    ArrayList<String> img;
+    ArrayList<String> gender;
+    ArrayList<String> desc;
+    ArrayList<String> price;
+    ArrayList<String> sleeves;
+    ArrayList<String> rating;
+    ArrayList<String> discount;
+    ArrayList<String> type;
 
+    ProgressBar progressBar;
+    Animation animation;
 
 
     public Fragment_BumperOffer() {
@@ -50,13 +67,28 @@ public class Fragment_BumperOffer extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_women__apparels_, container, false);
 
-        img=new ArrayList<>();
+
+        progressBar=v.findViewById(R.id.progress);
+        animation= AnimationUtils.loadAnimation(getActivity(),R.anim.rotate);
+        progressBar.startAnimation(animation);
+
+
         name=new ArrayList<>();
+        color=new ArrayList<>();
         brand=new ArrayList<>();
+        size=new ArrayList<>();
+        img=new ArrayList<>();
+        gender=new ArrayList<>();
+        desc=new ArrayList<>();
         price=new ArrayList<>();
+        sleeves=new ArrayList<>();
+        discount=new ArrayList<>();
+        rating=new ArrayList<>();
+        type=new ArrayList<>();
 
         recyclerView=v.findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2,RecyclerView.VERTICAL,false);
+        recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
 
 
         RequestQueue rq = Volley.newRequestQueue(getActivity());
@@ -75,18 +107,31 @@ public class Fragment_BumperOffer extends Fragment {
 
                         JSONObject jo1 = ja.getJSONObject(i);
 
-                        String IMAGE=jo1.getString("IMAGE");
                         String NAME=jo1.getString("NAME");
+                        String COLOR=jo1.getString("COLOUR");
                         String BRAND=jo1.getString("BRAND");
+                        String SIZE=jo1.getString("SIZE");
+                        String IMAGE=jo1.getString("IMAGE");
+                        String GENDER=jo1.getString("GENDER");
+                        String DESC=jo1.getString("DESCRIPTION");
                         String PRICE=jo1.getString("PRICE");
+                        String SLEEVES=jo1.getString("SLEEVES");
                         String RATING=jo1.getString("RATING");
+                        String DISCOUNT=jo1.getString("DISCOUNT");
+                        String TYPE=jo1.getString("TYPE");
 
-                        Log.d("abcde",NAME);
-
-                        img.add(IMAGE);
                         name.add(NAME);
+                        color.add(COLOR);
                         brand.add(BRAND);
+                        size.add(SIZE);
+                        img.add(IMAGE);
+                        gender.add(GENDER);
+                        desc.add(DESC);
                         price.add(PRICE);
+                        sleeves.add(SLEEVES);
+                        rating.add(RATING);
+                        discount.add(DISCOUNT);
+                        type.add(TYPE);
 
 
                     }
@@ -95,15 +140,19 @@ public class Fragment_BumperOffer extends Fragment {
                     e.printStackTrace();
                 }
 
+                progressBar.clearAnimation();
+                progressBar.setVisibility(View.INVISIBLE);
 
-                recyclerView.setAdapter(new RecyclerAdapter(getActivity(),img,name,brand,price));
+                recyclerView.setAdapter(new RecyclerAdapter(getActivity(),name,color,brand,size,img,gender,desc,price
+                ,sleeves,rating,discount,type));
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Log.d("abcde","Sorry");
+                progressBar.clearAnimation();
+                progressBar.setVisibility(View.INVISIBLE);
 
                 Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_LONG).show();
 

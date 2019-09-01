@@ -15,6 +15,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:progressDrawable="@drawable/logo_progress"
+                android:indeterminate="false"
+                android:indeterminateDrawable="@drawable/logo_progress"
+                android:id="@+id/progress"
+                android:stateListAnimator="@anim/rotate"
+                android:layout_width="100dp"
+                android:layout_height="113dp" />
+
+        </LinearLayout>
+
+
 
 
 

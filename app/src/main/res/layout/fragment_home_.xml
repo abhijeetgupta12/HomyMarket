@@ -53,15 +53,14 @@
                     android:gravity="center">
 
                     <ImageButton
-                        android:layout_width="40dp"
-                        android:paddingRight="30dp"
-                        android:paddingLeft="30dp"
+                        android:layout_width="wrap_content"
                         app:srcCompat="@drawable/ic_format_list_bulleted_black_24dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.6"
                         android:background="@drawable/buttonshape"/>
 
                     <TextView
+                        android:layout_weight="0.4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
