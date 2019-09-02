@@ -29,40 +29,41 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
 
 
     Context ctx;
-    ArrayList<String> name;
-    ArrayList<String> color;
-    ArrayList<String> brand;
-    ArrayList<String> size;
-    ArrayList<String> img;
-    ArrayList<String> gender;
-    ArrayList<String> desc;
-    ArrayList<String> price;
-    ArrayList<String> sleeves;
-    ArrayList<String> rating;
-    ArrayList<String> discount;
-    ArrayList<String> type;
+    ArrayList<String> name,brand,gender,discount,desc,sellprice,markprice,rating,type,size,category,length,
+            image1,image2,image3,image4,image5,shop,color,stock,material;
 
 
 
-    public RecyclerAdapter(Context ctx, ArrayList<String> name, ArrayList<String> color, ArrayList<String> brand, ArrayList<String> size
-                           ,ArrayList<String> img,ArrayList<String> gender,ArrayList<String> desc,ArrayList<String> price
-                            ,ArrayList<String> sleeves,ArrayList<String> rating,ArrayList<String> discount,ArrayList<String> type)
+    public RecyclerAdapter(Context ctx, ArrayList<String> name, ArrayList<String> brand, ArrayList<String> gender, ArrayList<String> discount
+                           ,ArrayList<String> desc,ArrayList<String> sellprice,ArrayList<String> markprice,ArrayList<String> rating
+                            ,ArrayList<String> type,ArrayList<String> size,ArrayList<String> category,ArrayList<String> length
+                            ,ArrayList<String> image1,ArrayList<String> image2,ArrayList<String> image3,ArrayList<String> image4
+                            ,ArrayList<String> image5,ArrayList<String> shop,ArrayList<String> color,ArrayList<String> stock,ArrayList<String> material)
     {
 
         this.ctx=ctx;
 
         this.name=name;
-        this.color=color;
         this.brand=brand;
-        this.size=size;
-        this.img=img;
         this.gender=gender;
-        this.desc=desc;
-        this.price=price;
-        this.sleeves=sleeves;
-        this.rating=rating;
         this.discount=discount;
+        this.desc=desc;
+        this.sellprice=sellprice;
+        this.markprice=markprice;
+        this.rating=rating;
         this.type=type;
+        this.size=size;
+        this.category=category;
+        this.length=length;
+        this.image1=image1;
+        this.image2=image2;
+        this.image3=image3;
+        this.image4=image4;
+        this.image5=image5;
+        this.shop=shop;
+        this.color=color;
+        this.stock=stock;
+        this.material=material;
 
     }
 
@@ -81,7 +82,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
 
         holder.name1.setText(name.get(position));
         holder.brand1.setText(brand.get(position));
-        holder.price1.setText(price.get(position));
+        holder.price1.setText(sellprice.get(position));
         holder.discount1.setText(discount.get(position));
 
         Picasso.get()
@@ -97,39 +98,30 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
             @Override
             public void onClick(View view) {
 
-        /*        Intent intent = new Intent(ctx,Final_Product.class);
-                intent.putExtra("NAME",name.get(position));
-                intent.putExtra("COLOR",color.get(position));
-                intent.putExtra("BRAND",brand.get(position));
-                intent.putExtra("SIZE",size.get(position));
-                intent.putExtra("IMG",img.get(position));
-                intent.putExtra("GENDER",gender.get(position));
-                intent.putExtra("DESC",desc.get(position));
-                intent.putExtra("PRICE",price.get(position));
-                intent.putExtra("LENGTH",sleeves.get(position));
-                intent.putExtra("RATING",rating.get(position));
-                intent.putExtra("DISCOUNT",discount.get(position));
-                intent.putExtra("TYPE",type.get(position));
-                ctx.startActivity(intent);
-                ((Activity) ctx).finish();
-
-*/
-
 
                 Final_Product ldf = new Final_Product ();
                 Bundle args = new Bundle();
                 args.putString("NAME",name.get(position));
-                args.putString("COLOR",color.get(position));
                 args.putString("BRAND",brand.get(position));
-                args.putString("SIZE",size.get(position));
-                args.putString("IMG",img.get(position));
                 args.putString("GENDER",gender.get(position));
-                args.putString("DESC",desc.get(position));
-                args.putString("PRICE",price.get(position));
-                args.putString("LENGTH",sleeves.get(position));
-                args.putString("RATING",rating.get(position));
                 args.putString("DISCOUNT",discount.get(position));
+                args.putString("DESCRIPTION",desc.get(position));
+                args.putString("SELLPRICE",sellprice.get(position));
+                args.putString("MARKPRICE",markprice.get(position));
+                args.putString("RATING",rating.get(position));
                 args.putString("TYPE",type.get(position));
+                args.putString("SIZE",size.get(position));
+                args.putString("CATEGORY",category.get(position));
+                args.putString("LENGTH",length.get(position));
+                args.putString("IMAGE1",image1.get(position));
+                args.putString("IMAGE2",image2.get(position));
+                args.putString("IMAGE3",image3.get(position));
+                args.putString("IMAGE4",image4.get(position));
+                args.putString("IMAGE5",image5.get(position));
+                args.putString("SHOP",length.get(position));
+                args.putString("COLOR",length.get(position));
+                args.putString("STOCK",length.get(position));
+                args.putString("MATERIAL",length.get(position));
                 ldf.setArguments(args);
 
                 FragmentManager fm = ((FragmentActivity)ctx).getSupportFragmentManager();

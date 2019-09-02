@@ -40,21 +40,12 @@ import java.util.List;
  */
 public class Fragment_Women_Apparels extends Fragment {
 
-    View v;
-    RecyclerView recyclerView;
+    private View v;
+    private RecyclerView recyclerView;
 
-    ArrayList<String> name;
-    ArrayList<String> color;
-    ArrayList<String> brand;
-    ArrayList<String> size;
-    ArrayList<String> img;
-    ArrayList<String> gender;
-    ArrayList<String> desc;
-    ArrayList<String> price;
-    ArrayList<String> sleeves;
-    ArrayList<String> rating;
-    ArrayList<String> discount;
-    ArrayList<String> type;
+    ArrayList<String> name,brand,gender,discount,desc,sellprice,markprice,rating,type,size,category,length,
+                        image1,image2,image3,image4,image5,shop,color,stock,material;
+
 
     ProgressBar progressBar;
     Animation animation;
@@ -75,17 +66,27 @@ public class Fragment_Women_Apparels extends Fragment {
         progressBar.startAnimation(animation);
 
         name=new ArrayList<>();
-        color=new ArrayList<>();
         brand=new ArrayList<>();
-        size=new ArrayList<>();
-        img=new ArrayList<>();
         gender=new ArrayList<>();
-        desc=new ArrayList<>();
-        price=new ArrayList<>();
-        sleeves=new ArrayList<>();
         discount=new ArrayList<>();
+        desc=new ArrayList<>();
+        sellprice=new ArrayList<>();
+        markprice=new ArrayList<>();
         rating=new ArrayList<>();
         type=new ArrayList<>();
+        size=new ArrayList<>();
+        category=new ArrayList<>();
+        length=new ArrayList<>();
+        image1=new ArrayList<>();
+        image2=new ArrayList<>();
+        image3=new ArrayList<>();
+        image4=new ArrayList<>();
+        image5=new ArrayList<>();
+        shop=new ArrayList<>();
+        color=new ArrayList<>();
+        stock=new ArrayList<>();
+        material=new ArrayList<>();
+
 
         recyclerView=v.findViewById(R.id.recycler);
     //  recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -95,7 +96,7 @@ public class Fragment_Women_Apparels extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
 
         RequestQueue rq = Volley.newRequestQueue(getActivity());
-        String url = "https://homimarket.com/wp-content/Android/fetch_shirts.php?get=select*from SHIRTS";
+        String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS";
         StringRequest sr= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -114,34 +115,52 @@ public class Fragment_Women_Apparels extends Fragment {
                         JSONObject jo1 = ja.getJSONObject(i);
 
                         String NAME=jo1.getString("NAME");
-                        String COLOR=jo1.getString("COLOUR");
                         String BRAND=jo1.getString("BRAND");
-                        String SIZE=jo1.getString("SIZE");
-                        String IMAGE=jo1.getString("IMAGE");
                         String GENDER=jo1.getString("GENDER");
-                        String DESC=jo1.getString("DESCRIPTION");
-                        String PRICE=jo1.getString("PRICE");
-                        String SLEEVES=jo1.getString("SLEEVES");
-                        String RATING=jo1.getString("RATING");
                         String DISCOUNT=jo1.getString("DISCOUNT");
+                        String DESC=jo1.getString("DESCRIPTION");
+                        String SELLPRICE=jo1.getString("SELLPRICE");
+                        String MARKPRICE=jo1.getString("MARKPRICE");
+                        String RATING=jo1.getString("RATING");
                         String TYPE=jo1.getString("TYPE");
+                        String SIZE=jo1.getString("SIZE");
+                        String CATEGORY=jo1.getString("CATEGORY");
+                        String LENGTH=jo1.getString("LENGTH");
+                        String IMAGE1=jo1.getString("IMAGE1");
+                        String IMAGE2=jo1.getString("IMAGE2");
+                        String IMAGE3=jo1.getString("IMAGE3");
+                        String IMAGE4=jo1.getString("IMAGE4");
+                        String IMAGE5=jo1.getString("IMAGE5");
+                        String SHOP=jo1.getString("SHOP");
+                        String COLOR=jo1.getString("COLOR");
+                        String STOCK=jo1.getString("STOCK");
+                        String MATERIAL=jo1.getString("MATERIAL");
 
-                        Log.d("name",NAME);
+
 
 
 
                         name.add(NAME);
-                        color.add(COLOR);
                         brand.add(BRAND);
-                        size.add(SIZE);
-                        img.add(IMAGE);
                         gender.add(GENDER);
-                        desc.add(DESC);
-                        price.add(PRICE);
-                        sleeves.add(SLEEVES);
-                        rating.add(RATING);
                         discount.add(DISCOUNT);
+                        desc.add(DESC);
+                        sellprice.add(SELLPRICE);
+                        markprice.add(MARKPRICE);
+                        rating.add(RATING);
                         type.add(TYPE);
+                        size.add(SIZE);
+                        category.add(CATEGORY);
+                        length.add(LENGTH);
+                        image1.add(IMAGE1);
+                        image2.add(IMAGE2);
+                        image3.add(IMAGE3);
+                        image4.add(IMAGE4);
+                        image5.add(IMAGE5);
+                        shop.add(SHOP);
+                        color.add(COLOR);
+                        stock.add(STOCK);
+                        material.add(MATERIAL);
 
 
                     }
@@ -152,25 +171,24 @@ public class Fragment_Women_Apparels extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                recyclerView.setAdapter(new RecyclerAdapter(getActivity(),name,color,brand,size,img,gender,desc,
-                        price,sleeves,rating,discount,type));
+                recyclerView.setAdapter(new RecyclerAdapter(getActivity(),name,brand,gender,discount,desc,sellprice,markprice,
+                        rating,type,size,category,length,image1,image2,image3,image4,image5,shop,color,stock,material));
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Log.d("abcde","Sorry");
 
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
-
 
                 Toast.makeText(getActivity(),"Please check your internet connection...",Toast.LENGTH_LONG).show();
 
             }
         });
-         rq.add(sr);
+
+        rq.add(sr);
 
 
 
