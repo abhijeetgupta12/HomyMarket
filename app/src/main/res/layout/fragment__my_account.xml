@@ -11,10 +11,100 @@
 
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
+        <TextView
+            android:fontFamily="sans-serif-condensed"
+            android:text="name"
+            android:id="@+id/name"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:fontFamily="sans-serif-condensed"
+            android:text="email"
+            android:id="@+id/email"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:fontFamily="sans-serif-condensed"
+            android:text="phone"
+            android:id="@+id/phone"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:fontFamily="sans-serif-condensed"
+            android:text="area"
+            android:id="@+id/area"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:fontFamily="sans-serif-condensed"
+            android:text="pin"
+            android:id="@+id/pin"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:fontFamily="sans-serif-condensed"
+            android:text="landmark"
+            android:id="@+id/landmark"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:textColor="#000"
+            android:textStyle="bold"
+           android:fontFamily="sans-serif-condensed"
+            android:layout_marginTop="20dp"
+            android:text="Update Your Shipping Details :"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+        <EditText
+            android:hint="Area"
+            android:id="@+id/address1"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:hint="PIN"
+            android:id="@+id/address2"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:hint="Landmark"
+            android:id="@+id/address3"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_marginTop="20dp"
+            android:id="@+id/update"
+            android:text="Update"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
 

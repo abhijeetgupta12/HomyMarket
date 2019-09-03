@@ -30,7 +30,7 @@ import java.util.Map;
 public class Register extends AppCompatActivity {
 
 
-    EditText name,email,phone,pass,conPass;
+    EditText name,email,phone,pass,conPass,area,pin,landmark;
     Button reg;
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
@@ -56,6 +56,7 @@ public class Register extends AppCompatActivity {
             finish();
         }
 
+        progressDialog = new ProgressDialog(this);
 
 
         name = findViewById(R.id.name);
@@ -65,6 +66,9 @@ public class Register extends AppCompatActivity {
         conPass = findViewById(R.id.conPass);
         login=findViewById(R.id.login);
         reg = findViewById(R.id.register);//button
+        area = findViewById(R.id.area);
+        pin = findViewById(R.id.pin);
+        landmark = findViewById(R.id.landmark);
 
 
 
@@ -90,6 +94,9 @@ public class Register extends AppCompatActivity {
                 final String tphone=phone.getText().toString().trim();
                 final String tpass=pass.getText().toString().trim();
                 final String tconpass=conPass.getText().toString().trim();
+                final String tarea=area.getText().toString().trim();
+                final String tpin=pin.getText().toString().trim();
+                final String tlandmark=landmark.getText().toString().trim();
 
                 if(tname.equals(""))
                 {
@@ -154,6 +161,32 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
+                if(tarea.equals(""))
+                {
+                    area.setError("Enter the area");
+                    area.requestFocus();
+                    return;
+                }
+
+                if(tpin.equals(""))
+                {
+                    pin.setError("Enter the pin");
+                    pin.requestFocus();
+                    return;
+                }
+
+                if(tpin.length()<6 && tpin.length()>6)
+                {
+                    name.setError("Enter a valid pin");
+                    name.requestFocus();
+                    return;
+                }
+
+
+
+
+
+
 
                 progressDialog.setTitle("Registering the User");
                 progressDialog.setMessage("Please wait while we create your account");
@@ -166,7 +199,7 @@ public class Register extends AppCompatActivity {
 
                         if(task.isSuccessful()){
                             sendEmailVerification();
-                            sendDataToFirebase(tname,tmail,tphone,tpass);
+                            sendDataToFirebase(tname,tmail,tphone,tpass,tarea,tpin,tlandmark);
                         }else{
                             progressDialog.hide();
                             Toast.makeText(Register.this,task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -200,7 +233,7 @@ public class Register extends AppCompatActivity {
         });
     }
 
-    private void sendDataToFirebase(String tname,String tmail,String tphone,String tpass){
+    private void sendDataToFirebase(String tname,String tmail,String tphone,String tpass,String tarea,String tpin,String tlandmark){
 
         FirebaseUser user=mAuth.getCurrentUser();
         Map<String,String> map=new HashMap<>();
@@ -208,6 +241,9 @@ public class Register extends AppCompatActivity {
         map.put("Email",tmail);
         map.put("Phone",tphone);
         map.put("Password",tpass);
+        map.put("Area",tarea);
+        map.put("Pin",tpin);
+        map.put("Landmark",tlandmark);
         mRef= FirebaseDatabase.getInstance().getReference().child(user.getUid());
         mRef.setValue(map);
 
