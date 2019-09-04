@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -37,7 +38,6 @@ import com.google.firebase.database.ValueEventListener;
 public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ViewPager mpager;
 
     FragmentManager fm = getSupportFragmentManager();
 
@@ -46,7 +46,7 @@ public class HomePage extends AppCompatActivity
     private FirebaseAuth mAuth;
     private DatabaseReference db;
     private ImageButton Cart;
-    private TextView Notification;
+    private TextView Notification,Home;
 
 
     @Override
@@ -57,11 +57,9 @@ public class HomePage extends AppCompatActivity
         fm.beginTransaction().replace(R.id.frame,new Fragment_Home()).commit();//by default this fragment is used
 
 
-
         //As soon as the app opens if the user is already logged in this page opens with user details and a
         //dialouge appears saying "Loading Please wait....
 
-        mAuth=FirebaseAuth.getInstance();
         progressDialog=new ProgressDialog(this);
         progressDialog.setTitle("Loading");
         progressDialog.setMessage("Please wait");
@@ -71,14 +69,16 @@ public class HomePage extends AppCompatActivity
 
         //The below coded lines are used to retrieve signed in user details ....
 
-
+        mAuth=FirebaseAuth.getInstance();
         FirebaseUser currentUser=mAuth.getCurrentUser();//gets the current user
         db= FirebaseDatabase.getInstance().getReference().child(currentUser.getUid());
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange( DataSnapshot dataSnapshot) {
 
+
                 //here you retrieve user name or any thing related
+
                 progressDialog.dismiss();
             }
 
@@ -101,7 +101,9 @@ public class HomePage extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(HomePage.this,"Cart",Toast.LENGTH_LONG).show();
+                //Toast.makeText(HomePage.this,"Cart",Toast.LENGTH_LONG).show();
+
+                fm.beginTransaction().replace(R.id.frame,new Fragment_WishList()).commit();//by default this fragment is used
 
 
 

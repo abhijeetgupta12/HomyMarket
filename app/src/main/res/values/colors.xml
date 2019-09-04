@@ -5,4 +5,6 @@
     <color name="colorAccent">#C4C1BC</color>
     <color name="colorPermanent">#E9910C</color>
     <color name="sideone">#03665C</color>
+    <color name="grey">#535353</color>
+    <color name="buttoncolor">#FF9800</color>
 </resources>

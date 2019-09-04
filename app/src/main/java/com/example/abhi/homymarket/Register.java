@@ -46,10 +46,9 @@ public class Register extends AppCompatActivity {
 
 
 
+        //if user is already signed in it takes you to the home page
         mAuth=FirebaseAuth.getInstance();
-
-
-        FirebaseUser user=mAuth.getCurrentUser();//if user is already signed in it takes you to the home page
+        FirebaseUser user=mAuth.getCurrentUser();
         if(user!=null){
             Intent i=new Intent(Register.this,HomePage.class);
             startActivity(i);
@@ -89,30 +88,30 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final String tname=name.getText().toString().trim();
-                final String tmail=email.getText().toString().trim();
-                final String tphone=phone.getText().toString().trim();
-                final String tpass=pass.getText().toString().trim();
-                final String tconpass=conPass.getText().toString().trim();
-                final String tarea=area.getText().toString().trim();
-                final String tpin=pin.getText().toString().trim();
-                final String tlandmark=landmark.getText().toString().trim();
+                final String t_name=name.getText().toString().trim();
+                final String t_email=email.getText().toString().trim();
+                final String t_phone=phone.getText().toString().trim();
+                final String t_pass=pass.getText().toString().trim();
+                final String t_conPass=conPass.getText().toString().trim();
+                final String t_area=area.getText().toString().trim();
+                final String t_pin=pin.getText().toString().trim();
+                final String t_landmark=landmark.getText().toString().trim();
 
-                if(tname.equals(""))
+                if(t_name.equals(""))
                 {
                     name.setError("Enter the name");
                     name.requestFocus();
                     return;
                 }
 
-                if(tmail.equals(""))
+                if(t_email.equals(""))
                 {
                     email.setError("Enter the email");
                     email.requestFocus();
                     return;
                 }
 
-                if(!Patterns.EMAIL_ADDRESS.matcher(tmail).matches())
+                if(!Patterns.EMAIL_ADDRESS.matcher(t_email).matches())
                 {
                     email.setError("Please Enter a Valid Email");
                     email.requestFocus();
@@ -120,14 +119,14 @@ public class Register extends AppCompatActivity {
 
                 }
 
-                if(tphone.equals(""))
+                if(t_phone.equals(""))
                 {
                     phone.setError("Enter phone no");
                     phone.requestFocus();
                     return;
                 }
 
-                if(tphone.length()<10 || tphone.length()>10)
+                if(t_phone.length()<10 || t_phone.length()>10)
                 {
                     phone.setError("Enter valid phone no");
                     phone.requestFocus();
@@ -135,47 +134,47 @@ public class Register extends AppCompatActivity {
                 }
 
 
-                if(tpass.equals(""))
+                if(t_pass.equals(""))
                 {
                     pass.setError("Enter Password");
                     pass.requestFocus();
                     return;
                 }
-                if(tpass.length()<7)
+                if(t_pass.length()<7)
                 {
                     pass.setError("min length is 7");
                     pass.requestFocus();
                     return;
                 }
 
-                if(tconpass.equals(""))
+                if(t_conPass.equals(""))
                 {
                     pass.setError("Enter Confirm Password");
                     pass.requestFocus();
                     return;
                 }
-                if(!tconpass.equals(tpass))
+                if(!t_conPass.equals(t_pass))
                 {
                     pass.setError("Password Mismatch");
                     pass.requestFocus();
                     return;
                 }
 
-                if(tarea.equals(""))
+                if(t_area.equals(""))
                 {
                     area.setError("Enter the area");
                     area.requestFocus();
                     return;
                 }
 
-                if(tpin.equals(""))
+                if(t_pin.equals(""))
                 {
                     pin.setError("Enter the pin");
                     pin.requestFocus();
                     return;
                 }
 
-                if(tpin.length()<6 && tpin.length()>6)
+                if(t_pin.length()<6 && t_pin.length()>6)
                 {
                     name.setError("Enter a valid pin");
                     name.requestFocus();
@@ -183,23 +182,18 @@ public class Register extends AppCompatActivity {
                 }
 
 
-
-
-
-
-
                 progressDialog.setTitle("Registering the User");
                 progressDialog.setMessage("Please wait while we create your account");
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
 
-                mAuth.createUserWithEmailAndPassword(tmail,tpass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                mAuth.createUserWithEmailAndPassword(t_email,t_pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
                             sendEmailVerification();
-                            sendDataToFirebase(tname,tmail,tphone,tpass,tarea,tpin,tlandmark);
+                            sendDataToFirebase(t_name,t_email,t_phone,t_pass,t_area,t_pin,t_landmark);
                         }else{
                             progressDialog.hide();
                             Toast.makeText(Register.this,task.getException().getMessage(), Toast.LENGTH_SHORT).show();
