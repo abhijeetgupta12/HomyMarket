@@ -1,6 +1,7 @@
 package com.example.abhi.homymarket;
 
 
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -22,9 +23,9 @@ import android.widget.TextView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Final_Product extends Fragment {
+public class Fragment_Final_Product extends Fragment {
 
-    ViewPager viewPager;
+    private ViewPager viewPager;
     LinearLayout linearLayout;
     Spinner spinner;
     TextView tvquantity;
@@ -33,9 +34,10 @@ public class Final_Product extends Fragment {
     RelativeLayout relativeLayout;
     private int dots_count;
     private ImageView[] dots;
+    private TextView brand,name,markPrice,sellPrice,discount,length,color,gender,type,rating,material,desc;
+    int Price,Qty;
 
-
-    public Final_Product() {
+    public Fragment_Final_Product() {
         // Required empty public constructor
     }
 
@@ -46,6 +48,56 @@ public class Final_Product extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_final__product, container, false);
 
+        //retrieving data from previous fragment...............
+        String brand1 = getArguments().getString("BRAND");
+        String name1 = getArguments().getString("NAME");
+        String mark_price1 = getArguments().getString("MARK_PRICE");
+        String sell_price1 = getArguments().getString("SELL_PRICE");
+        String discount1 = getArguments().getString("DISCOUNT");
+        String length1 = getArguments().getString("LENGTH");
+        String color1 = getArguments().getString("COLOR");
+        String gender1 = getArguments().getString("GENDER");
+        String type1 = getArguments().getString("TYPE");
+        String rating1 = getArguments().getString("RATING");
+        String material1 = getArguments().getString("MATERIAL");
+        String description1 = getArguments().getString("DESCRIPTION");
+
+        Price = Integer.parseInt(sell_price1);
+
+
+
+        brand = v.findViewById(R.id.company_name);
+        name = v.findViewById(R.id.product_name);
+        markPrice = v.findViewById(R.id.markPrice);
+        sellPrice = v.findViewById(R.id.sellPrice);
+        discount = v.findViewById(R.id.discount);
+        length = v.findViewById(R.id.length);
+        color = v.findViewById(R.id.color);
+        gender = v.findViewById(R.id.gender);
+        type = v.findViewById(R.id.type);
+        rating = v.findViewById(R.id.rating);
+        material = v.findViewById(R.id.material);
+        desc = v.findViewById(R.id.description);
+
+        //setting values to final page elements
+        brand.setText(brand1);
+        name.setText(name1);
+        markPrice.setText(mark_price1);
+        sellPrice.setText(sell_price1);
+        discount.setText(discount1);
+        length.setText(length1);
+        color.setText(color1);
+        gender.setText(gender1);
+        type.setText(type1);
+        rating.setText(rating1);
+        material.setText(material1);
+        desc.setText(description1);
+
+        //make a cut in a textView
+        strikeThroughText(markPrice);
+
+
+        //spinner
         tvquantity=v.findViewById(R.id.setQuantitytext);
         spinner=v.findViewById(R.id.Qty);
         adp=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,quantity);
@@ -54,37 +106,28 @@ public class Final_Product extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                switch (i)
-                {
-                    case 0:
-                        tvquantity.setText(quantity[0]);
-                        break;
-                    case 1:
-                        tvquantity.setText(quantity[1]);
-                        break;
-                    case 2:
-                        tvquantity.setText(quantity[2]);
-                        break;
-                    case 3:
-                        tvquantity.setText(quantity[3]);
-                        break;
-                    case 4:
-                        tvquantity.setText(quantity[4]);
-                        break;
-                    case 5:
-                        tvquantity.setText(quantity[5]);
-                        break;
-                }
-
-
+                tvquantity.setText(quantity[i]);
+                Qty = Integer.parseInt(quantity[i]);
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                tvquantity.setText("1");
+                tvquantity.setText(quantity[0]);
+                Qty = Integer.parseInt(quantity[0]);
             }
         });
+
+
+        String img1 = getArguments().getString("IMAGE1");
+        String img2 = getArguments().getString("IMAGE2");
+        String img3 = getArguments().getString("IMAGE3");
+        String img4 = getArguments().getString("IMAGE4");
+        String img5 = getArguments().getString("IMAGE5");
+
+
+
+        //viewPager........................................................................................
 
         viewPager=v.findViewById(R.id.viewitemangle);
         linearLayout=v.findViewById(R.id.lineardots);
@@ -97,7 +140,7 @@ public class Final_Product extends Fragment {
             }
         });
 
-        viewPagerAdapter_FinalProduct viewPagerAdapterdone=new viewPagerAdapter_FinalProduct(getActivity());
+        viewPagerAdapter_FinalProduct viewPagerAdapterdone=new viewPagerAdapter_FinalProduct(getActivity(),img1,img2,img3,img4,img5);
         viewPager.setAdapter(viewPagerAdapterdone);
         dots_count=viewPagerAdapterdone.getCount();
         dots=new ImageView[dots_count];
@@ -132,16 +175,18 @@ public class Final_Product extends Fragment {
             }
         });
 
-
-
-
-        //String strtext = getArguments().getString("NAME");
-
-
+        //viewPagerEnds..............................................................................................
 
 
 
         return v;
+    }
+
+
+    //function for textView Cut
+    private void strikeThroughText(TextView textView)
+    {
+        textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
 

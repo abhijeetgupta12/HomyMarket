@@ -1,17 +1,12 @@
 package com.example.abhi.homymarket;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -20,7 +15,6 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.collection.LLRBNode;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -86,8 +80,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
         holder.discount1.setText(discount.get(position));
 
         Picasso.get()
-                .load("https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Blue_Tshirt.jpg/220px-Blue_Tshirt.jpg")
-                .placeholder(R.drawable.placeholder_image)
+                .load(image1.get(position))
+                .placeholder(R.drawable.loading)
                 .error(R.drawable.placeholder_image)
                 .fit()
                 .into(holder.image1);
@@ -99,15 +93,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
             public void onClick(View view) {
 
 
-                Final_Product ldf = new Final_Product ();
+                Fragment_Final_Product ldf = new Fragment_Final_Product();
                 Bundle args = new Bundle();
                 args.putString("NAME",name.get(position));
                 args.putString("BRAND",brand.get(position));
                 args.putString("GENDER",gender.get(position));
                 args.putString("DISCOUNT",discount.get(position));
                 args.putString("DESCRIPTION",desc.get(position));
-                args.putString("SELLPRICE",sellprice.get(position));
-                args.putString("MARKPRICE",markprice.get(position));
+                args.putString("SELL_PRICE",sellprice.get(position));
+                args.putString("MARK_PRICE",markprice.get(position));
                 args.putString("RATING",rating.get(position));
                 args.putString("TYPE",type.get(position));
                 args.putString("SIZE",size.get(position));
@@ -118,10 +112,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
                 args.putString("IMAGE3",image3.get(position));
                 args.putString("IMAGE4",image4.get(position));
                 args.putString("IMAGE5",image5.get(position));
-                args.putString("SHOP",length.get(position));
-                args.putString("COLOR",length.get(position));
-                args.putString("STOCK",length.get(position));
-                args.putString("MATERIAL",length.get(position));
+                args.putString("SHOP",shop.get(position));
+                args.putString("COLOR",color.get(position));
+                args.putString("STOCK",stock.get(position));
+                args.putString("MATERIAL",material.get(position));
                 ldf.setArguments(args);
 
                 FragmentManager fm = ((FragmentActivity)ctx).getSupportFragmentManager();

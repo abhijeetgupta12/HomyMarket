@@ -5,7 +5,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Final_Product">
+    tools:context=".Fragment_Final_Product">
 
     <LinearLayout
         android:orientation="vertical"
@@ -48,59 +48,82 @@
                             <androidx.viewpager.widget.ViewPager
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:id="@+id/viewitemangle">
 
-                                android:id="@+id/viewitemangle"></androidx.viewpager.widget.ViewPager>
+                            </androidx.viewpager.widget.ViewPager>
 
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_marginTop="290dp"
-
-
                                 android:layout_height="10dp"
-
-
                                 android:id="@+id/lineardots"
                                 android:orientation="horizontal"
                                 android:gravity="center"
-                                android:layout_gravity="center_horizontal"></LinearLayout>
+                                android:layout_gravity="center_horizontal">
+
+                            </LinearLayout>
 
                         </RelativeLayout>
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/company_name"
-                            android:text="Adidas"
-                            android:textSize="20dp"
+                            android:text="---"
+                            android:textSize="20sp"
                             android:textColor="#000"
                             android:fontFamily="@font/textfont1"
                             android:textStyle="bold"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/product_name"
-                            android:text="Adidas"
-                            android:textSize="20dp"
+                            android:text="----"
+                            android:textSize="20sp"
                             android:padding="2dp"
                             android:fontFamily="@font/textfont1"
                             android:textStyle="bold"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/Price_text"
-                            android:text="$63.5"
-                            android:padding="2dp"
-                            android:textSize="20dp"
-                            android:fontFamily="@font/textfont1"
-                            android:textStyle="bold"
-                            android:layout_marginLeft="10dp"
-                            />
+
+                       <LinearLayout
+                           android:orientation="horizontal"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content">
+
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:id="@+id/markPrice"
+                               android:text="----"
+                               android:padding="2dp"
+                               android:textSize="15sp"
+                               android:fontFamily="@font/textfont1"
+                               android:textStyle="bold"
+                               android:layout_marginStart="10dp"
+                               />
+
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:id="@+id/sellPrice"
+                               android:text="----"
+                               android:padding="2dp"
+                               android:textSize="20sp"
+                               android:fontFamily="@font/textfont1"
+                               android:textStyle="bold"
+                               />
+
+                       </LinearLayout>
+
                     </LinearLayout>
+
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     app:cardCornerRadius="10dp"
                     android:layout_width="match_parent"
@@ -110,6 +133,7 @@
                     app:cardElevation="10dp"
                     android:layout_marginTop="2dp"
                     android:outlineSpotShadowColor="#000">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -122,6 +146,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:weightSum="2">
+
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_weight="1.7"
@@ -130,21 +155,25 @@
                                 android:gravity="center"
                                 android:fontFamily="@font/textfont1"
                                 android:textColor="#000"
-                                android:textSize="15dp"
-                                />
+                                android:textSize="15sp"/>
+
                             <Spinner
                                 android:id="@+id/size"
                                 android:layout_width="0dp"
                                 android:layout_weight="0.3"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
-                                ></Spinner>
+                                android:gravity="center" >
+
+                            </Spinner>
+
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:weightSum="3">
+
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_weight="1.75"
@@ -153,8 +182,9 @@
                                 android:gravity="center"
                                 android:fontFamily="@font/textfont1"
                                 android:textColor="#000"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 />
+
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_weight="0.5"
@@ -164,15 +194,19 @@
                                 android:gravity="center"
                                 android:fontFamily="@font/textfont1"
                                 android:textColor="#000"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 />
+
                             <Spinner
                                 android:id="@+id/Qty"
                                 android:layout_width="0dp"
                                 android:layout_weight="0.75"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                ></Spinner>
+                                >
+
+                            </Spinner>
+
                         </LinearLayout>
 
 
@@ -185,12 +219,13 @@
                             android:textColor="#000"
                             android:textAllCaps="false"
                             android:fontFamily="@font/textfont1"
-                            android:drawableLeft="@drawable/size_chart"
+                            android:drawableStart="@drawable/size_chart"
                             android:drawablePadding="5dp"
                             android:id="@+id/size_"
                             /></LinearLayout>
 
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     app:cardCornerRadius="10dp"
                     android:layout_width="match_parent"
@@ -199,153 +234,181 @@
                     android:elevation="10dp"
                     app:cardElevation="10dp"
                     android:outlineSpotShadowColor="#000"
+                    android:layout_marginBottom="2dp"
                     android:background="#FFF">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Product Details:"
                             android:textColor="#000"
-                            android:layout_margin="20dp"
-                            android:layout_marginLeft="30dp"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
                             android:fontFamily="@font/textfont1"
-                            android:textSize="20dp"/>
+                            android:textSize="20sp"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:text="Discount"
                                 android:textColor="@color/grey"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:paddingLeft="10dp"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="0dp"
                                 android:layout_height="wrap_content" />
+
                             <TextView
-                                android:text="Flat 50% off"
+                                android:text="---"
                                 android:id="@+id/discount"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:textColor="#000"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content" />
+
                         </LinearLayout>
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/grey"
+                            android:background="@color/grey"/>
 
-                            />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:text="Length"
                                 android:textColor="@color/grey"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:paddingLeft="10dp"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="0dp"
                                 android:layout_height="wrap_content" />
+
                             <TextView
-                                android:text="Long"
-                                android:textSize="15dp"
-                                android:id="@+id/sleeve"
+                                android:text="---"
+                                android:textSize="15sp"
+                                android:id="@+id/length"
                                 android:textColor="#000"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content" />
+
                         </LinearLayout>
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/grey"
+                            android:background="@color/grey"/>
 
-                            />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:text="Color"
                                 android:textColor="@color/grey"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:paddingLeft="10dp"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="0dp"
                                 android:layout_height="wrap_content" />
+
                             <TextView
-                                android:text="Dark Blue"
-                                android:textSize="15dp"
+                                android:id="@+id/color"
+                                android:text="---"
+                                android:textSize="15sp"
                                 android:textColor="#000"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content" />
+
                         </LinearLayout>
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/grey"
+                            android:background="@color/grey"/>
 
-                            />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:text="Gender"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:textColor="@color/grey"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:paddingLeft="10dp"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="0dp"
                                 android:layout_height="wrap_content" />
+
                             <TextView
-                                android:text="Female"
-                                android:textSize="15dp"
+                                android:text="---"
+                                android:textSize="15sp"
                                 android:id="@+id/gender"
                                 android:textColor="#000"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content" />
+
                         </LinearLayout>
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/grey"
+                            android:background="@color/grey"/>
 
-                            />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:text="Type"
                                 android:textColor="@color/grey"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:paddingLeft="10dp"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="0dp"
                                 android:layout_height="wrap_content" />
+
                             <TextView
-                                android:text="Traditional wear"
-                                android:textSize="15dp"
+                                android:id="@+id/type"
+                                android:text="---"
+                                android:textSize="15sp"
                                 android:textColor="#000"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content" />
+
                         </LinearLayout>
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -357,57 +420,67 @@
                             android:layout_height="wrap_content"
                             android:weightSum="2"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:text="Rating"
                                 android:textColor="@color/grey"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:paddingLeft="10dp"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="0dp"
                                 android:layout_height="wrap_content" />
+
                             <TextView
-                                android:text="3.5/5"
+                                android:text="---"
                                 android:id="@+id/rating"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:textColor="#000"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content" />
+
                         </LinearLayout>
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/grey"
+                            android:background="@color/grey"/>
 
-                            />
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:text="Material"
                                 android:textColor="@color/grey"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:paddingLeft="10dp"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="0dp"
                                 android:layout_height="wrap_content" />
+
                             <TextView
-                                android:text="Cotton"
+                                android:text="---"
                                 android:id="@+id/material"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:textColor="#000"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content" />
+
                         </LinearLayout>
+
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/grey"
+                            android:background="@color/grey"/>
 
-                            />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -417,17 +490,18 @@
                             <TextView
                                 android:text="Description"
                                 android:textColor="@color/grey"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:paddingLeft="10dp"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="0dp"
                                 android:layout_height="wrap_content" />
+
                             <TextView
-                                android:text="Home Fashion  Women's Clothing  Ethnic Wear  Dress Material  Women Shoppee Beautiful Printed Synthetic Patiala Dress Material
-Women Shoppee Beautiful Printed Synthetic Patiala Dress Material
-Women Shoppee Beautiful Printed Synthetic Patiala Dress Material"
+                                android:layout_marginBottom="15dp"
+                                android:text="---"
                                 android:id="@+id/description"
-                                android:textSize="15dp"
+                                android:textSize="15sp"
                                 android:textColor="#000"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -457,20 +531,21 @@ Women Shoppee Beautiful Printed Synthetic Patiala Dress Material"
                 android:layout_width="0dp"
                 android:gravity="center"
                 android:textColor="#000"
-                android:id="@+id/cart"
+                android:id="@+id/add_to_cart"
                 android:layout_weight="1"
                 android:layout_height="wrap_content" />
-            <Button
 
+            <Button
                 android:text="BUY NOW"
                 android:background="@color/buttoncolor"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textColor="#000"
                 android:gravity="center"
-                android:id="@+id/buynow"
+                android:id="@+id/buy_now"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content" />
+
         </LinearLayout>
 
 
