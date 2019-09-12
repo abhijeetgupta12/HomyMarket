@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -18,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.Objects;
 
 
 /**
@@ -189,7 +192,12 @@ public class Fragment_Final_Product extends Fragment {
         textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
 
 
+
+    }
 }
 

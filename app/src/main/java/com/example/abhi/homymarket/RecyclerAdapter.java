@@ -119,7 +119,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
                 ldf.setArguments(args);
 
                 FragmentManager fm = ((FragmentActivity)ctx).getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.frame,ldf).commit();
+                fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
+
+                //addToBackStack(null)---- enables you to come back to the previous fragment
 
             }
         });

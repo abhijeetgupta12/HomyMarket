@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawControlle
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import java.util.Objects;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +31,7 @@ public class Fragment_Home extends Fragment {
     private View v;
     private LinearLayout txt;
     SliderView sliderView;
+    LinearLayout all;
 
 
 
@@ -42,6 +46,24 @@ public class Fragment_Home extends Fragment {
 
 
         v=inflater.inflate(R.layout.fragment_home_, container, false);
+
+
+
+        //fragment testing........................................................
+
+        /*all=v.findViewById(R.id.all);
+
+        all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();//Actual was---------FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.frame,new Fragment_Women_Apparels()).commit();//by default this fragment is used
+            }
+        });*/
+
+        //........................................................................
+
 
         txt=v.findViewById(R.id.todaysdeal);  //Today's deal......
         startcoloranimation(txt);

@@ -178,35 +178,37 @@ public class HomePage extends AppCompatActivity
 
         } else if (id == R.id.women) {
 
-             fm.beginTransaction().replace(R.id.frame,new Fragment_Women_Apparels()).commit();
+             fm.beginTransaction().replace(R.id.frame,new Fragment_Women_Apparels()).addToBackStack(null).commit();
 
         } else if (id == R.id.home) {
 
-            fm.beginTransaction().replace(R.id.frame,new Fragment_Home()).commit();
+            fm.beginTransaction().replace(R.id.frame,new Fragment_Home()).addToBackStack(null).commit();
 
         } else if (id == R.id.myaccount) {
 
-            fm.beginTransaction().replace(R.id.frame,new Fragment_MyAccount()).commit();
+            fm.beginTransaction().replace(R.id.frame,new Fragment_MyAccount()).addToBackStack(null).commit();
 
         } else if (id == R.id.bumperoffer) {
 
-            fm.beginTransaction().replace(R.id.frame,new Fragment_BumperOffer()).commit();
+            fm.beginTransaction().replace(R.id.frame,new Fragment_BumperOffer()).addToBackStack(null).commit();
 
         } else if (id == R.id.men) {
 
-            fm.beginTransaction().replace(R.id.frame,new Fragment_Men_Apparels()).commit();
+            fm.beginTransaction().replace(R.id.frame,new Fragment_Men_Apparels()).addToBackStack(null).commit();
 
         }else if (id == R.id.kids) {
 
-            fm.beginTransaction().replace(R.id.frame,new Fragment_Kids_Toys()).commit();
+            fm.beginTransaction().replace(R.id.frame,new Fragment_Kids_Toys()).addToBackStack(null).commit();
 
         }
-
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 
 
 
