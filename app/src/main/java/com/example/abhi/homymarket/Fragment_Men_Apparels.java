@@ -86,8 +86,8 @@ public class Fragment_Men_Apparels extends Fragment {
                         String GENDER=jo1.getString("GENDER");
                         String DISCOUNT=jo1.getString("DISCOUNT");
                         String DESC=jo1.getString("DESCRIPTION");
-                        String SELL_PRICE=jo1.getString("SELL_PRICE");
-                        String MARK_PRICE=jo1.getString("MARK_PRICE");
+                        String SELL_PRICE=jo1.getString("SELLPRICE");
+                        String MARK_PRICE=jo1.getString("MARKPRICE");
                         String RATING=jo1.getString("RATING");
                         String TYPE=jo1.getString("TYPE");
                         String SIZE=jo1.getString("SIZE");
@@ -114,6 +114,8 @@ public class Fragment_Men_Apparels extends Fragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+
+                    Toast.makeText(getActivity(),"Unable to Fetch Data",Toast.LENGTH_LONG).show();
                 }
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);

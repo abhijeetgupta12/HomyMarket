@@ -214,8 +214,8 @@ public class Fragment_Final_Product extends Fragment {
                 FirebaseUser user=mAuth.getCurrentUser();
                 Map<String,String> map=new HashMap<>();
                 String key="Product_"+ob.getId1();
-                map.put(key,ob.getId1());
-                mRef= FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("WishList");
+                map.put("Product_ID",ob.getId1());
+                mRef= FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("WishList").child(key);
                 mRef.setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

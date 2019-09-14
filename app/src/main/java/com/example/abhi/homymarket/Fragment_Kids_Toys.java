@@ -91,8 +91,8 @@ public class Fragment_Kids_Toys extends Fragment {
                         String GENDER=jo1.getString("GENDER");
                         String DISCOUNT=jo1.getString("DISCOUNT");
                         String DESC=jo1.getString("DESCRIPTION");
-                        String SELL_PRICE=jo1.getString("SELL_PRICE");
-                        String MARK_PRICE=jo1.getString("MARK_PRICE");
+                        String SELL_PRICE=jo1.getString("SELLPRICE");
+                        String MARK_PRICE=jo1.getString("MARKPRICE");
                         String RATING=jo1.getString("RATING");
                         String TYPE=jo1.getString("TYPE");
                         String SIZE=jo1.getString("SIZE");

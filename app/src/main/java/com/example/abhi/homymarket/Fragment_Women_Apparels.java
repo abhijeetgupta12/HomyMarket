@@ -94,8 +94,8 @@ public class Fragment_Women_Apparels extends Fragment {
                         String GENDER=jo1.getString("GENDER");
                         String DISCOUNT=jo1.getString("DISCOUNT");
                         String DESC=jo1.getString("DESCRIPTION");
-                        String SELL_PRICE=jo1.getString("SELL_PRICE");
-                        String MARK_PRICE=jo1.getString("MARK_PRICE");
+                        String SELL_PRICE=jo1.getString("SELLPRICE");
+                        String MARK_PRICE=jo1.getString("MARKPRICE");
                         String RATING=jo1.getString("RATING");
                         String TYPE=jo1.getString("TYPE");
                         String SIZE=jo1.getString("SIZE");
@@ -111,12 +111,12 @@ public class Fragment_Women_Apparels extends Fragment {
                         String STOCK=jo1.getString("STOCK");
                         String MATERIAL=jo1.getString("MATERIAL");
 
+                        Log.d("abcdef",GENDER);
+
                         DataFetch ob = new DataFetch(ID,NAME,BRAND,GENDER,DISCOUNT,DESC,SELL_PRICE,MARK_PRICE
                         ,RATING,TYPE,SIZE,CATEGORY,LENGTH,IMAGE1,IMAGE2,IMAGE3,IMAGE4,IMAGE5,SHOP,COLOR,STOCK,MATERIAL);
 
                         data.add(ob);
-
-
 
 
                     }
@@ -130,6 +130,7 @@ public class Fragment_Women_Apparels extends Fragment {
                 }
 
 
+                Log.d("####1",String.valueOf(data.size()));
 
                 recyclerView.setAdapter(new RecyclerAdapter(getActivity(),data));
 

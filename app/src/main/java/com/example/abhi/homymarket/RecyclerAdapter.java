@@ -70,7 +70,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
 
 
                 Fragment_Final_Product ldf = new Fragment_Final_Product(data.get(position));
-
                 FragmentManager fm = ((FragmentActivity)ctx).getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
 
