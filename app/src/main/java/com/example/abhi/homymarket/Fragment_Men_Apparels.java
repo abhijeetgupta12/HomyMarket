@@ -38,11 +38,7 @@ public class Fragment_Men_Apparels extends Fragment {
 
     View v;
     RecyclerView recyclerView;
-
     ArrayList<DataFetch> data = new ArrayList<>();
-
-
-
     ProgressBar progressBar;
     Animation animation;
 
@@ -121,8 +117,6 @@ public class Fragment_Men_Apparels extends Fragment {
                 }
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
-
-
                 recyclerView.setAdapter(new RecyclerAdapter(getActivity(),data));
 
             }
@@ -133,18 +127,13 @@ public class Fragment_Men_Apparels extends Fragment {
 
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
-
                 Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_LONG).show();
 
             }
         });
+
         sr.setShouldCache(false);
         rq.add(sr);
-
-
-
-
-
 
         return v;
     }

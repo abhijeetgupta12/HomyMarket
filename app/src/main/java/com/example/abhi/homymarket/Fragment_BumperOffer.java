@@ -36,14 +36,11 @@ import java.util.ArrayList;
  */
 public class Fragment_BumperOffer extends Fragment {
 
-    View v;
-    RecyclerView recyclerView;
-
+    private View v;
+    private RecyclerView recyclerView;
     ArrayList<DataFetch> data = new ArrayList<>();
-
-
-    ProgressBar progressBar;
-    Animation animation;
+    private ProgressBar progressBar;
+    private Animation animation;
 
 
     public Fragment_BumperOffer() {
@@ -107,16 +104,10 @@ public class Fragment_BumperOffer extends Fragment {
                         String STOCK=jo1.getString("STOCK");
                         String MATERIAL=jo1.getString("MATERIAL");
 
-
-
-
                         DataFetch ob = new DataFetch(ID,NAME,BRAND,GENDER,DISCOUNT,DESC,SELL_PRICE,MARK_PRICE
-                                ,RATING,TYPE,SIZE,CATEGORY,LENGTH,IMAGE1,IMAGE2,IMAGE3,IMAGE4,IMAGE5,SHOP,COLOR,STOCK,MATERIAL);
+                                           ,RATING,TYPE,SIZE,CATEGORY,LENGTH,IMAGE1,IMAGE2,IMAGE3,IMAGE4,IMAGE5,SHOP,COLOR,STOCK,MATERIAL);
 
                         data.add(ob);
-
-
-
 
 
                     }
@@ -127,7 +118,6 @@ public class Fragment_BumperOffer extends Fragment {
 
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
-
                 recyclerView.setAdapter(new RecyclerAdapter(getActivity(),data));
 
 
@@ -138,18 +128,13 @@ public class Fragment_BumperOffer extends Fragment {
 
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
-
                 Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_LONG).show();
 
             }
         });
+
         sr.setShouldCache(false);
         rq.add(sr);
-
-
-
-
-
 
         return v;
     }

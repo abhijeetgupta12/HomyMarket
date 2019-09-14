@@ -42,12 +42,9 @@ public class Fragment_Women_Apparels extends Fragment {
 
     private View v;
     private RecyclerView recyclerView;
-
     ArrayList<DataFetch> data = new ArrayList<>();
-
-
-    ProgressBar progressBar;
-    Animation animation;
+    private ProgressBar progressBar;
+    private Animation animation;
 
     public Fragment_Women_Apparels() {
         // Required empty public constructor
@@ -148,7 +145,6 @@ public class Fragment_Women_Apparels extends Fragment {
 
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
-
                 Toast.makeText(getActivity(),"Please check your internet connection...",Toast.LENGTH_LONG).show();
 
             }
@@ -156,13 +152,6 @@ public class Fragment_Women_Apparels extends Fragment {
 
         sr.setShouldCache(false);
         rq.add(sr);
-
-
-
-
-
-
-
 
         return v;
 

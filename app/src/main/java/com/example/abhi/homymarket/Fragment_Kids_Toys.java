@@ -125,9 +125,6 @@ public class Fragment_Kids_Toys extends Fragment {
 
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
-
-
-
                 recyclerView.setAdapter(new RecyclerAdapter(getActivity(),data));
 
 
@@ -140,19 +137,13 @@ public class Fragment_Kids_Toys extends Fragment {
 
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
-
-
                 Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_SHORT).show();
 
             }
         });
+
         sr.setShouldCache(false);
         rq.add(sr);
-
-
-
-
-
 
         return v;
 
