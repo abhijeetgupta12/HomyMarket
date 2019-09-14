@@ -4,6 +4,7 @@ package com.example.abhi.homymarket;
 import android.graphics.Paint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -14,12 +15,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -28,8 +40,11 @@ import java.util.Objects;
  */
 public class Fragment_Final_Product extends Fragment {
 
+    DatabaseReference mRef;
+    private FirebaseAuth mAuth;
     private ViewPager viewPager;
     LinearLayout linearLayout;
+    private Button cart;
     Spinner spinner;
     TextView tvquantity;
     String []quantity={"1","2","3","4","5","6"};
@@ -40,7 +55,11 @@ public class Fragment_Final_Product extends Fragment {
     private TextView brand,name,markPrice,sellPrice,discount,length,color,gender,type,rating,material,desc;
     int Price,Qty;
 
-    public Fragment_Final_Product() {
+    DataFetch ob;
+
+    public Fragment_Final_Product(DataFetch ob) {
+
+        this.ob=ob;
         // Required empty public constructor
     }
 
@@ -52,20 +71,24 @@ public class Fragment_Final_Product extends Fragment {
         View v = inflater.inflate(R.layout.fragment_final__product, container, false);
 
         //retrieving data from previous fragment...............
-        String brand1 = getArguments().getString("BRAND");
-        String name1 = getArguments().getString("NAME");
-        String mark_price1 = getArguments().getString("MARK_PRICE");
-        String sell_price1 = getArguments().getString("SELL_PRICE");
-        String discount1 = getArguments().getString("DISCOUNT");
-        String length1 = getArguments().getString("LENGTH");
-        String color1 = getArguments().getString("COLOR");
-        String gender1 = getArguments().getString("GENDER");
-        String type1 = getArguments().getString("TYPE");
-        String rating1 = getArguments().getString("RATING");
-        String material1 = getArguments().getString("MATERIAL");
-        String description1 = getArguments().getString("DESCRIPTION");
+        String id1 = ob.getId1();
+        String brand1 = ob.getBrand();
+        String name1 = ob.getName();
+        String mark_price1 = ob.getMarkprice();
+        String sell_price1 = ob.getSellprice();
+        String discount1 = ob.getDiscount();
+        String length1 = ob.getLength();
+        String color1 = ob.getColor();
+        String gender1 = ob.getGender();
+        String type1 = ob.getType();
+        String rating1 = ob.getRating();
+        String material1 = ob.getMaterial();
+        String description1 = ob.getDesc();
+
 
         Price = Integer.parseInt(sell_price1);
+        mAuth=FirebaseAuth.getInstance();
+        cart = v.findViewById(R.id.add_to_cart);
 
 
 
@@ -122,11 +145,11 @@ public class Fragment_Final_Product extends Fragment {
         });
 
 
-        String img1 = getArguments().getString("IMAGE1");
-        String img2 = getArguments().getString("IMAGE2");
-        String img3 = getArguments().getString("IMAGE3");
-        String img4 = getArguments().getString("IMAGE4");
-        String img5 = getArguments().getString("IMAGE5");
+        String img1 = ob.getImage1();
+        String img2 = ob.getImage2();
+        String img3 = ob.getImage3();
+        String img4 = ob.getImage4();
+        String img5 = ob.getImage5();
 
 
 
@@ -182,6 +205,41 @@ public class Fragment_Final_Product extends Fragment {
 
 
 
+        //add_to_cart................................................................................................
+
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FirebaseUser user=mAuth.getCurrentUser();
+                Map<String,String> map=new HashMap<>();
+                String key="Product_"+ob.getId1();
+                map.put(key,ob.getId1());
+                mRef= FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("WishList");
+                mRef.setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        Toast.makeText(getActivity(),"Added To Cart",Toast.LENGTH_LONG).show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        Toast.makeText(getActivity(),"Oops! Something went wrong",Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
+
+
+
+
+            }
+        });
+
+
         return v;
     }
 
@@ -192,12 +250,6 @@ public class Fragment_Final_Product extends Fragment {
         textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
 
-
-
-    }
 }
 

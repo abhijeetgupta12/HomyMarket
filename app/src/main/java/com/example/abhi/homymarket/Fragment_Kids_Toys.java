@@ -38,14 +38,10 @@ public class Fragment_Kids_Toys extends Fragment {
 
 
     View v;
-    RecyclerView recyclerView;
-
-
-    ArrayList<String> name,brand,gender,discount,desc,sellprice,markprice,rating,type,size,category,length,
-            image1,image2,image3,image4,image5,shop,color,stock,material;
-
-    ProgressBar progressBar;
-    Animation animation;
+    private RecyclerView recyclerView;
+    private ArrayList<DataFetch> data = new ArrayList<>();
+    private ProgressBar progressBar;
+    private Animation animation;
 
 
 
@@ -66,33 +62,13 @@ public class Fragment_Kids_Toys extends Fragment {
         animation= AnimationUtils.loadAnimation(getActivity(),R.anim.rotate);
         progressBar.startAnimation(animation);
 
-        name=new ArrayList<>();
-        brand=new ArrayList<>();
-        gender=new ArrayList<>();
-        discount=new ArrayList<>();
-        desc=new ArrayList<>();
-        sellprice=new ArrayList<>();
-        markprice=new ArrayList<>();
-        rating=new ArrayList<>();
-        type=new ArrayList<>();
-        size=new ArrayList<>();
-        category=new ArrayList<>();
-        length=new ArrayList<>();
-        image1=new ArrayList<>();
-        image2=new ArrayList<>();
-        image3=new ArrayList<>();
-        image4=new ArrayList<>();
-        image5=new ArrayList<>();
-        shop=new ArrayList<>();
-        color=new ArrayList<>();
-        stock=new ArrayList<>();
-        material=new ArrayList<>();
+
 
         recyclerView=v.findViewById(R.id.recycler);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
 
-
+        data.clear();
         RequestQueue rq = Volley.newRequestQueue(getActivity());
         String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS";
         StringRequest sr= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -109,13 +85,14 @@ public class Fragment_Kids_Toys extends Fragment {
 
                         JSONObject jo1 = ja.getJSONObject(i);
 
+                        String ID=jo1.getString("ID");
                         String NAME=jo1.getString("NAME");
                         String BRAND=jo1.getString("BRAND");
                         String GENDER=jo1.getString("GENDER");
                         String DISCOUNT=jo1.getString("DISCOUNT");
                         String DESC=jo1.getString("DESCRIPTION");
-                        String SELLPRICE=jo1.getString("SELLPRICE");
-                        String MARKPRICE=jo1.getString("MARKPRICE");
+                        String SELL_PRICE=jo1.getString("SELL_PRICE");
+                        String MARK_PRICE=jo1.getString("MARK_PRICE");
                         String RATING=jo1.getString("RATING");
                         String TYPE=jo1.getString("TYPE");
                         String SIZE=jo1.getString("SIZE");
@@ -135,28 +112,10 @@ public class Fragment_Kids_Toys extends Fragment {
 
 
 
-                        name.add(NAME);
-                        brand.add(BRAND);
-                        gender.add(GENDER);
-                        discount.add(DISCOUNT);
-                        desc.add(DESC);
-                        sellprice.add(SELLPRICE);
-                        markprice.add(MARKPRICE);
-                        rating.add(RATING);
-                        type.add(TYPE);
-                        size.add(SIZE);
-                        category.add(CATEGORY);
-                        length.add(LENGTH);
-                        image1.add(IMAGE1);
-                        image2.add(IMAGE2);
-                        image3.add(IMAGE3);
-                        image4.add(IMAGE4);
-                        image5.add(IMAGE5);
-                        shop.add(SHOP);
-                        color.add(COLOR);
-                        stock.add(STOCK);
-                        material.add(MATERIAL);
+                        DataFetch ob = new DataFetch(ID,NAME,BRAND,GENDER,DISCOUNT,DESC,SELL_PRICE,MARK_PRICE
+                                ,RATING,TYPE,SIZE,CATEGORY,LENGTH,IMAGE1,IMAGE2,IMAGE3,IMAGE4,IMAGE5,SHOP,COLOR,STOCK,MATERIAL);
 
+                        data.add(ob);
 
                     }
 
@@ -169,15 +128,15 @@ public class Fragment_Kids_Toys extends Fragment {
 
 
 
-                recyclerView.setAdapter(new RecyclerAdapter(getActivity(),name,brand,gender,discount,desc,sellprice,markprice,
-                        rating,type,size,category,length,image1,image2,image3,image4,image5,shop,color,stock,material));
+                recyclerView.setAdapter(new RecyclerAdapter(getActivity(),data));
+
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Log.d("abcde","Sorry");
+               // Log.d("abcde","Sorry");
 
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
@@ -187,6 +146,7 @@ public class Fragment_Kids_Toys extends Fragment {
 
             }
         });
+        sr.setShouldCache(false);
         rq.add(sr);
 
 

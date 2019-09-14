@@ -78,6 +78,7 @@ public class Fragment_MyAccount extends Fragment {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange( DataSnapshot dataSnapshot) {
+
                 String name=dataSnapshot.child("Name").getValue().toString();
                 String area=dataSnapshot.child("Area").getValue().toString();
                 String pin=dataSnapshot.child("Pin").getValue().toString();

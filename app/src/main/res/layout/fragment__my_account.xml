@@ -18,7 +18,7 @@
 
         <TextView
             android:fontFamily="sans-serif-condensed"
-            android:text="name"
+            android:text="Loading Plz...Wait...."
             android:id="@+id/name"
             android:textSize="24sp"
             android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
 
         <TextView
             android:fontFamily="sans-serif-condensed"
-            android:text="email"
+            android:text="Loading Plz...Wait...."
             android:id="@+id/email"
             android:textSize="24sp"
             android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
 
         <TextView
             android:fontFamily="sans-serif-condensed"
-            android:text="phone"
+            android:text="Loading Plz...Wait...."
             android:id="@+id/phone"
             android:textSize="24sp"
             android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
 
         <TextView
             android:fontFamily="sans-serif-condensed"
-            android:text="area"
+            android:text="Loading Plz...Wait...."
             android:id="@+id/area"
             android:textSize="24sp"
             android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
 
         <TextView
             android:fontFamily="sans-serif-condensed"
-            android:text="pin"
+            android:text="Loading Plz...Wait...."
             android:id="@+id/pin"
             android:textSize="24sp"
             android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
 
         <TextView
             android:fontFamily="sans-serif-condensed"
-            android:text="landmark"
+            android:text="Loading Plz...Wait...."
             android:id="@+id/landmark"
             android:textSize="24sp"
             android:layout_width="wrap_content"
@@ -110,24 +110,6 @@
 
     </LinearLayout>
 
-
-
-
-
-
-
-
-
-
-
-
-
 </ScrollView>
-
-
-
-
-
-
 
 </FrameLayout>

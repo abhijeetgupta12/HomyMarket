@@ -18,46 +18,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ProgrammingViewHolder>{
 
 
     Context ctx;
-    ArrayList<String> name,brand,gender,discount,desc,sellprice,markprice,rating,type,size,category,length,
-            image1,image2,image3,image4,image5,shop,color,stock,material;
+    ArrayList<DataFetch> data;
 
 
 
-    public RecyclerAdapter(Context ctx, ArrayList<String> name, ArrayList<String> brand, ArrayList<String> gender, ArrayList<String> discount
-                           ,ArrayList<String> desc,ArrayList<String> sellprice,ArrayList<String> markprice,ArrayList<String> rating
-                            ,ArrayList<String> type,ArrayList<String> size,ArrayList<String> category,ArrayList<String> length
-                            ,ArrayList<String> image1,ArrayList<String> image2,ArrayList<String> image3,ArrayList<String> image4
-                            ,ArrayList<String> image5,ArrayList<String> shop,ArrayList<String> color,ArrayList<String> stock,ArrayList<String> material)
+    public RecyclerAdapter(Context ctx,ArrayList<DataFetch> data)
     {
 
         this.ctx=ctx;
 
-        this.name=name;
-        this.brand=brand;
-        this.gender=gender;
-        this.discount=discount;
-        this.desc=desc;
-        this.sellprice=sellprice;
-        this.markprice=markprice;
-        this.rating=rating;
-        this.type=type;
-        this.size=size;
-        this.category=category;
-        this.length=length;
-        this.image1=image1;
-        this.image2=image2;
-        this.image3=image3;
-        this.image4=image4;
-        this.image5=image5;
-        this.shop=shop;
-        this.color=color;
-        this.stock=stock;
-        this.material=material;
+        this.data = data;
 
     }
 
@@ -74,13 +50,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
     @Override
     public void onBindViewHolder(@NonNull ProgrammingViewHolder holder, final int position) {
 
-        holder.name1.setText(name.get(position));
-        holder.brand1.setText(brand.get(position));
-        holder.price1.setText(sellprice.get(position));
-        holder.discount1.setText(discount.get(position));
+        holder.name1.setText(data.get(position).getName());
+        holder.brand1.setText(data.get(position).getBrand());
+        holder.price1.setText(data.get(position).getSellprice());
+        holder.discount1.setText(data.get(position).getDiscount());
 
         Picasso.get()
-                .load(image1.get(position))
+                .load(data.get(position).getImage1())
                 .placeholder(R.drawable.loading)
                 .error(R.drawable.placeholder_image)
                 .fit()
@@ -93,30 +69,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
             public void onClick(View view) {
 
 
-                Fragment_Final_Product ldf = new Fragment_Final_Product();
-                Bundle args = new Bundle();
-                args.putString("NAME",name.get(position));
-                args.putString("BRAND",brand.get(position));
-                args.putString("GENDER",gender.get(position));
-                args.putString("DISCOUNT",discount.get(position));
-                args.putString("DESCRIPTION",desc.get(position));
-                args.putString("SELL_PRICE",sellprice.get(position));
-                args.putString("MARK_PRICE",markprice.get(position));
-                args.putString("RATING",rating.get(position));
-                args.putString("TYPE",type.get(position));
-                args.putString("SIZE",size.get(position));
-                args.putString("CATEGORY",category.get(position));
-                args.putString("LENGTH",length.get(position));
-                args.putString("IMAGE1",image1.get(position));
-                args.putString("IMAGE2",image2.get(position));
-                args.putString("IMAGE3",image3.get(position));
-                args.putString("IMAGE4",image4.get(position));
-                args.putString("IMAGE5",image5.get(position));
-                args.putString("SHOP",shop.get(position));
-                args.putString("COLOR",color.get(position));
-                args.putString("STOCK",stock.get(position));
-                args.putString("MATERIAL",material.get(position));
-                ldf.setArguments(args);
+                Fragment_Final_Product ldf = new Fragment_Final_Product(data.get(position));
 
                 FragmentManager fm = ((FragmentActivity)ctx).getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
@@ -131,7 +84,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
 
     @Override
     public int getItemCount() {
-        return name.size();
+        return data.size();
     }
 
     public class ProgrammingViewHolder extends RecyclerView.ViewHolder{
