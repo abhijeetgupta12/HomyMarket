@@ -32,7 +32,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
     {
 
         this.ctx=ctx;
-
         this.data = data;
 
     }

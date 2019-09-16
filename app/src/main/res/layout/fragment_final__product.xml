@@ -137,7 +137,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="3"
+                        android:weightSum="2"
                         android:padding="3dp"
                         android:gravity="center">
 
@@ -147,68 +147,36 @@
                             android:layout_height="wrap_content"
                             android:weightSum="2">
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_weight="1.7"
+                            <RelativeLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Size :"
-                                android:gravity="center"
-                                android:fontFamily="@font/textfont1"
-                                android:textColor="#000"
-                                android:textSize="15sp"/>
+                                android:layout_marginRight="3dp"
+                                android:orientation="horizontal">
 
-                            <Spinner
-                                android:id="@+id/size"
-                                android:layout_width="0dp"
-                                android:layout_weight="0.3"
-                                android:layout_height="wrap_content"
-                                android:gravity="center" >
+                                <Spinner
+                                    android:id="@+id/size"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center"
+                                    android:background="@android:color/transparent"
+                                    android:gravity="center"
+                                    android:layout_marginLeft="5dp"
+                                    android:spinnerMode="dropdown" />
 
-                            </Spinner>
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/drop" />
+
+                            </RelativeLayout>
+
+
 
                         </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:weightSum="3">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_weight="1.75"
-                                android:layout_height="wrap_content"
-                                android:text="Qty:"
-                                android:gravity="center"
-                                android:fontFamily="@font/textfont1"
-                                android:textColor="#000"
-                                android:textSize="15sp"
-                                />
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_weight="0.5"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/setQuantitytext"
-                                android:text="1"
-                                android:gravity="center"
-                                android:fontFamily="@font/textfont1"
-                                android:textColor="#000"
-                                android:textSize="15sp"
-                                />
-
-                            <Spinner
-                                android:id="@+id/Qty"
-                                android:layout_width="0dp"
-                                android:layout_weight="0.75"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                >
-
-                            </Spinner>
-
-                        </LinearLayout>
-
 
                         <Button
                             android:layout_width="0dp"
@@ -222,7 +190,9 @@
                             android:drawableStart="@drawable/size_chart"
                             android:drawablePadding="5dp"
                             android:id="@+id/size_"
-                            /></LinearLayout>
+                            />
+
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -516,6 +486,7 @@
 
 
         <LinearLayout
+            android:id="@+id/buttonLayout"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

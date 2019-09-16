@@ -113,6 +113,8 @@ public class Fragment_Women_Apparels extends Fragment {
 
                         Log.d("abcdef",GENDER);
 
+                        //Instead of creating many arrayList we can create model class and then create list of model
+                        //we can assign values to model class by creating constructor and sending values like shown below
                         DataFetch ob = new DataFetch(ID,NAME,BRAND,GENDER,DISCOUNT,DESC,SELL_PRICE,MARK_PRICE
                         ,RATING,TYPE,SIZE,CATEGORY,LENGTH,IMAGE1,IMAGE2,IMAGE3,IMAGE4,IMAGE5,SHOP,COLOR,STOCK,MATERIAL);
 

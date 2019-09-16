@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,13 +48,13 @@ public class Fragment_Final_Product extends Fragment {
     private Button cart;
     Spinner spinner;
     TextView tvquantity;
-    String []quantity={"1","2","3","4","5","6"};
+    String[] quantity;
     ArrayAdapter<String> adp;
     RelativeLayout relativeLayout;
     private int dots_count;
     private ImageView[] dots;
     private TextView brand,name,markPrice,sellPrice,discount,length,color,gender,type,rating,material,desc;
-    int Price,Qty;
+    String SIZE;
 
     DataFetch ob;
 
@@ -71,7 +72,6 @@ public class Fragment_Final_Product extends Fragment {
         View v = inflater.inflate(R.layout.fragment_final__product, container, false);
 
         //retrieving data from previous fragment...............
-        String id1 = ob.getId1();
         String brand1 = ob.getBrand();
         String name1 = ob.getName();
         String mark_price1 = ob.getMarkprice();
@@ -84,9 +84,18 @@ public class Fragment_Final_Product extends Fragment {
         String rating1 = ob.getRating();
         String material1 = ob.getMaterial();
         String description1 = ob.getDesc();
+        String size1 = ob.getSize();
+        String img1 = ob.getImage1();
+        String img2 = ob.getImage2();
+        String img3 = ob.getImage3();
+        String img4 = ob.getImage4();
+        String img5 = ob.getImage5();
+
+        quantity = size1.split(",");
+        quantity = insert(quantity,"Select Size",0);
 
 
-        Price = Integer.parseInt(sell_price1);
+
         mAuth=FirebaseAuth.getInstance();
         cart = v.findViewById(R.id.add_to_cart);
 
@@ -124,32 +133,27 @@ public class Fragment_Final_Product extends Fragment {
 
 
         //spinner
-        tvquantity=v.findViewById(R.id.setQuantitytext);
-        spinner=v.findViewById(R.id.Qty);
+       // tvquantity=v.findViewById(R.id.setQuantitytext);
+        spinner=v.findViewById(R.id.size);
         adp=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,quantity);
         spinner.setAdapter(adp);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                tvquantity.setText(quantity[i]);
-                Qty = Integer.parseInt(quantity[i]);
+              SIZE = spinner.getItemAtPosition(i).toString().trim();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                tvquantity.setText(quantity[0]);
-                Qty = Integer.parseInt(quantity[0]);
+                //tvquantity.setText(quantity[0]);
+                //Qty = Integer.parseInt(quantity[0]);
             }
         });
 
 
-        String img1 = ob.getImage1();
-        String img2 = ob.getImage2();
-        String img3 = ob.getImage3();
-        String img4 = ob.getImage4();
-        String img5 = ob.getImage5();
+        //HR3018344633       54325
 
 
 
@@ -211,10 +215,17 @@ public class Fragment_Final_Product extends Fragment {
             @Override
             public void onClick(View view) {
 
+                if(SIZE.equals("Select Size"))
+                {
+                    Toast.makeText(getActivity(),"Select Size",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 FirebaseUser user=mAuth.getCurrentUser();
                 Map<String,String> map=new HashMap<>();
                 String key="Product_"+ob.getId1();
                 map.put("Product_ID",ob.getId1());
+                map.put("size",SIZE);
                 mRef= FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("WishList").child(key);
                 mRef.setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -244,11 +255,36 @@ public class Fragment_Final_Product extends Fragment {
     }
 
 
+
     //function for textView Cut
     private void strikeThroughText(TextView textView)
     {
         textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
     }
+
+    private static String[] insert(String[] a, String key, int index) {
+
+        String[] result = new String[a.length + 1];
+
+        for (int i = 0; i < index; i++)
+        {
+            result[i] = a[i];
+        }
+
+        result[index] = key;
+
+        for (int i = index + 1; i <= a.length; i++)
+        {
+
+            result[i] = a[i - 1];
+
+        }
+
+
+        return result;
+    }
+
+
 
 
 }

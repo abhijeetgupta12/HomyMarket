@@ -1,12 +1,12 @@
 package com.example.abhi.homymarket;
 
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -55,13 +58,16 @@ public class Fragment_WishList extends Fragment {
     CartFetch user ;
     private Animation animation;
     private ProgressBar progressBar;
+    ImageView imageCartEmpty;
+    private Button Proceed;
+    private LinearLayout Linear;
 
 
 
 
 
     public Fragment_WishList() {
-        // Required empty public constructor
+
     }
 
 
@@ -79,14 +85,25 @@ public class Fragment_WishList extends Fragment {
         recyclerView=v.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        Linear = v.findViewById(R.id.buttonLayout);
+        Linear.setVisibility(View.GONE);
+
+        Proceed = v.findViewById(R.id.proceed);
+
+        imageCartEmpty = v.findViewById(R.id.imageCartEmpty);
+        imageCartEmpty.setVisibility(View.GONE);
+
         mAuth=FirebaseAuth.getInstance();
         FirebaseUser User = mAuth.getCurrentUser();
         mRef= FirebaseDatabase.getInstance().getReference().child(User.getUid()).child("WishList");
 
+        data.clear();
+        product.clear();
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                //counting the no of item in cart.......
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     user = ds.getValue(CartFetch.class);
 
@@ -95,81 +112,96 @@ public class Fragment_WishList extends Fragment {
                     data.add(ob);
                 }
 
-
-                for (int j=0;j<data.size();j++)
+                if(data.size()!=0)
                 {
-                    RequestQueue rq = Volley.newRequestQueue(getActivity());
-                    String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS where ID LIKE "+data.get(j).getProduct_ID();
-                    StringRequest sr = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                            try {
-                                JSONObject jo = new JSONObject(response);
-                                JSONArray ja = jo.getJSONArray("result");
-                                JSONObject jo1 = ja.getJSONObject(0);
-
-                                String ID = jo1.getString("ID");
-                                String NAME = jo1.getString("NAME");
-                                String BRAND = jo1.getString("BRAND");
-                                String GENDER = jo1.getString("GENDER");
-                                String DISCOUNT = jo1.getString("DISCOUNT");
-                                String DESC = jo1.getString("DESCRIPTION");
-                                String SELL_PRICE = jo1.getString("SELLPRICE");
-                                String MARK_PRICE = jo1.getString("MARKPRICE");
-                                String RATING = jo1.getString("RATING");
-                                String TYPE = jo1.getString("TYPE");
-                                String SIZE = jo1.getString("SIZE");
-                                String CATEGORY = jo1.getString("CATEGORY");
-                                String LENGTH = jo1.getString("LENGTH");
-                                String IMAGE1 = jo1.getString("IMAGE1");
-                                String IMAGE2 = jo1.getString("IMAGE2");
-                                String IMAGE3 = jo1.getString("IMAGE3");
-                                String IMAGE4 = jo1.getString("IMAGE4");
-                                String IMAGE5 = jo1.getString("IMAGE5");
-                                String SHOP = jo1.getString("SHOP");
-                                String COLOR = jo1.getString("COLOR");
-                                String STOCK = jo1.getString("STOCK");
-                                String MATERIAL = jo1.getString("MATERIAL");
-
-                                Log.d("abcde",GENDER);
+                    for (int j=0;j<data.size();j++)
+                    {
 
 
-                                DataFetch ob = new DataFetch(ID, NAME, BRAND, GENDER, DISCOUNT, DESC, SELL_PRICE, MARK_PRICE
-                                        , RATING, TYPE, SIZE, CATEGORY, LENGTH, IMAGE1, IMAGE2, IMAGE3, IMAGE4, IMAGE5, SHOP, COLOR, STOCK, MATERIAL);
+                        RequestQueue rq = Volley.newRequestQueue(getActivity());
+                        String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS where ID LIKE "+data.get(j).getProduct_ID();
+                        StringRequest sr = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
 
-                                product.add(ob);
+                                try {
+                                    JSONObject jo = new JSONObject(response);
+                                    JSONArray ja = jo.getJSONArray("result");
+                                    JSONObject jo1 = ja.getJSONObject(0);
+
+                                    String ID = jo1.getString("ID");
+                                    String NAME = jo1.getString("NAME");
+                                    String BRAND = jo1.getString("BRAND");
+                                    String GENDER = jo1.getString("GENDER");
+                                    String DISCOUNT = jo1.getString("DISCOUNT");
+                                    String DESC = jo1.getString("DESCRIPTION");
+                                    String SELL_PRICE = jo1.getString("SELLPRICE");
+                                    String MARK_PRICE = jo1.getString("MARKPRICE");
+                                    String RATING = jo1.getString("RATING");
+                                    String TYPE = jo1.getString("TYPE");
+                                    String SIZE = jo1.getString("SIZE");
+                                    String CATEGORY = jo1.getString("CATEGORY");
+                                    String LENGTH = jo1.getString("LENGTH");
+                                    String IMAGE1 = jo1.getString("IMAGE1");
+                                    String IMAGE2 = jo1.getString("IMAGE2");
+                                    String IMAGE3 = jo1.getString("IMAGE3");
+                                    String IMAGE4 = jo1.getString("IMAGE4");
+                                    String IMAGE5 = jo1.getString("IMAGE5");
+                                    String SHOP = jo1.getString("SHOP");
+                                    String COLOR = jo1.getString("COLOR");
+                                    String STOCK = jo1.getString("STOCK");
+                                    String MATERIAL = jo1.getString("MATERIAL");
 
 
 
+                                    DataFetch ob = new DataFetch(ID, NAME, BRAND, GENDER, DISCOUNT, DESC, SELL_PRICE, MARK_PRICE
+                                            , RATING, TYPE, SIZE, CATEGORY, LENGTH, IMAGE1, IMAGE2, IMAGE3, IMAGE4, IMAGE5, SHOP, COLOR, STOCK, MATERIAL);
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                                    product.add(ob);
+
+
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                                recyclerView.setAdapter(new WishList_Adapter(getActivity(),product));
+                                progressBar.clearAnimation();
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Linear.setVisibility(View.VISIBLE);
+
+
+
                             }
-
-                            Log.d("###1",String.valueOf(data.size()));
-
-                            recyclerView.setAdapter(new WishList_Adapter(getActivity(),product));
-                            progressBar.clearAnimation();
-                            progressBar.setVisibility(View.INVISIBLE);
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
 
 
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
+                                progressBar.clearAnimation();
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Toast.makeText(getActivity(), "Please check your internet connection...Or the connection is slow", Toast.LENGTH_LONG).show();
 
+                            }
+                        });
 
-                            progressBar.clearAnimation();
-                            progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(getActivity(), "Please check your internet connection...", Toast.LENGTH_LONG).show();
-
-                        }
-                    });
-
-                    sr.setShouldCache(false);
-                    rq.add(sr);
+                        sr.setShouldCache(false);
+                        rq.add(sr);
+                    }
                 }
+
+                else
+                {
+                    progressBar.clearAnimation();
+                    progressBar.setVisibility(View.GONE);
+                    imageCartEmpty.setVisibility(View.VISIBLE);
+                    imageCartEmpty.setBackgroundResource(R.drawable.empty_cart);
+                }
+
+
+
 
 
 
@@ -189,14 +221,17 @@ public class Fragment_WishList extends Fragment {
 
         });
 
-        Log.d("###2",String.valueOf(data.size()));
+        Proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Fragment_DeliveryAdress ldf = new Fragment_DeliveryAdress();
+                FragmentManager fm = (getActivity()).getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
 
 
-
-
-     /*  */
-
-
+            }
+        });
 
 
         return v;

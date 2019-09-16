@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment_DeliveryAdress">
+
+   <LinearLayout
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <TextView
+           android:id="@+id/tot_price"
+           android:textSize="24sp"
+           android:textStyle="bold"
+           android:gravity="center"
+           android:text="Total:2000"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+
+       <TextView
+           android:layout_marginTop="24dp"
+           android:textSize="24sp"
+           android:textStyle="bold"
+           android:gravity="center"
+           android:text="Confirm Billing Address :"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+
+       <TextView
+           android:layout_marginTop="24dp"
+           android:fontFamily="sans-serif-condensed"
+           android:text="Loading Plz...Wait...."
+           android:id="@+id/name"
+           android:textSize="24sp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+
+       <TextView
+           android:fontFamily="sans-serif-condensed"
+           android:text="Loading Plz...Wait...."
+           android:id="@+id/area"
+           android:textSize="24sp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+
+       <TextView
+           android:fontFamily="sans-serif-condensed"
+           android:text="Loading Plz...Wait...."
+           android:id="@+id/pin"
+           android:textSize="24sp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+
+       <TextView
+           android:fontFamily="sans-serif-condensed"
+           android:text="Loading Plz...Wait...."
+           android:id="@+id/landmark"
+           android:textSize="24sp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+
+       <TextView
+           android:text="*You can change your address from My Account section"
+           android:textSize="24sp"
+           android:textStyle="bold"
+           android:layout_marginTop="24dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+
+   </LinearLayout>
+
+    <Button
+        android:id="@+id/merchant"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:background="@color/buttoncolor"
+        android:text="Payment"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>

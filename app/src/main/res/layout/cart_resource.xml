@@ -25,27 +25,127 @@
                     android:src="@drawable/ic_launcher_background"
                     android:id="@+id/imageview"/>
 
-                <TextView
-                    android:fontFamily="sans-serif-condensed"
-                    android:id="@+id/textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="title"
-                    android:textSize="15sp"
-                    android:padding="8dp"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-condensed"
+                        android:id="@+id/textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Title"
+                        android:textSize="18sp"
+                        android:padding="3dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:fontFamily="sans-serif-condensed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Size :"
+                            android:textSize="18sp"
+                            android:paddingStart="5dp"
+                            />
+
+                        <TextView
+                            android:textColor="#000"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:fontFamily="sans-serif-condensed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/size_selected"
+                            android:textSize="18sp"
+                            android:paddingStart="2dp"
+                            />
+
+                        <ImageButton
+                            android:id="@+id/add"
+                            android:background="@drawable/ic_add_box_black_24dp"
+                            android:layout_marginStart="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_marginStart="2dp"
+                            android:textColor="#000"
+                            android:fontFamily="sans-serif-condensed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ddddddd"
+                            android:id="@+id/Qty"
+                            android:textSize="18sp"
+                            android:paddingStart="2dp"
+                            />
+
+                        <ImageButton
+                            android:layout_marginStart="2dp"
+                            android:id="@+id/sub"
+                            android:background="@drawable/ic_subtract_box_black_24dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_marginStart="2dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Price :"
+                            android:textSize="18sp"
+                            android:paddingStart="2dp"
+                            />
+
+                        <TextView
+                            android:textColor="#000"
+                            android:id="@+id/price"
+                            android:layout_marginStart="2dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="18sp"
+                            android:paddingStart="2dp"
+                            />
 
 
+
+
+                    </LinearLayout>
+
+
+                    <ImageButton
+                        android:background="@drawable/ic_delete_black_24dp"
+                        android:id="@+id/delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="Delete" />
+
+
+
+                </LinearLayout>
 
 
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/delete"
-                android:text="Delete"
-                android:layout_gravity="end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
 
             <View
