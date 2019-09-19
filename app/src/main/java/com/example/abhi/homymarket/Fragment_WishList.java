@@ -60,7 +60,6 @@ public class Fragment_WishList extends Fragment {
     private ProgressBar progressBar;
     ImageView imageCartEmpty;
     private Button Proceed;
-    private LinearLayout Linear;
 
 
 
@@ -85,10 +84,8 @@ public class Fragment_WishList extends Fragment {
         recyclerView=v.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        Linear = v.findViewById(R.id.buttonLayout);
-        Linear.setVisibility(View.GONE);
-
         Proceed = v.findViewById(R.id.proceed);
+        Proceed.setVisibility(View.GONE);
 
         imageCartEmpty = v.findViewById(R.id.imageCartEmpty);
         imageCartEmpty.setVisibility(View.GONE);
@@ -170,7 +167,7 @@ public class Fragment_WishList extends Fragment {
                                 recyclerView.setAdapter(new WishList_Adapter(getActivity(),product));
                                 progressBar.clearAnimation();
                                 progressBar.setVisibility(View.INVISIBLE);
-                                Linear.setVisibility(View.VISIBLE);
+                                Proceed.setVisibility(View.VISIBLE);
 
 
 

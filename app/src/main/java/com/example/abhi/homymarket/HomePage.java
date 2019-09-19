@@ -53,6 +53,7 @@ public class HomePage extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Home = findViewById(R.id.home1);
 
         fm.beginTransaction().replace(R.id.frame,new Fragment_Home()).commit();//by default this fragment is used
 
@@ -71,13 +72,18 @@ public class HomePage extends AppCompatActivity
 
         mAuth=FirebaseAuth.getInstance();
         FirebaseUser currentUser=mAuth.getCurrentUser();//gets the current user
-        db= FirebaseDatabase.getInstance().getReference().child(currentUser.getUid());
+        db = FirebaseDatabase.getInstance().getReference().child(currentUser.getUid());
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange( DataSnapshot dataSnapshot) {
 
 
-                //here you retrieve user name or any thing related
+                //The code below is used to set the value in any of the view in nav_header_main.xml....
+                String name="Hi "+dataSnapshot.child("Name").getValue().toString()+"!";
+                NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                View headerView = navigationView.getHeaderView(0);
+                TextView navUsername = (TextView) headerView.findViewById(R.id.home1);
+                navUsername.setText(name);
 
                 progressDialog.dismiss();
             }
@@ -178,7 +184,7 @@ public class HomePage extends AppCompatActivity
 
         } else if (id == R.id.women) {
 
-             fm.beginTransaction().replace(R.id.frame,new Fragment_Women_Apparels()).commit();
+             fm.beginTransaction().replace(R.id.frame,new Fragment_Women_Apparels("")).commit();
 
         } else if (id == R.id.home) {
 
@@ -194,11 +200,11 @@ public class HomePage extends AppCompatActivity
 
         } else if (id == R.id.men) {
 
-            fm.beginTransaction().replace(R.id.frame,new Fragment_Men_Apparels()).commit();
+            fm.beginTransaction().replace(R.id.frame,new Fragment_Men_Apparels("")).commit();
 
         }else if (id == R.id.kids) {
 
-            fm.beginTransaction().replace(R.id.frame,new Fragment_Kids_Toys()).commit();
+            fm.beginTransaction().replace(R.id.frame,new Fragment_Kids_Toys("")).commit();
 
         }
 

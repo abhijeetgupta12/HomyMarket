@@ -4,6 +4,7 @@ package com.example.abhi.homymarket;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -23,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,9 +44,14 @@ public class Fragment_Men_Apparels extends Fragment {
     ArrayList<DataFetch> data = new ArrayList<>();
     ProgressBar progressBar;
     Animation animation;
+    String clause;
+    FloatingActionButton floatingActionButton;
+    RelativeLayout relativeLayout;
 
-    public Fragment_Men_Apparels() {
-        // Required empty public constructor
+    public Fragment_Men_Apparels(String clause) {
+
+        this.clause = clause;
+
     }
 
 
@@ -56,16 +64,29 @@ public class Fragment_Men_Apparels extends Fragment {
         animation= AnimationUtils.loadAnimation(getActivity(),R.anim.rotate);
         progressBar.startAnimation(animation);
 
-
+        relativeLayout = v.findViewById(R.id.floatingLayout);
+        relativeLayout.setVisibility(View.GONE);
 
         recyclerView=v.findViewById(R.id.recycler);
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
 
+        floatingActionButton = v.findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Fragment_Filter_Women ldf = new Fragment_Filter_Women();
+                FragmentManager fm = (getActivity()).getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
+
+            }
+        });
+
+
         data.clear();
         RequestQueue rq = Volley.newRequestQueue(getActivity());
-        String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS";
+        String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS WHERE GENDER LIKE \"M\" "+clause;
         StringRequest sr= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -120,6 +141,9 @@ public class Fragment_Men_Apparels extends Fragment {
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
                 recyclerView.setAdapter(new RecyclerAdapter(getActivity(),data));
+                if(!data.isEmpty())
+                relativeLayout.setVisibility(View.VISIBLE);
+
 
             }
         }, new Response.ErrorListener() {
@@ -129,7 +153,7 @@ public class Fragment_Men_Apparels extends Fragment {
 
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"Please check your internet connection...",Toast.LENGTH_LONG).show();
 
             }
         });

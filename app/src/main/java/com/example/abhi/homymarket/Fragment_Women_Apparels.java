@@ -1,22 +1,20 @@
 package com.example.abhi.homymarket;
 
 
-import android.app.DownloadManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,14 +23,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -45,9 +42,15 @@ public class Fragment_Women_Apparels extends Fragment {
     ArrayList<DataFetch> data = new ArrayList<>();
     private ProgressBar progressBar;
     private Animation animation;
+    private RelativeLayout relativeLayout;
+    FloatingActionButton floatingActionButton;
+    String clause;
 
-    public Fragment_Women_Apparels() {
-        // Required empty public constructor
+
+    public Fragment_Women_Apparels(String clause) {
+
+        this.clause=clause;
+
     }
 
 
@@ -61,18 +64,28 @@ public class Fragment_Women_Apparels extends Fragment {
         animation= AnimationUtils.loadAnimation(getActivity(),R.anim.rotate);
         progressBar.startAnimation(animation);
 
-
+        relativeLayout = v.findViewById(R.id.floatingLayout);
+        relativeLayout.setVisibility(View.GONE);
 
         recyclerView=v.findViewById(R.id.recycler);
-    //  recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
 
+        floatingActionButton = v.findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Fragment_Filter_Women ldf = new Fragment_Filter_Women();
+                FragmentManager fm = (getActivity()).getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
+
+            }
+        });
+
         data.clear();
         RequestQueue rq = Volley.newRequestQueue(getActivity());
-        String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS";
+        String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS WHERE GENDER LIKE \"F\" "+clause;
         StringRequest sr= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -82,6 +95,8 @@ public class Fragment_Women_Apparels extends Fragment {
                     JSONArray ja = jo.getJSONArray("result");
 
 
+
+                    //if(ja.length()==0)...to be added
 
                     for(int i =0;i<ja.length();i++)
                     {
@@ -111,7 +126,6 @@ public class Fragment_Women_Apparels extends Fragment {
                         String STOCK=jo1.getString("STOCK");
                         String MATERIAL=jo1.getString("MATERIAL");
 
-                        Log.d("abcdef",GENDER);
 
                         //Instead of creating many arrayList we can create model class and then create list of model
                         //we can assign values to model class by creating constructor and sending values like shown below
@@ -123,18 +137,18 @@ public class Fragment_Women_Apparels extends Fragment {
 
                     }
 
-                    progressBar.clearAnimation();
-                    progressBar.setVisibility(View.INVISIBLE);
+
 
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Toast.makeText(getActivity(),"Unable to Fetch Data",Toast.LENGTH_LONG).show();
                 }
 
-
-                Log.d("####1",String.valueOf(data.size()));
-
+                progressBar.clearAnimation();
+                progressBar.setVisibility(View.INVISIBLE);
                 recyclerView.setAdapter(new RecyclerAdapter(getActivity(),data));
+                if(!data.isEmpty())
+                relativeLayout.setVisibility(View.VISIBLE);
 
 
 
@@ -155,6 +169,9 @@ public class Fragment_Women_Apparels extends Fragment {
 
         sr.setShouldCache(false);
         rq.add(sr);
+
+
+
 
         return v;
 

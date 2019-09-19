@@ -7,6 +7,7 @@
 
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -15,6 +16,8 @@
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+    </LinearLayout>
 
         <LinearLayout
             android:gravity="center"
@@ -32,11 +35,25 @@
 
         </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/floatingLayout"
+        android:gravity="center|bottom"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
 
 
 
 
-    </LinearLayout>
+
+
 
 
 </FrameLayout>

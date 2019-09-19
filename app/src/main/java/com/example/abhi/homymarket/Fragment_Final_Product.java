@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +32,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 
 /**
@@ -45,7 +43,7 @@ public class Fragment_Final_Product extends Fragment {
     private FirebaseAuth mAuth;
     private ViewPager viewPager;
     LinearLayout linearLayout;
-    private Button cart;
+    private Button add_to_cart, buy_now;
     Spinner spinner;
     TextView tvquantity;
     String[] quantity;
@@ -97,7 +95,8 @@ public class Fragment_Final_Product extends Fragment {
 
 
         mAuth=FirebaseAuth.getInstance();
-        cart = v.findViewById(R.id.add_to_cart);
+        add_to_cart = v.findViewById(R.id.add_to_cart);
+        buy_now = v.findViewById(R.id.buy_now);
 
 
 
@@ -211,7 +210,7 @@ public class Fragment_Final_Product extends Fragment {
 
         //add_to_cart................................................................................................
 
-        cart.setOnClickListener(new View.OnClickListener() {
+        add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -225,7 +224,7 @@ public class Fragment_Final_Product extends Fragment {
                 Map<String,String> map=new HashMap<>();
                 String key="Product_"+ob.getId1();
                 map.put("Product_ID",ob.getId1());
-                map.put("size",SIZE);
+                map.put("spinner_size",SIZE);
                 mRef= FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("WishList").child(key);
                 mRef.setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -244,6 +243,45 @@ public class Fragment_Final_Product extends Fragment {
                 });
 
 
+
+
+
+            }
+        });
+
+        buy_now.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(SIZE.equals("Select Size"))
+                {
+                    Toast.makeText(getActivity(),"Select Size",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                FirebaseUser user=mAuth.getCurrentUser();
+                Map<String,String> map=new HashMap<>();
+                String key="Product_"+ob.getId1();
+                map.put("Product_ID",ob.getId1());
+                map.put("spinner_size",SIZE);
+                mRef= FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("WishList").child(key);
+                mRef.setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        Fragment_WishList ldf = new Fragment_WishList();
+                        FragmentManager fm = (getActivity()).getSupportFragmentManager();
+                        fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        Toast.makeText(getActivity(),"Oops! Something went wrong",Toast.LENGTH_LONG).show();
+
+                    }
+                });
 
 
 

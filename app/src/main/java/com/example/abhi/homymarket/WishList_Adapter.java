@@ -42,6 +42,8 @@ public class WishList_Adapter extends RecyclerView.Adapter<WishList_Adapter.Prog
     FirebaseAuth mAuth;
     DatabaseReference mRef;
     String size;
+    float PriceFloat;
+    static float totPrice = 0;
 
 
 
@@ -52,8 +54,8 @@ public class WishList_Adapter extends RecyclerView.Adapter<WishList_Adapter.Prog
 
 
 
-
-    public WishList_Adapter(Context ctx,List<DataFetch> data)  // data required in view is recieved here
+    // data required in view is recieved here
+    public WishList_Adapter(Context ctx,List<DataFetch> data)
     {
 
         this.ctx=ctx;
@@ -98,7 +100,9 @@ public class WishList_Adapter extends RecyclerView.Adapter<WishList_Adapter.Prog
                 .fit()
                 .into(holder.imageView);
 
-        holder.Price.setText(data.get(position).getSellprice());
+        PriceFloat = Float.parseFloat(data.get(position).getSellprice());
+        holder.Price.setText(String.valueOf(PriceFloat));
+        totPrice = totPrice + PriceFloat;
 
 
         String key="Product_"+data.get(position).getId1();
@@ -109,7 +113,7 @@ public class WishList_Adapter extends RecyclerView.Adapter<WishList_Adapter.Prog
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                size=dataSnapshot.child("size").getValue().toString();
+                size=dataSnapshot.child("spinner_size").getValue().toString();
                 holder.SIZE.setText(size);
 
 
@@ -167,6 +171,8 @@ public class WishList_Adapter extends RecyclerView.Adapter<WishList_Adapter.Prog
                 Float newPrice = price * k;
                 holder.Price.setText(String.valueOf(newPrice));
                 holder.Qty.setText(String.valueOf(k));
+                totPrice = totPrice + PriceFloat*(k-1);
+
 
 
             }
@@ -185,6 +191,8 @@ public class WishList_Adapter extends RecyclerView.Adapter<WishList_Adapter.Prog
                 Float newPrice = price * k;
                 holder.Price.setText(String.valueOf(newPrice));
                 holder.Qty.setText(String.valueOf(k));
+                totPrice = totPrice + PriceFloat*(k-1);
+
             }
         });
 

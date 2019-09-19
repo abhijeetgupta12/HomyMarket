@@ -28,7 +28,7 @@ public class Fragment_DeliveryAdress extends Fragment {
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
     DatabaseReference db;
-    TextView name1,area1,pin1,landmark1;
+    TextView name1,area1,pin1,landmark1,tot;
 
     public Fragment_DeliveryAdress() {
     }
@@ -41,10 +41,15 @@ public class Fragment_DeliveryAdress extends Fragment {
         v = inflater.inflate(R.layout.fragment_delivery_adress, container, false);
 
 
+        tot = v.findViewById(R.id.tot_price);
         name1=v.findViewById(R.id.name);
         area1=v.findViewById(R.id.area);
         pin1=v.findViewById(R.id.pin);
         landmark1=v.findViewById(R.id.landmark);
+
+        float Price = WishList_Adapter.totPrice;
+        tot.setText(String.valueOf(Price));
+        WishList_Adapter.totPrice=0;
 
 
         mAuth= FirebaseAuth.getInstance();

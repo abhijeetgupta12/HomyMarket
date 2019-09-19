@@ -39,10 +39,7 @@
                 android:id="@+id/myorder"
                 android:icon="@drawable/order"
                 android:title="My Order" />
-            <item
-                android:id="@+id/wishlist"
-                android:icon="@drawable/wishlist"
-                android:title="My Wishlist" />
+
             <item
                 android:id="@+id/logout"
                 android:icon="@drawable/logout"
