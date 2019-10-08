@@ -9,21 +9,14 @@
             android:title="Home" />
 
         <item
-            android:id="@+id/bumperoffer"
+            android:id="@+id/stationary"
             android:icon="@drawable/bumperoffer"
-            android:title="Bumper Offer" />
+            android:title="Stationary" />
         <item
-            android:id="@+id/women"
+            android:id="@+id/chakhna"
             android:icon="@drawable/ic_women"
-            android:title="Women Apparels" />
-        <item
-            android:id="@+id/men"
-            android:icon="@drawable/men"
-            android:title="Men Apparels" />
-        <item
-            android:id="@+id/kids"
-            android:icon="@drawable/kids"
-            android:title="Kids and Toys" />
+            android:title="Daily Products" />
+
     </group>
 
 

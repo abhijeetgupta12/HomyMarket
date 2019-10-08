@@ -1,4 +1,4 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Fragments;
 
 
 import android.graphics.Paint;
@@ -23,6 +23,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.abhi.homymarket.Models.DataFetch;
+import com.example.abhi.homymarket.R;
+import com.example.abhi.homymarket.Adapters.ViewPagerAdapter_FinalProduct;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,7 +40,7 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_Final_Product extends Fragment {
+public class Final_Product extends Fragment {
 
     DatabaseReference mRef;
     private FirebaseAuth mAuth;
@@ -56,7 +59,7 @@ public class Fragment_Final_Product extends Fragment {
 
     DataFetch ob;
 
-    public Fragment_Final_Product(DataFetch ob) {
+    public Final_Product(DataFetch ob) {
 
         this.ob=ob;
         // Required empty public constructor
@@ -88,6 +91,7 @@ public class Fragment_Final_Product extends Fragment {
         String img3 = ob.getImage3();
         String img4 = ob.getImage4();
         String img5 = ob.getImage5();
+        String cat = ob.getCategory();
 
         quantity = size1.split(",");
         quantity = insert(quantity,"Select Size",0);
@@ -126,6 +130,29 @@ public class Fragment_Final_Product extends Fragment {
         rating.setText(rating1);
         material.setText(material1);
         desc.setText(description1);
+
+        if(cat.equals("STAT") || cat.equals("CHAK"))
+        {
+            brand.setVisibility(View.GONE);
+
+            v.findViewById(R.id.linear_color).setVisibility(View.GONE);
+            v.findViewById(R.id.linear_len).setVisibility(View.GONE);
+            v.findViewById(R.id.linear_mat).setVisibility(View.GONE);
+            v.findViewById(R.id.linear_rate).setVisibility(View.GONE);
+            v.findViewById(R.id.linear_type).setVisibility(View.GONE);
+            v.findViewById(R.id.linear_gen).setVisibility(View.GONE);
+            v.findViewById(R.id.size_chart).setVisibility(View.GONE);
+
+            v.findViewById(R.id.view1).setVisibility(View.GONE);
+            v.findViewById(R.id.view2).setVisibility(View.GONE);
+            v.findViewById(R.id.view3).setVisibility(View.GONE);
+            v.findViewById(R.id.view4).setVisibility(View.GONE);
+            v.findViewById(R.id.view5).setVisibility(View.GONE);
+            v.findViewById(R.id.view6).setVisibility(View.GONE);
+
+            SIZE="S";
+        }
+
 
         //make a cut in a textView
         strikeThroughText(markPrice);
@@ -169,7 +196,7 @@ public class Fragment_Final_Product extends Fragment {
             }
         });
 
-        viewPagerAdapter_FinalProduct viewPagerAdapterdone=new viewPagerAdapter_FinalProduct(getActivity(),img1,img2,img3,img4,img5);
+        ViewPagerAdapter_FinalProduct viewPagerAdapterdone=new ViewPagerAdapter_FinalProduct(getActivity(),img1,img2,img3,img4,img5);
         viewPager.setAdapter(viewPagerAdapterdone);
         dots_count=viewPagerAdapterdone.getCount();
         dots=new ImageView[dots_count];
@@ -269,7 +296,7 @@ public class Fragment_Final_Product extends Fragment {
                     @Override
                     public void onSuccess(Void aVoid) {
 
-                        Fragment_WishList ldf = new Fragment_WishList();
+                        Cart ldf = new Cart();
                         FragmentManager fm = (getActivity()).getSupportFragmentManager();
                         fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
 

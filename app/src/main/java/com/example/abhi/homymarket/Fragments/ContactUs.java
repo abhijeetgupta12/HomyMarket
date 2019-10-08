@@ -1,4 +1,4 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Fragments;
 
 
 import android.os.Bundle;
@@ -9,15 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.abhi.homymarket.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_Final_amount extends Fragment {
+public class ContactUs extends Fragment {
 
-    View v;
 
-    public Fragment_Final_amount() {
+    public ContactUs() {
         // Required empty public constructor
     }
 
@@ -25,10 +25,8 @@ public class Fragment_Final_amount extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        v = inflater.inflate(R.layout.fragment_fragment__final_amount, container, false);
-
-        return v;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_contact_us, container, false);
     }
 
 }

@@ -1,16 +1,14 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Fragments;
 
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -28,6 +25,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.abhi.homymarket.Models.CartFetch;
+import com.example.abhi.homymarket.Models.DataFetch;
+import com.example.abhi.homymarket.R;
+import com.example.abhi.homymarket.Adapters.Cart_Adapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -47,7 +48,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_WishList extends Fragment {
+public class Cart extends Fragment {
 
     View v;
     private RecyclerView recyclerView;
@@ -65,7 +66,7 @@ public class Fragment_WishList extends Fragment {
 
 
 
-    public Fragment_WishList() {
+    public Cart() {
 
     }
 
@@ -75,6 +76,8 @@ public class Fragment_WishList extends Fragment {
                              Bundle savedInstanceState) {
 
         v = inflater.inflate(R.layout.fragment_wish_list, container, false);
+
+        CartFetch.priceList.clear();
 
         //animation starts......
         progressBar=v.findViewById(R.id.progress);
@@ -164,7 +167,7 @@ public class Fragment_WishList extends Fragment {
                                 }
 
 
-                                recyclerView.setAdapter(new WishList_Adapter(getActivity(),product));
+                                recyclerView.setAdapter(new Cart_Adapter(getActivity(),product));
                                 progressBar.clearAnimation();
                                 progressBar.setVisibility(View.INVISIBLE);
                                 Proceed.setVisibility(View.VISIBLE);
@@ -222,7 +225,7 @@ public class Fragment_WishList extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Fragment_DeliveryAdress ldf = new Fragment_DeliveryAdress();
+                DeliveryAdress ldf = new DeliveryAdress();
                 FragmentManager fm = (getActivity()).getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
 

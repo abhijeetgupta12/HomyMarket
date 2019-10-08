@@ -1,4 +1,4 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Fragments;
 
 
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.abhi.homymarket.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +33,7 @@ import java.util.Set;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_MyAccount extends Fragment {
+public class MyAccount extends Fragment {
 
     View v;
     private DatabaseReference db;
@@ -43,7 +44,7 @@ public class Fragment_MyAccount extends Fragment {
     private Button update;
 
 
-    public Fragment_MyAccount() {
+    public MyAccount() {
         // Required empty public constructor
     }
 

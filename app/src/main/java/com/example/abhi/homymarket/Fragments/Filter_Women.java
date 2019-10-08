@@ -1,4 +1,4 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Fragments;
 
 
 import android.os.Bundle;
@@ -17,11 +17,13 @@ import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
+import com.example.abhi.homymarket.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_Filter_Men extends Fragment {
+public class Filter_Women extends Fragment {
 
     CheckBox xs,s,m,l,xl;
     private Button done;
@@ -32,7 +34,7 @@ public class Fragment_Filter_Men extends Fragment {
     String cloath_selected, size_selected;
     RelativeLayout relativeLayout;
 
-    public Fragment_Filter_Men() {
+    public Filter_Women() {
 
 
     }
@@ -100,24 +102,24 @@ public class Fragment_Filter_Men extends Fragment {
                     }
 
                     spinner_size.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                            size_selected = spinner_size.getItemAtPosition(i).toString().trim();
+                                size_selected = spinner_size.getItemAtPosition(i).toString().trim();
 
-                            if(!size_selected.equals("SELECT SIZE"))
-                            {
-                                clause = clause + " AND SIZE LIKE \""+ size_selected+"\"";
+                                if(!size_selected.equals("SELECT SIZE"))
+                                {
+                                    clause = clause + " AND SIZE LIKE \""+ size_selected+"\"";
+                                }
+
+
                             }
 
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
 
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> adapterView) {
-
-                        }
-                    });
+                            }
+                        });
 
 
 
@@ -195,7 +197,7 @@ public class Fragment_Filter_Men extends Fragment {
 */
                 Log.d("@@@",clause);
 
-                Fragment_Men_Apparels ldf = new Fragment_Men_Apparels(clause);
+                Women_Apparels ldf = new Women_Apparels(clause);
                 FragmentManager fm = (getActivity()).getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
                 spinner_cloath.setSelection(0);

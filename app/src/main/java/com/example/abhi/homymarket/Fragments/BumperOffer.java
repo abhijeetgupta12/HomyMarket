@@ -1,4 +1,4 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Fragments;
 
 
 import android.os.Bundle;
@@ -6,10 +6,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +23,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.abhi.homymarket.Models.DataFetch;
+import com.example.abhi.homymarket.R;
+import com.example.abhi.homymarket.Adapters.RecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -37,7 +38,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_BumperOffer extends Fragment {
+public class BumperOffer extends Fragment {
 
     private View v;
     private RecyclerView recyclerView;
@@ -50,7 +51,7 @@ public class Fragment_BumperOffer extends Fragment {
 
 
 
-    public Fragment_BumperOffer() {
+    public BumperOffer() {
         // Required empty public constructor
     }
 
@@ -78,7 +79,7 @@ public class Fragment_BumperOffer extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Fragment_Filter_Women ldf = new Fragment_Filter_Women();
+                Filter_Women ldf = new Filter_Women();
                 FragmentManager fm = (getActivity()).getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
 

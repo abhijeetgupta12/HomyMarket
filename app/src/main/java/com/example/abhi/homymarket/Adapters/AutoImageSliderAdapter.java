@@ -1,4 +1,4 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Adapters;
 
 
 import android.content.Context;
@@ -8,15 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.abhi.homymarket.Activities.NextActivity;
+import com.example.abhi.homymarket.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.squareup.picasso.Picasso;
 
-public class ImageSliderAdapter extends SliderViewAdapter<ImageSliderAdapter.SliderAdapterVH> {
+public class AutoImageSliderAdapter extends SliderViewAdapter<AutoImageSliderAdapter.SliderAdapterVH> {
 
     private Context context;
     private int mCount;
 
-    public ImageSliderAdapter(Context context) {
+    public AutoImageSliderAdapter(Context context) {
         this.context = context;
     }
 
@@ -26,7 +28,7 @@ public class ImageSliderAdapter extends SliderViewAdapter<ImageSliderAdapter.Sli
 
 
     @Override
-    public ImageSliderAdapter.SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
+    public AutoImageSliderAdapter.SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
 
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_slider_layout, null);
         return new SliderAdapterVH(inflate);
@@ -38,7 +40,7 @@ public class ImageSliderAdapter extends SliderViewAdapter<ImageSliderAdapter.Sli
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.getContext().startActivity(new Intent(context,NextActivity.class));
+                v.getContext().startActivity(new Intent(context, NextActivity.class));
             }
         });
 

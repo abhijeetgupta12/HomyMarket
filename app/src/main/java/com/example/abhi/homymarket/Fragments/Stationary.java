@@ -1,4 +1,4 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Fragments;
 
 
 import android.os.Bundle;
@@ -6,10 +6,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +23,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.abhi.homymarket.Adapters.RecyclerAdapter;
+import com.example.abhi.homymarket.Models.DataFetch;
+import com.example.abhi.homymarket.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -33,24 +34,21 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_Men_Apparels extends Fragment {
+public class Stationary extends Fragment {
 
     View v;
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     ArrayList<DataFetch> data = new ArrayList<>();
-    ProgressBar progressBar;
-    Animation animation;
-    String clause;
+    private ProgressBar progressBar;
+    private Animation animation;
     FloatingActionButton floatingActionButton;
-    RelativeLayout relativeLayout;
+    String clause;
 
-    public Fragment_Men_Apparels(String clause) {
 
-        this.clause = clause;
+    public Stationary() {
 
     }
 
@@ -58,43 +56,34 @@ public class Fragment_Men_Apparels extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_women__apparels_, container, false);
+        v = inflater.inflate(R.layout.fragment_stationary, container, false);
 
         progressBar=v.findViewById(R.id.progress);
         animation= AnimationUtils.loadAnimation(getActivity(),R.anim.rotate);
         progressBar.startAnimation(animation);
 
-        relativeLayout = v.findViewById(R.id.floatingLayout);
-        relativeLayout.setVisibility(View.GONE);
+
 
         recyclerView=v.findViewById(R.id.recycler);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
 
-        floatingActionButton = v.findViewById(R.id.fab);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Fragment_Filter_Women ldf = new Fragment_Filter_Women();
-                FragmentManager fm = (getActivity()).getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
-
-            }
-        });
 
 
         data.clear();
         RequestQueue rq = Volley.newRequestQueue(getActivity());
-        String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS WHERE GENDER LIKE \"M\" "+clause;
+        String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS WHERE CATEGORY LIKE \"STAT\" ";
         StringRequest sr= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-
                 try {
                     JSONObject jo = new JSONObject(response);
                     JSONArray ja = jo.getJSONArray("result");
+
+
+
+                    //if(ja.length()==0)...to be added
 
                     for(int i =0;i<ja.length();i++)
                     {
@@ -102,7 +91,7 @@ public class Fragment_Men_Apparels extends Fragment {
                         JSONObject jo1 = ja.getJSONObject(i);
 
                         String ID=jo1.getString("ID");
-                        String NAME=jo1.getString("NAME");
+                        String NAME= jo1.getString("NAME");
                         String BRAND=jo1.getString("BRAND");
                         String GENDER=jo1.getString("GENDER");
                         String DISCOUNT=jo1.getString("DISCOUNT");
@@ -124,25 +113,24 @@ public class Fragment_Men_Apparels extends Fragment {
                         String STOCK=jo1.getString("STOCK");
                         String MATERIAL=jo1.getString("MATERIAL");
 
+
+                        //Instead of creating many arrayList we can create model class and then create list of model
+                        //we can assign values to model class by creating constructor and sending values like shown below
                         DataFetch ob = new DataFetch(ID,NAME,BRAND,GENDER,DISCOUNT,DESC,SELL_PRICE,MARK_PRICE
                                 ,RATING,TYPE,SIZE,CATEGORY,LENGTH,IMAGE1,IMAGE2,IMAGE3,IMAGE4,IMAGE5,SHOP,COLOR,STOCK,MATERIAL);
 
                         data.add(ob);
 
-
-
                     }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
 
+                } catch (JSONException e) {
                     Toast.makeText(getActivity(),"Unable to Fetch Data",Toast.LENGTH_LONG).show();
                 }
+
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
                 recyclerView.setAdapter(new RecyclerAdapter(getActivity(),data));
-                if(!data.isEmpty())
-                relativeLayout.setVisibility(View.VISIBLE);
 
 
             }
@@ -161,7 +149,11 @@ public class Fragment_Men_Apparels extends Fragment {
         sr.setShouldCache(false);
         rq.add(sr);
 
+
+
+
         return v;
+
     }
 
 }

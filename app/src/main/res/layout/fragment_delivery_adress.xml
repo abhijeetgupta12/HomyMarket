@@ -3,32 +3,137 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_DeliveryAdress">
+    tools:context=".Fragments.DeliveryAdress">
 
    <LinearLayout
        android:orientation="vertical"
        android:layout_width="match_parent"
        android:layout_height="match_parent">
 
-       <TextView
-           android:id="@+id/tot_price"
-           android:textSize="24sp"
-           android:textStyle="bold"
-           android:gravity="center"
-           android:text="Total:2000"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content" />
 
        <TextView
+           android:textColor="#000"
+           android:fontFamily="sans-serif-condensed"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:text="Your Bill"
+           android:textSize="40sp"
+           android:textStyle="bold"/>
+
+       <LinearLayout
+           android:layout_marginStart="8dp"
+           android:layout_marginEnd="8dp"
+           android:orientation="horizontal"
+           android:layout_marginTop="40dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <TextView
+               android:textColor="#000"
+               android:fontFamily="sans-serif-condensed"
+               android:textSize="24sp"
+               android:textStyle="bold"
+               android:text="Net Price:"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+
+           <TextView
+               android:textColor="#000"
+               android:fontFamily="sans-serif-condensed"
+               android:gravity="end"
+               android:id="@+id/tot_price"
+               android:textSize="24sp"
+               android:textStyle="bold"
+               android:text="..."
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:paddingStart="8dp"
+           android:paddingEnd="8dp"
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <TextView
+               android:textColor="#000"
+               android:fontFamily="sans-serif-condensed"
+               android:textSize="24sp"
+               android:textStyle="bold"
+               android:text="Delivary Charge:"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+
+           <TextView
+               android:textColor="#000"
+               android:fontFamily="sans-serif-condensed"
+               android:gravity="end"
+               android:id="@+id/delivary_charge"
+               android:textSize="24sp"
+               android:textStyle="bold"
+               android:text="..."
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+
+       </LinearLayout>
+
+
+       <View
+           android:paddingStart="8dp"
+           android:paddingEnd="8dp"
+           android:layout_marginTop="20dp"
+           android:layout_width="match_parent"
+           android:layout_height="2dp"
+           android:background="@color/buttoncolor"/>
+
+       <LinearLayout
+           android:paddingStart="8dp"
+           android:paddingEnd="8dp"
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <TextView
+               android:textColor="#000"
+               android:fontFamily="sans-serif-condensed"
+               android:textSize="24sp"
+               android:textStyle="bold"
+               android:text="Total"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+
+           <TextView
+               android:textColor="#000"
+               android:fontFamily="sans-serif-condensed"
+               android:gravity="end"
+               android:id="@+id/PayingAmount"
+               android:textSize="24sp"
+               android:textStyle="bold"
+               android:text="..."
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+
+       </LinearLayout>
+
+
+
+       <TextView
+           android:textColor="#000"
+           android:fontFamily="sans-serif-condensed"
            android:layout_marginTop="24dp"
            android:textSize="24sp"
            android:textStyle="bold"
            android:gravity="center"
-           android:text="Confirm Billing Address :"
+           android:text="Your Billing Address"
            android:layout_width="match_parent"
            android:layout_height="wrap_content" />
 
        <TextView
+           android:paddingStart="8dp"
+           android:paddingEnd="8dp"
            android:layout_marginTop="24dp"
            android:fontFamily="sans-serif-condensed"
            android:text="Loading Plz...Wait...."
@@ -38,6 +143,8 @@
            android:layout_height="wrap_content" />
 
        <TextView
+           android:paddingStart="8dp"
+           android:paddingEnd="8dp"
            android:fontFamily="sans-serif-condensed"
            android:text="Loading Plz...Wait...."
            android:id="@+id/area"
@@ -46,6 +153,8 @@
            android:layout_height="wrap_content" />
 
        <TextView
+           android:paddingStart="8dp"
+           android:paddingEnd="8dp"
            android:fontFamily="sans-serif-condensed"
            android:text="Loading Plz...Wait...."
            android:id="@+id/pin"
@@ -54,6 +163,8 @@
            android:layout_height="wrap_content" />
 
        <TextView
+           android:paddingStart="8dp"
+           android:paddingEnd="8dp"
            android:fontFamily="sans-serif-condensed"
            android:text="Loading Plz...Wait...."
            android:id="@+id/landmark"
@@ -62,9 +173,12 @@
            android:layout_height="wrap_content" />
 
        <TextView
+           android:paddingStart="8dp"
+           android:layout_gravity="bottom"
+           android:textColor="#000"
+           android:fontFamily="sans-serif-condensed"
            android:text="*You can change your address from My Account section"
-           android:textSize="24sp"
-           android:textStyle="bold"
+           android:textSize="18sp"
            android:layout_marginTop="24dp"
            android:layout_width="match_parent"
            android:layout_height="wrap_content" />
@@ -76,7 +190,7 @@
         android:textStyle="bold"
         android:textColor="#fff"
         android:background="@color/buttoncolor"
-        android:text="Payment"
+        android:text="Order"
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -1,4 +1,4 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Fragments;
 
 
 import android.animation.ArgbEvaluator;
@@ -13,8 +13,11 @@ import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.abhi.homymarket.Adapters.AutoImageSliderAdapter;
+import com.example.abhi.homymarket.R;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -26,16 +29,17 @@ import java.util.Objects;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_Home extends Fragment {
+public class Home extends Fragment {
 
     private View v;
     private LinearLayout txt;
     SliderView sliderView;
     LinearLayout all;
+    ImageView stationary,chakhna;
 
 
 
-    public Fragment_Home() {
+    public Home() {
         // Required empty public constructor
     }
 
@@ -58,7 +62,7 @@ public class Fragment_Home extends Fragment {
             public void onClick(View view) {
 
                 FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();//Actual was---------FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.frame,new Fragment_Women_Apparels()).commit();//by default this fragment is used
+                fm.beginTransaction().replace(R.id.frame,new Women_Apparels()).commit();//by default this fragment is used
             }
         });*/
 
@@ -71,7 +75,7 @@ public class Fragment_Home extends Fragment {
         //ImageSlider.....
 
         sliderView=v.findViewById(R.id.imageSlider);
-        final ImageSliderAdapter sliderAdapterExample=new ImageSliderAdapter(getActivity());
+        final AutoImageSliderAdapter sliderAdapterExample=new AutoImageSliderAdapter(getActivity());
         sliderAdapterExample.setCount(5);
         sliderView.setSliderAdapter(sliderAdapterExample);
         sliderView.setIndicatorAnimation(IndicatorAnimations.SLIDE); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
@@ -88,6 +92,42 @@ public class Fragment_Home extends Fragment {
         });
 
         //ImageSlider Ends.....
+
+
+        stationary = v.findViewById(R.id.stationay_pic);
+        chakhna = v.findViewById(R.id.chakhna_pic);
+
+
+        stationary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();//Actual was---------FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.frame,new Stationary()).addToBackStack(null).commit();//by default this fragment is used
+
+
+            }
+        });
+
+        chakhna.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();//Actual was---------FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.frame,new Chakhna()).addToBackStack(null).commit();//by default this fragment is used
+
+
+            }
+        });
+
+
+
+
+
+
+
+
+
 
         return v;
     }

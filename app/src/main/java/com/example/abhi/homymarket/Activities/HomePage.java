@@ -1,18 +1,11 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Activities;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,10 +14,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.viewpager.widget.ViewPager;
 
+import com.example.abhi.homymarket.Fragments.BumperOffer;
+import com.example.abhi.homymarket.Fragments.Chakhna;
+import com.example.abhi.homymarket.Fragments.ContactUs;
+import com.example.abhi.homymarket.Fragments.Home;
+import com.example.abhi.homymarket.Fragments.Kids_Toys;
+import com.example.abhi.homymarket.Fragments.Men_Apparels;
+import com.example.abhi.homymarket.Fragments.MyAccount;
+import com.example.abhi.homymarket.Fragments.Cart;
+import com.example.abhi.homymarket.Fragments.Stationary;
+import com.example.abhi.homymarket.Fragments.Women_Apparels;
+import com.example.abhi.homymarket.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -55,7 +57,7 @@ public class HomePage extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Home = findViewById(R.id.home1);
 
-        fm.beginTransaction().replace(R.id.frame,new Fragment_Home()).commit();//by default this fragment is used
+        fm.beginTransaction().replace(R.id.frame,new Home()).commit();//by default this fragment is used
 
 
         //As soon as the app opens if the user is already logged in this page opens with user details and a
@@ -109,7 +111,7 @@ public class HomePage extends AppCompatActivity
 
                 //Toast.makeText(HomePage.this,"Cart",Toast.LENGTH_LONG).show();
 
-                fm.beginTransaction().replace(R.id.frame,new Fragment_WishList()).commit();//by default this fragment is used
+                fm.beginTransaction().replace(R.id.frame,new Cart()).commit();//by default this fragment is used
 
 
 
@@ -182,31 +184,31 @@ public class HomePage extends AppCompatActivity
             startActivity(new Intent(HomePage.this,Login.class));
             finish();
 
-        } else if (id == R.id.women) {
+        } else if (id == R.id.stationary) {
 
-             fm.beginTransaction().replace(R.id.frame,new Fragment_Women_Apparels("")).commit();
+             fm.beginTransaction().replace(R.id.frame,new Stationary()).commit();
 
         } else if (id == R.id.home) {
 
-            fm.beginTransaction().replace(R.id.frame,new Fragment_Home()).commit();
+            fm.beginTransaction().replace(R.id.frame,new Home()).commit();
 
         } else if (id == R.id.myaccount) {
 
-            fm.beginTransaction().replace(R.id.frame,new Fragment_MyAccount()).commit();
+            fm.beginTransaction().replace(R.id.frame,new MyAccount()).commit();
 
-        } else if (id == R.id.bumperoffer) {
+        } else if (id == R.id.chakhna) {
 
-            fm.beginTransaction().replace(R.id.frame,new Fragment_BumperOffer()).commit();
+            fm.beginTransaction().replace(R.id.frame,new Chakhna()).commit();
 
-        } else if (id == R.id.men) {
+        } else if (id == R.id.helpcenter) {
 
-            fm.beginTransaction().replace(R.id.frame,new Fragment_Men_Apparels("")).commit();
+            fm.beginTransaction().replace(R.id.frame,new ContactUs()).commit();
 
-        }else if (id == R.id.kids) {
+        }/*else if (id == R.id.kids) {
 
-            fm.beginTransaction().replace(R.id.frame,new Fragment_Kids_Toys("")).commit();
+            fm.beginTransaction().replace(R.id.frame,new Kids_Toys("")).commit();
 
-        }
+        }*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

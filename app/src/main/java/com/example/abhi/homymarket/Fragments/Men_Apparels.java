@@ -1,4 +1,4 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Fragments;
 
 
 import android.os.Bundle;
@@ -23,6 +23,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.abhi.homymarket.Models.DataFetch;
+import com.example.abhi.homymarket.R;
+import com.example.abhi.homymarket.Adapters.RecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -35,21 +38,20 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_Women_Apparels extends Fragment {
+public class Men_Apparels extends Fragment {
 
-    private View v;
-    private RecyclerView recyclerView;
+    View v;
+    RecyclerView recyclerView;
     ArrayList<DataFetch> data = new ArrayList<>();
-    private ProgressBar progressBar;
-    private Animation animation;
-    private RelativeLayout relativeLayout;
-    FloatingActionButton floatingActionButton;
+    ProgressBar progressBar;
+    Animation animation;
     String clause;
+    FloatingActionButton floatingActionButton;
+    RelativeLayout relativeLayout;
 
+    public Men_Apparels(String clause) {
 
-    public Fragment_Women_Apparels(String clause) {
-
-        this.clause=clause;
+        this.clause = clause;
 
     }
 
@@ -57,7 +59,6 @@ public class Fragment_Women_Apparels extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         v = inflater.inflate(R.layout.fragment_women__apparels_, container, false);
 
         progressBar=v.findViewById(R.id.progress);
@@ -76,27 +77,25 @@ public class Fragment_Women_Apparels extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Fragment_Filter_Women ldf = new Fragment_Filter_Women();
+                Filter_Women ldf = new Filter_Women();
                 FragmentManager fm = (getActivity()).getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
 
             }
         });
 
+
         data.clear();
         RequestQueue rq = Volley.newRequestQueue(getActivity());
-        String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS WHERE GENDER LIKE \"F\" "+clause;
+        String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS WHERE GENDER LIKE \"M\" "+clause;
         StringRequest sr= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
+
                 try {
                     JSONObject jo = new JSONObject(response);
                     JSONArray ja = jo.getJSONArray("result");
-
-
-
-                    //if(ja.length()==0)...to be added
 
                     for(int i =0;i<ja.length();i++)
                     {
@@ -126,32 +125,25 @@ public class Fragment_Women_Apparels extends Fragment {
                         String STOCK=jo1.getString("STOCK");
                         String MATERIAL=jo1.getString("MATERIAL");
 
-
-                        //Instead of creating many arrayList we can create model class and then create list of model
-                        //we can assign values to model class by creating constructor and sending values like shown below
                         DataFetch ob = new DataFetch(ID,NAME,BRAND,GENDER,DISCOUNT,DESC,SELL_PRICE,MARK_PRICE
-                        ,RATING,TYPE,SIZE,CATEGORY,LENGTH,IMAGE1,IMAGE2,IMAGE3,IMAGE4,IMAGE5,SHOP,COLOR,STOCK,MATERIAL);
+                                ,RATING,TYPE,SIZE,CATEGORY,LENGTH,IMAGE1,IMAGE2,IMAGE3,IMAGE4,IMAGE5,SHOP,COLOR,STOCK,MATERIAL);
 
                         data.add(ob);
 
 
+
                     }
 
-
-
-
                 } catch (JSONException e) {
+                    e.printStackTrace();
+
                     Toast.makeText(getActivity(),"Unable to Fetch Data",Toast.LENGTH_LONG).show();
                 }
-
                 progressBar.clearAnimation();
                 progressBar.setVisibility(View.INVISIBLE);
                 recyclerView.setAdapter(new RecyclerAdapter(getActivity(),data));
                 if(!data.isEmpty())
                 relativeLayout.setVisibility(View.VISIBLE);
-
-
-
 
 
             }
@@ -170,11 +162,7 @@ public class Fragment_Women_Apparels extends Fragment {
         sr.setShouldCache(false);
         rq.add(sr);
 
-
-
-
         return v;
-
     }
 
 }

@@ -1,7 +1,6 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Adapters;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +14,12 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.abhi.homymarket.Models.DataFetch;
+import com.example.abhi.homymarket.Fragments.Final_Product;
+import com.example.abhi.homymarket.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ProgrammingViewHolder>{
 
@@ -68,7 +69,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
             public void onClick(View view) {
 
 
-                Fragment_Final_Product ldf = new Fragment_Final_Product(data.get(position));
+                Final_Product ldf = new Final_Product(data.get(position));
                 FragmentManager fm = ((FragmentActivity)ctx).getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
 
@@ -101,6 +102,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
             discount1 = itemView.findViewById(R.id.discount);
             linearLayout=itemView.findViewById(R.id.linear);
             ratingBar=itemView.findViewById(R.id.rating);
+            ratingBar.setVisibility(View.GONE);
 
 
 

@@ -1,4 +1,4 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Adapters;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,11 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.abhi.homymarket.R;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.squareup.picasso.Picasso;
 
-public class viewPagerAdapter_FinalProduct extends PagerAdapter {
+public class ViewPagerAdapter_FinalProduct extends PagerAdapter {
 
     Context context;
     String img[] = new String[5];
@@ -51,7 +52,7 @@ public class viewPagerAdapter_FinalProduct extends PagerAdapter {
         vp.removeView(v);
     }
 
-    public viewPagerAdapter_FinalProduct(Context context,String img1,String img2,String img3,String img4,String img5) {
+    public ViewPagerAdapter_FinalProduct(Context context, String img1, String img2, String img3, String img4, String img5) {
         this.context = context;
         img[0]=img1;
         img[1]=img2;

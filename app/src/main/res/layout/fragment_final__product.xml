@@ -5,13 +5,13 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_Final_Product">
+    tools:context=".Fragments.Final_Product">
 
     <LinearLayout
         android:orientation="vertical"
         android:weightSum="10"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ScrollView
             android:layout_weight="9"
@@ -125,6 +125,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/size_chart"
                     app:cardCornerRadius="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -252,11 +253,13 @@
                         </LinearLayout>
 
                         <View
+                            android:id="@+id/view1"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@color/grey"/>
 
                         <LinearLayout
+                            android:id="@+id/linear_len"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"
@@ -284,11 +287,13 @@
                         </LinearLayout>
 
                         <View
+                            android:id="@+id/view2"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@color/grey"/>
 
                         <LinearLayout
+                            android:id="@+id/linear_color"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"
@@ -316,11 +321,13 @@
                         </LinearLayout>
 
                         <View
+                            android:id="@+id/view3"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@color/grey"/>
 
                         <LinearLayout
+                            android:id="@+id/linear_gen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"
@@ -348,11 +355,13 @@
                         </LinearLayout>
 
                         <View
+                            android:id="@+id/view4"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@color/grey"/>
 
                         <LinearLayout
+                            android:id="@+id/linear_type"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"
@@ -380,12 +389,14 @@
                         </LinearLayout>
 
                         <View
+                            android:id="@+id/view5"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@color/grey"
 
                             />
                         <LinearLayout
+                            android:id="@+id/linear_rate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"
@@ -413,11 +424,13 @@
                         </LinearLayout>
 
                         <View
+                            android:id="@+id/view6"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@color/grey"/>
 
                         <LinearLayout
+                            android:id="@+id/linear_mat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"

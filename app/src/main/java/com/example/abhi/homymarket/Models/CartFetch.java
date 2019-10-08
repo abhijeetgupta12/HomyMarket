@@ -1,7 +1,10 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Models;
+
+import java.util.ArrayList;
 
 public class CartFetch {
 
+    public static ArrayList<Float> priceList = new ArrayList<>();
     String Product_ID;
 
     public CartFetch() {

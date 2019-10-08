@@ -1,4 +1,4 @@
-package com.example.abhi.homymarket;
+package com.example.abhi.homymarket.Fragments;
 
 
 import android.os.Bundle;
@@ -17,11 +17,13 @@ import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
+import com.example.abhi.homymarket.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_Filter_Kids extends Fragment {
+public class Filter_Men extends Fragment {
 
     CheckBox xs,s,m,l,xl;
     private Button done;
@@ -32,7 +34,7 @@ public class Fragment_Filter_Kids extends Fragment {
     String cloath_selected, size_selected;
     RelativeLayout relativeLayout;
 
-    public Fragment_Filter_Kids() {
+    public Filter_Men() {
 
 
     }
@@ -195,7 +197,7 @@ public class Fragment_Filter_Kids extends Fragment {
 */
                 Log.d("@@@",clause);
 
-                Fragment_Kids_Toys ldf = new Fragment_Kids_Toys(clause);
+                Men_Apparels ldf = new Men_Apparels(clause);
                 FragmentManager fm = (getActivity()).getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
                 spinner_cloath.setSelection(0);
