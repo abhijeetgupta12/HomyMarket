@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,7 @@ public class Cart extends Fragment {
     private ProgressBar progressBar;
     ImageView imageCartEmpty;
     private Button Proceed;
+    int i = 0;
 
 
 
@@ -77,7 +79,12 @@ public class Cart extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_wish_list, container, false);
 
-        CartFetch.priceList.clear();
+
+        i=0;
+
+        CartFetch.priceList.removeAll(CartFetch.priceList);
+        CartFetch.qty.removeAll(CartFetch.qty);
+        CartFetch.name.removeAll(CartFetch.name);
 
         //animation starts......
         progressBar=v.findViewById(R.id.progress);
@@ -110,6 +117,8 @@ public class Cart extends Fragment {
                     String id = user.getProduct_ID();
                     CartFetch ob = new CartFetch(id);
                     data.add(ob);
+                    Log.d("#####",data.get(i).getProduct_ID());
+                    i++;
                 }
 
                 if(data.size()!=0)

@@ -21,7 +21,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ProgrammingViewHolder>{
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ProgrammingViewHolder1>{
 
 
     Context ctx;
@@ -39,16 +39,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
 
     @NonNull
     @Override
-    public ProgrammingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProgrammingViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater =  LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.recycle_resource,parent,false);       //view created
-        return new ProgrammingViewHolder(view);
+        return new ProgrammingViewHolder1(view);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProgrammingViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ProgrammingViewHolder1 holder, final int position) {
 
         holder.name1.setText(data.get(position).getName());
         holder.brand1.setText(data.get(position).getBrand());
@@ -86,12 +86,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
         return data.size();
     }
 
-    public class ProgrammingViewHolder extends RecyclerView.ViewHolder{
+    public class ProgrammingViewHolder1 extends RecyclerView.ViewHolder{
         ImageView image1;
         TextView name1,brand1,price1,discount1;
         LinearLayout linearLayout;
         RatingBar ratingBar;
-        public ProgrammingViewHolder(View itemView) {               //view sent to be kept in a viewholder
+        public ProgrammingViewHolder1(View itemView) {               //view sent to be kept in a viewholder
 
             super(itemView);
 

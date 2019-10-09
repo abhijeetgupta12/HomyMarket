@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public class CartFetch {
 
     public static ArrayList<Float> priceList = new ArrayList<>();
+    public static ArrayList<Integer> qty = new ArrayList<>();
+    public static ArrayList<String> name =new ArrayList<>();
+
     String Product_ID;
 
     public CartFetch() {

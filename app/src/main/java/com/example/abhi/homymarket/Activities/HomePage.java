@@ -24,6 +24,7 @@ import com.example.abhi.homymarket.Fragments.Kids_Toys;
 import com.example.abhi.homymarket.Fragments.Men_Apparels;
 import com.example.abhi.homymarket.Fragments.MyAccount;
 import com.example.abhi.homymarket.Fragments.Cart;
+import com.example.abhi.homymarket.Fragments.MyOrders;
 import com.example.abhi.homymarket.Fragments.Stationary;
 import com.example.abhi.homymarket.Fragments.Women_Apparels;
 import com.example.abhi.homymarket.R;
@@ -204,11 +205,11 @@ public class HomePage extends AppCompatActivity
 
             fm.beginTransaction().replace(R.id.frame,new ContactUs()).commit();
 
-        }/*else if (id == R.id.kids) {
+        }else if (id == R.id.myorder) {
 
-            fm.beginTransaction().replace(R.id.frame,new Kids_Toys("")).commit();
+            fm.beginTransaction().replace(R.id.frame,new MyOrders()).commit();
 
-        }*/
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

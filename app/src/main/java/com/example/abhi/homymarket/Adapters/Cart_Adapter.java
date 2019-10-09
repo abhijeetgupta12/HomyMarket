@@ -90,6 +90,8 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
         holder.Price.setText(String.valueOf(PriceFloat));
 
         CartFetch.priceList.add(PriceFloat);
+        CartFetch.qty.add(1);
+        CartFetch.name.add(data.get(position).getName());
 
 
 
@@ -143,6 +145,9 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
                 });
 
                 CartFetch.priceList.remove(position);
+                CartFetch.qty.remove(position);
+                CartFetch.name.remove(position);
+
 
             }
         });
@@ -162,9 +167,9 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
                 holder.Price.setText(String.valueOf(newPrice));
                 holder.Qty.setText(String.valueOf(k));
 
-                CartFetch.priceList.remove(position);
-                CartFetch.priceList.add(position,newPrice);
 
+                CartFetch.priceList.set(position,newPrice);
+                CartFetch.qty.set(position,k);
 
 
             }
@@ -184,9 +189,8 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
                 holder.Price.setText(String.valueOf(newPrice));
                 holder.Qty.setText(String.valueOf(k));
 
-                CartFetch.priceList.remove(position);
-                CartFetch.priceList.add(position,newPrice);
-
+                CartFetch.priceList.set(position,newPrice);
+                CartFetch.qty.set(position,k);
 
             }
         });
