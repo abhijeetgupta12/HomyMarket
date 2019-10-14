@@ -35,17 +35,19 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
 
     Context ctx;
     List<DataFetch> data;
+    List<CartFetch> pricedata;
     FirebaseAuth mAuth;
     DatabaseReference mRef;
     String size;
     float PriceFloat;
 
     // data required in view is recieved here
-    public Cart_Adapter(Context ctx, List<DataFetch> data)
+    public Cart_Adapter(Context ctx, List<DataFetch> data,List<CartFetch> pricedata)
     {
 
         this.ctx=ctx;
         this.data=data;
+        this.pricedata=pricedata;
 
     }
 
@@ -78,7 +80,7 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
     @Override
     public void onBindViewHolder(@NonNull final ProgrammingViewHolder holder, final int position) {
 
-        holder.textView.setText(data.get(position).getName());
+        holder.Title.setText(data.get(position).getName());
         Picasso.get()
                 .load(data.get(position).getImage1())
                 .placeholder(R.drawable.loading)
@@ -86,12 +88,8 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
                 .fit()
                 .into(holder.imageView);
 
-        PriceFloat = Float.parseFloat(data.get(position).getSellprice());
-        holder.Price.setText(String.valueOf(PriceFloat));
-
-        CartFetch.priceList.add(PriceFloat);
-        CartFetch.qty.add(1);
-        CartFetch.name.add(data.get(position).getName());
+       /* PriceFloat = Float.parseFloat(pricedata.get(position).getPrice());
+        holder.Price.setText(String.valueOf(PriceFloat));*/
 
 
 
@@ -103,8 +101,10 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                size=dataSnapshot.child("spinner_size").getValue().toString();
-                holder.SIZE.setText(size);
+                size=dataSnapshot.child("Quantity").getValue().toString();
+                holder.Qty.setText(size);
+                PriceFloat=Float.parseFloat(dataSnapshot.child("Price").getValue().toString());
+                holder.Price.setText(String.valueOf(PriceFloat));
 
 
             }
@@ -144,56 +144,12 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
                     }
                 });
 
-                CartFetch.priceList.remove(position);
-                CartFetch.qty.remove(position);
-                CartFetch.name.remove(position);
 
 
             }
         });
 
 
-        holder.Qty.setText(String.valueOf(1));
-
-        holder.add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String get = holder.Qty.getText().toString().trim();
-                int k = Integer.parseInt(get);
-                k++;
-                Float price = Float.parseFloat(data.get(position).getSellprice());
-                Float newPrice = price * k;
-                holder.Price.setText(String.valueOf(newPrice));
-                holder.Qty.setText(String.valueOf(k));
-
-
-                CartFetch.priceList.set(position,newPrice);
-                CartFetch.qty.set(position,k);
-
-
-            }
-        });
-
-        holder.sub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String get = holder.Qty.getText().toString().trim();
-                int k = Integer.parseInt(get);
-                if(k!=1)
-                    k--;
-
-                Float price = Float.parseFloat(data.get(position).getSellprice());
-                Float newPrice = price * k;
-                holder.Price.setText(String.valueOf(newPrice));
-                holder.Qty.setText(String.valueOf(k));
-
-                CartFetch.priceList.set(position,newPrice);
-                CartFetch.qty.set(position,k);
-
-            }
-        });
 
 
         holder.imageView.setOnClickListener(new View.OnClickListener() {
@@ -233,9 +189,9 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
 
 
     public class ProgrammingViewHolder extends RecyclerView.ViewHolder{
-        ImageButton del,add,sub;
+        ImageButton del;
         ImageView imageView;
-        TextView textView,SIZE,Qty,Price;
+        TextView Title, Qty,Price;
         public ProgrammingViewHolder(View itemView) {               //view sent to be kept in a viewholder
 
             super(itemView);
@@ -243,11 +199,8 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
 
             del = itemView.findViewById(R.id.delete);
             imageView = itemView.findViewById(R.id.imageview);
-            textView = itemView.findViewById(R.id.textview);
-            SIZE = itemView.findViewById(R.id.size_selected);
-            add = itemView.findViewById(R.id.add);
-            sub = itemView.findViewById(R.id.sub);
-            Qty = itemView.findViewById(R.id.Qty);
+            Title = itemView.findViewById(R.id.title);
+            Qty = itemView.findViewById(R.id.qty);
             Price = itemView.findViewById(R.id.price);
 
 

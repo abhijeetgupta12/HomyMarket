@@ -5,8 +5,10 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,10 +74,10 @@ public class MyOrders extends Fragment {
         currentUser=mAuth.getCurrentUser();
         String id = currentUser.getUid().trim();
 
-        recyclerView=v.findViewById(R.id.recycler);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2,RecyclerView.VERTICAL,false);
-        recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
+        Log.d("lllll",id);
 
+        recyclerView=v.findViewById(R.id.recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
         data.clear();
@@ -91,7 +93,10 @@ public class MyOrders extends Fragment {
 
 
 
-                    //if(ja.length()==0)...to be added
+                    if(ja.length()==0)
+                    {
+                        Toast.makeText(getActivity(),"No Orders",Toast.LENGTH_SHORT).show();
+                    }
 
                     for(int i =0;i<ja.length();i++)
                     {
@@ -141,8 +146,6 @@ public class MyOrders extends Fragment {
 
         sr.setShouldCache(false);
         rq.add(sr);
-
-
 
 
 

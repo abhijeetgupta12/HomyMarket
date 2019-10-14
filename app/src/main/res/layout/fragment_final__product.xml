@@ -125,7 +125,6 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/size_chart"
                     app:cardCornerRadius="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -180,6 +179,7 @@
                         </LinearLayout>
 
                         <Button
+
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
                             android:fontFamily="@font/textfont1"
                             android:drawableStart="@drawable/size_chart"
                             android:drawablePadding="5dp"
-                            android:id="@+id/size_"
+                            android:id="@+id/size_chart"
                             />
 
                     </LinearLayout>
@@ -459,6 +459,7 @@
 
 
                         <View
+                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@color/grey"/>

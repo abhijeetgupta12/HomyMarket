@@ -4,18 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.abhi.homymarket.Models.DataFetch;
 import com.example.abhi.homymarket.Models.MyOrdersFetch;
 import com.example.abhi.homymarket.R;
-
 import java.util.ArrayList;
 
 public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.ProgrammingViewHolder>{
@@ -43,6 +36,14 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.Progra
     @Override
     public void onBindViewHolder(@NonNull ProgrammingViewHolder holder, int position) {
 
+        holder.title.setText(data.get(position).getTITLE());
+        holder.orderno.setText(data.get(position).getORDER_NO());
+        holder.price.setText(data.get(position).getPRICE());
+        holder.status.setText(data.get(position).getSTATUS());
+        holder.address.setText(data.get(position).getADDRESS());
+        holder.phone.setText(data.get(position).getPHONE());
+        holder.delivary_slot.setText(data.get(position).getDELIVARY_SLOT());
+
     }
 
 
@@ -53,8 +54,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.Progra
 
     public class ProgrammingViewHolder extends RecyclerView.ViewHolder{
         TextView title,orderno,price,status,address,phone,delivary_slot;
-        LinearLayout linearLayout;
-        RatingBar ratingBar;
+
         public ProgrammingViewHolder(View itemView) {               //view sent to be kept in a viewholder
 
             super(itemView);
@@ -66,9 +66,6 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.Progra
             address = itemView.findViewById(R.id.address);
             phone = itemView.findViewById(R.id.phone);
             delivary_slot = itemView.findViewById(R.id.delivary_slot);
-
-
-
 
         }
     }

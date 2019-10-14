@@ -1,23 +1,33 @@
 package com.example.abhi.homymarket.Models;
 
-import java.util.ArrayList;
-
 public class CartFetch {
 
-    public static ArrayList<Float> priceList = new ArrayList<>();
-    public static ArrayList<Integer> qty = new ArrayList<>();
-    public static ArrayList<String> name =new ArrayList<>();
 
     String Product_ID;
+    String Quantity;
+    String Name;
+    String Price;
 
     public CartFetch() {
     }
 
-    public CartFetch(String product_ID) {
+    public CartFetch(String product_ID, String quantity, String name, String price) {
         Product_ID = product_ID;
+        Quantity = quantity;
+        Name = name;
+        Price = price;
     }
+
+    public String getQuantity() { return Quantity;    }
+
+    public String getPrice() { return Price;   }
 
     public String getProduct_ID() {
         return Product_ID;
     }
+
+    public String getName() {
+        return Name;
+    }
+
 }

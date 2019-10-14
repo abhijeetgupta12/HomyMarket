@@ -49,13 +49,17 @@ public class Final_Product extends Fragment {
     private Button add_to_cart, buy_now;
     Spinner spinner;
     TextView tvquantity;
-    String[] quantity;
+    String[] quantity = {"Select Quantity","1","2","3","4","5","6","7","8","9","10",
+                         "11","12","13","14","15","16","17","18","19","20",
+                         "21","22","23","24","25","26","27","28","29","30",
+                         "31","32","33","34","35","36","37","38","39","40",
+                         "41","42","43","44","45","46","47","48","49","50"};
     ArrayAdapter<String> adp;
     RelativeLayout relativeLayout;
     private int dots_count;
     private ImageView[] dots;
     private TextView brand,name,markPrice,sellPrice,discount,length,color,gender,type,rating,material,desc;
-    String SIZE;
+    String Qty="";
 
     DataFetch ob;
 
@@ -93,8 +97,8 @@ public class Final_Product extends Fragment {
         String img5 = ob.getImage5();
         String cat = ob.getCategory();
 
-        quantity = size1.split(",");
-        quantity = insert(quantity,"Select Size",0);
+       /* quantity = size1.split(",");
+        quantity = insert(quantity,"Select Quantity",0);*/
 
 
 
@@ -143,6 +147,7 @@ public class Final_Product extends Fragment {
             v.findViewById(R.id.linear_gen).setVisibility(View.GONE);
             v.findViewById(R.id.size_chart).setVisibility(View.GONE);
 
+
             v.findViewById(R.id.view1).setVisibility(View.GONE);
             v.findViewById(R.id.view2).setVisibility(View.GONE);
             v.findViewById(R.id.view3).setVisibility(View.GONE);
@@ -150,7 +155,6 @@ public class Final_Product extends Fragment {
             v.findViewById(R.id.view5).setVisibility(View.GONE);
             v.findViewById(R.id.view6).setVisibility(View.GONE);
 
-            SIZE="S";
         }
 
 
@@ -167,7 +171,7 @@ public class Final_Product extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-              SIZE = spinner.getItemAtPosition(i).toString().trim();
+                Qty = spinner.getItemAtPosition(i).toString().trim();
 
             }
 
@@ -241,17 +245,21 @@ public class Final_Product extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(SIZE.equals("Select Size"))
+                if(Qty.equals("Select Quantity"))
                 {
-                    Toast.makeText(getActivity(),"Select Size",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Select Quantity",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 FirebaseUser user=mAuth.getCurrentUser();
                 Map<String,String> map=new HashMap<>();
                 String key="Product_"+ob.getId1();
+
                 map.put("Product_ID",ob.getId1());
-                map.put("spinner_size",SIZE);
+                map.put("Quantity",Qty);
+                map.put("Name",ob.getName());
+                map.put("Price",String.valueOf(Integer.parseInt(ob.getSellprice()) * Integer.parseInt(Qty)) );
+
                 mRef= FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("WishList").child(key);
                 mRef.setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -280,17 +288,22 @@ public class Final_Product extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(SIZE.equals("Select Size"))
+                if(Qty.equals("Select Quantity"))
                 {
-                    Toast.makeText(getActivity(),"Select Size",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Select Quantity",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 FirebaseUser user=mAuth.getCurrentUser();
                 Map<String,String> map=new HashMap<>();
                 String key="Product_"+ob.getId1();
+
                 map.put("Product_ID",ob.getId1());
-                map.put("spinner_size",SIZE);
+                map.put("Quantity",Qty);
+                map.put("Name",ob.getName());
+                map.put("Price",String.valueOf(Integer.parseInt(ob.getSellprice()) * Integer.parseInt(Qty)) );
+
+
                 mRef= FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("WishList").child(key);
                 mRef.setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -325,28 +338,6 @@ public class Final_Product extends Fragment {
     private void strikeThroughText(TextView textView)
     {
         textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
-    }
-
-    private static String[] insert(String[] a, String key, int index) {
-
-        String[] result = new String[a.length + 1];
-
-        for (int i = 0; i < index; i++)
-        {
-            result[i] = a[i];
-        }
-
-        result[index] = key;
-
-        for (int i = index + 1; i <= a.length; i++)
-        {
-
-            result[i] = a[i - 1];
-
-        }
-
-
-        return result;
     }
 
 

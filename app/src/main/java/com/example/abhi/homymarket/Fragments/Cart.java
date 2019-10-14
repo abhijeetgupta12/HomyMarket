@@ -62,7 +62,6 @@ public class Cart extends Fragment {
     private ProgressBar progressBar;
     ImageView imageCartEmpty;
     private Button Proceed;
-    int i = 0;
 
 
 
@@ -80,11 +79,6 @@ public class Cart extends Fragment {
         v = inflater.inflate(R.layout.fragment_wish_list, container, false);
 
 
-        i=0;
-
-        CartFetch.priceList.removeAll(CartFetch.priceList);
-        CartFetch.qty.removeAll(CartFetch.qty);
-        CartFetch.name.removeAll(CartFetch.name);
 
         //animation starts......
         progressBar=v.findViewById(R.id.progress);
@@ -115,10 +109,12 @@ public class Cart extends Fragment {
                     user = ds.getValue(CartFetch.class);
 
                     String id = user.getProduct_ID();
-                    CartFetch ob = new CartFetch(id);
+                    String qty = user.getQuantity();
+                    String name = user.getName();
+                    String price = user.getPrice();
+
+                    CartFetch ob = new CartFetch(id,qty,name,price);
                     data.add(ob);
-                    Log.d("#####",data.get(i).getProduct_ID());
-                    i++;
                 }
 
                 if(data.size()!=0)
@@ -176,7 +172,7 @@ public class Cart extends Fragment {
                                 }
 
 
-                                recyclerView.setAdapter(new Cart_Adapter(getActivity(),product));
+                                recyclerView.setAdapter(new Cart_Adapter(getActivity(),product,data));
                                 progressBar.clearAnimation();
                                 progressBar.setVisibility(View.INVISIBLE);
                                 Proceed.setVisibility(View.VISIBLE);
@@ -234,7 +230,7 @@ public class Cart extends Fragment {
             @Override
             public void onClick(View view) {
 
-                DeliveryAdress ldf = new DeliveryAdress();
+                DeliveryAdress ldf = new DeliveryAdress(product,data);
                 FragmentManager fm = (getActivity()).getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
 

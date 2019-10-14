@@ -62,13 +62,17 @@ public class DeliveryAdress extends Fragment {
     ArrayAdapter<String> spinner_days,spinner_time;
     String db_day,db_time;
     ProgressDialog progressDialog;
+    List<DataFetch> data;
+    List<CartFetch> qty;
+    String phoneNo;
 
 
 
 
+    public DeliveryAdress(List<DataFetch> data,List<CartFetch> qty) {
 
-    public DeliveryAdress() {
-
+        this.data = data;
+        this.qty = qty;
     }
 
     @Override
@@ -102,18 +106,18 @@ public class DeliveryAdress extends Fragment {
             public void onDataChange( DataSnapshot dataSnapshot) {
 
 
+                phoneNo = dataSnapshot.child("Phone").getValue().toString().trim();
 
-                for(int i = 0;i<CartFetch.priceList.size();i++)
+
+                for(int i = 0;i<data.size();i++)
                 {
-                    sum = sum + CartFetch.priceList.get(i);
+                    sum = sum + Integer.parseInt(qty.get(i).getPrice());
 
-                    Log.d("@@@@@",String.valueOf(CartFetch.priceList.get(i)));
-                    Log.d("@@@@@",String.valueOf(CartFetch.qty.get(i)));
+                    Title = Title + qty.get(i).getName() + "*" + qty.get(i).getQuantity()+" ";
 
-                    Title = Title + CartFetch.name.get(i) + "*" + CartFetch.qty.get(i)+" ";
+                   // Log.d("@@@@@",qty.get(i).getName() + "*" + qty.get(i).getQuantity()+" ");
+
                 }
-                Log.d("@@@@@","-----------------------------------------------------------");
-                Log.d("@@@@@",Title);
 
 
 
@@ -137,9 +141,7 @@ public class DeliveryAdress extends Fragment {
                 pay_amt.setText(String.valueOf(dc+sum));
                 tot.setText(String.valueOf(sum));
                 Title = "";
-                CartFetch.priceList.clear();
-                CartFetch.qty.clear();
-                CartFetch.name.clear();
+
 
 
             }
@@ -159,6 +161,7 @@ public class DeliveryAdress extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 db_day = days.getItemAtPosition(i).toString().trim();
+
 
             }
 
@@ -203,21 +206,25 @@ public class DeliveryAdress extends Fragment {
                 else
                 {
 
+
+
                     progressDialog.setTitle("Placing Order");
                     progressDialog.setMessage("Please wait ...");
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 
                     RequestQueue rq = Volley.newRequestQueue(getActivity());
-                    String url="hjhjhgj";
+                    String url="https://homimarket.com/wp-content/Alok/customer_order.php?";
                     StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
 
                             progressDialog.dismiss();
-                            MyOrders ldf = new MyOrders();
+
+
+                           /* MyOrders ldf = new MyOrders();
                             FragmentManager fm = (getActivity()).getSupportFragmentManager();
-                            fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
+                            fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();*/
 
 
 
@@ -235,16 +242,30 @@ public class DeliveryAdress extends Fragment {
                         protected Map<String, String> getParams() throws AuthFailureError {
 
                             HashMap<String,String> hm = new HashMap<String, String>();
+
                             hm.put("customerid",currentUser.getUid());
-                            hm.put("phone",currentUser.getPhoneNumber());
+                            hm.put("phone",phoneNo);
                             hm.put("address",Add);
-                            hm.put("title",Title);
+                            hm.put("title","Hello");
                             hm.put("status","Pending");
                             hm.put("price",String.valueOf(sum+dc));
                             hm.put("delivary_slot",db_day+" "+db_time);
+
+                            Log.d("@@@@@",currentUser.getUid());
+                            Log.d("@@@@@",phoneNo);
+                            Log.d("@@@@@",Add);
+                            Log.d("@@@@@",Title);
+                            Log.d("@@@@@","Pending");
+                            Log.d("@@@@@",String.valueOf(sum+dc));
+                            Log.d("@@@@@",db_day+" "+db_time);
+
+
+
                             return hm;
                         }
                     };
+
+                    sr.setShouldCache(false);
                     rq.add(sr);
 
 

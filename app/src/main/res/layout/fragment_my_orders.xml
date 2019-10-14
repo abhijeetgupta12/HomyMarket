@@ -36,8 +36,8 @@
             android:indeterminateDrawable="@drawable/logo_progress"
             android:id="@+id/progress"
             android:stateListAnimator="@anim/rotate"
-            android:layout_width="100dp"
-            android:layout_height="113dp" />
+            android:layout_width="165dp"
+            android:layout_height="200dp" />
 
     </LinearLayout>
 
