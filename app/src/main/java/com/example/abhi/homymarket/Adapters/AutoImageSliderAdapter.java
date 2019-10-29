@@ -37,12 +37,14 @@ public class AutoImageSliderAdapter extends SliderViewAdapter<AutoImageSliderAda
 
     @Override
     public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+
+
+        /*viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.getContext().startActivity(new Intent(context, NextActivity.class));
             }
-        });
+        });*/
 
 
         switch (position) {
@@ -80,6 +82,8 @@ public class AutoImageSliderAdapter extends SliderViewAdapter<AutoImageSliderAda
     public int getCount() {
         return mCount;
     }
+
+
     class SliderAdapterVH extends SliderViewAdapter.ViewHolder{
 
         View itemView;

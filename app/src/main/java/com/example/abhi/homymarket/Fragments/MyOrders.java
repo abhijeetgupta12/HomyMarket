@@ -4,6 +4,7 @@ package com.example.abhi.homymarket.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -146,6 +147,8 @@ public class MyOrders extends Fragment {
 
         sr.setShouldCache(false);
         rq.add(sr);
+
+
 
 
 

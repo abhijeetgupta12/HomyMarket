@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +59,7 @@ public class Cart extends Fragment {
     CartFetch user ;
     private Animation animation;
     private ProgressBar progressBar;
-    ImageView imageCartEmpty;
+    private ImageView imageCartEmpty;
     private Button Proceed;
 
 
@@ -202,7 +201,7 @@ public class Cart extends Fragment {
                     progressBar.clearAnimation();
                     progressBar.setVisibility(View.GONE);
                     imageCartEmpty.setVisibility(View.VISIBLE);
-                    imageCartEmpty.setBackgroundResource(R.drawable.empty_cart);
+                    imageCartEmpty.setBackgroundResource(R.drawable.emptycart);
                 }
 
 

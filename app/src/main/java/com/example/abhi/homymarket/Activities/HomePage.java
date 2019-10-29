@@ -112,7 +112,7 @@ public class HomePage extends AppCompatActivity
 
                 //Toast.makeText(HomePage.this,"Cart",Toast.LENGTH_LONG).show();
 
-                fm.beginTransaction().replace(R.id.frame,new Cart()).commit();//by default this fragment is used
+                fm.beginTransaction().replace(R.id.frame,new Cart()).addToBackStack(null).commit();//by default this fragment is used
 
 
 
@@ -187,7 +187,7 @@ public class HomePage extends AppCompatActivity
 
         } else if (id == R.id.stationary) {
 
-             fm.beginTransaction().replace(R.id.frame,new Stationary()).commit();
+             fm.beginTransaction().replace(R.id.frame,new Stationary()).addToBackStack(null).commit();
 
         } else if (id == R.id.home) {
 
@@ -195,19 +195,19 @@ public class HomePage extends AppCompatActivity
 
         } else if (id == R.id.myaccount) {
 
-            fm.beginTransaction().replace(R.id.frame,new MyAccount()).commit();
+            fm.beginTransaction().replace(R.id.frame,new MyAccount()).addToBackStack(null).commit();
 
         } else if (id == R.id.chakhna) {
 
-            fm.beginTransaction().replace(R.id.frame,new Chakhna()).commit();
+            fm.beginTransaction().replace(R.id.frame,new Chakhna()).addToBackStack(null).commit();
 
         } else if (id == R.id.helpcenter) {
 
-            fm.beginTransaction().replace(R.id.frame,new ContactUs()).commit();
+            fm.beginTransaction().replace(R.id.frame,new ContactUs()).addToBackStack(null).commit();
 
         }else if (id == R.id.myorder) {
 
-            fm.beginTransaction().replace(R.id.frame,new MyOrders()).commit();
+            fm.beginTransaction().replace(R.id.frame,new MyOrders()).addToBackStack(null).commit();
 
         }
 

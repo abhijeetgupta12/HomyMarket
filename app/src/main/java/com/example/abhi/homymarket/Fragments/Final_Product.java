@@ -277,10 +277,6 @@ public class Final_Product extends Fragment {
                     }
                 });
 
-
-
-
-
             }
         });
 
@@ -322,8 +318,6 @@ public class Final_Product extends Fragment {
 
                     }
                 });
-
-
 
             }
         });

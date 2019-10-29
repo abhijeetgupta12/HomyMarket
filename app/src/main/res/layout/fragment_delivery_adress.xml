@@ -275,7 +275,7 @@
               android:textStyle="bold"
               android:textColor="#fff"
               android:background="@color/buttoncolor"
-              android:text="Order Now"
+              android:text="Confirm Order Now"
               android:layout_gravity="bottom"
               android:layout_width="match_parent"
               android:layout_height="wrap_content" />

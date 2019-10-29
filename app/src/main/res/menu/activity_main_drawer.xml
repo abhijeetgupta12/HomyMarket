@@ -14,8 +14,16 @@
             android:title="Stationary" />
         <item
             android:id="@+id/chakhna"
-            android:icon="@drawable/ic_women"
+            android:icon="@drawable/daily_product"
             android:title="Daily Products" />
+        <item
+            android:id="@+id/fruits"
+            android:icon="@drawable/daily_product"
+            android:title="Fruits" />
+        <item
+            android:id="@+id/dairy_products"
+            android:icon="@drawable/daily_product"
+            android:title="Dairy Products" />
 
     </group>
 

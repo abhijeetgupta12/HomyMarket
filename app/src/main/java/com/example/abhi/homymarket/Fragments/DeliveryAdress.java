@@ -2,11 +2,16 @@ package com.example.abhi.homymarket.Fragments;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +34,8 @@ import com.example.abhi.homymarket.Models.CartFetch;
 import com.example.abhi.homymarket.Models.DataFetch;
 import com.example.abhi.homymarket.R;
 import com.example.abhi.homymarket.Adapters.Cart_Adapter;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -50,21 +57,21 @@ public class DeliveryAdress extends Fragment {
 
     View v;
     private FirebaseAuth mAuth;
-    FirebaseUser currentUser;
-    DatabaseReference db;
-    TextView name1,area1,pin1,landmark1,tot,del_charge,pay_amt;
-    Button Order;
-    float sum = 0;
-    float dc = 0;
-    String Add = "";
-    String Title = "";
-    Spinner days, time;
-    ArrayAdapter<String> spinner_days,spinner_time;
-    String db_day,db_time;
-    ProgressDialog progressDialog;
-    List<DataFetch> data;
-    List<CartFetch> qty;
-    String phoneNo;
+    private FirebaseUser currentUser;
+    private DatabaseReference db;
+    private TextView name1,area1,pin1,landmark1,tot,del_charge,pay_amt;
+    private Button Order;
+    private float sum = 0;
+    private float dc = 0;
+    private String Add = "";
+    private String Title = "";
+    private Spinner days, time;
+    private ArrayAdapter<String> spinner_days,spinner_time;
+    private String db_day,db_time;
+    private ProgressDialog progressDialog;
+    private List<DataFetch> data;
+    private List<CartFetch> qty;
+    private String phoneNo;
 
 
 
@@ -83,11 +90,10 @@ public class DeliveryAdress extends Fragment {
 
         final String DAYS[] = {"SELECT DAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"};
         final String TIME[] = {"SELECT TIME","8:30 P.M-9:30 P.M","11:00 P.M-01:00 A.M"};
+
         days = v.findViewById(R.id.days);
         time = v.findViewById(R.id.time);
         progressDialog=new ProgressDialog(getActivity());
-
-
         Order = v.findViewById(R.id.orderNow);
         del_charge= v.findViewById(R.id.delivary_charge);
         pay_amt = v.findViewById(R.id.PayingAmount);
@@ -112,11 +118,7 @@ public class DeliveryAdress extends Fragment {
                 for(int i = 0;i<data.size();i++)
                 {
                     sum = sum + Integer.parseInt(qty.get(i).getPrice());
-
                     Title = Title + qty.get(i).getName() + "*" + qty.get(i).getQuantity()+" ";
-
-                   // Log.d("@@@@@",qty.get(i).getName() + "*" + qty.get(i).getQuantity()+" ");
-
                 }
 
 
@@ -140,7 +142,6 @@ public class DeliveryAdress extends Fragment {
                 del_charge.setText(String.valueOf(dc));
                 pay_amt.setText(String.valueOf(dc+sum));
                 tot.setText(String.valueOf(sum));
-                Title = "";
 
 
 
@@ -173,7 +174,6 @@ public class DeliveryAdress extends Fragment {
 
         spinner_time = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,TIME);
         time.setAdapter(spinner_time);
-
 
         time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -219,12 +219,47 @@ public class DeliveryAdress extends Fragment {
                         @Override
                         public void onResponse(String response) {
 
+
+
                             progressDialog.dismiss();
+                            dc=0;
+                            sum=0;
 
+                            //as i clicked the order now button the screen is moved to MyOrders page but when from MyOrders page
+                            //i click on back button the net amount of payment increases....so dc and sum is kept as 0
 
-                           /* MyOrders ldf = new MyOrders();
+                            MyOrders ldf = new MyOrders();
                             FragmentManager fm = (getActivity()).getSupportFragmentManager();
-                            fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();*/
+
+                            //the below for loop is used to clear the addToBack
+                            int count = fm.getBackStackEntryCount();
+                            for(int i = 0; i < count; ++i) {
+                                fm.popBackStack();
+                            }
+
+                            fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
+
+
+                            //clearing the cart..............
+
+                            DatabaseReference mRef;
+                            mAuth = FirebaseAuth.getInstance();
+                            FirebaseUser user=mAuth.getCurrentUser();
+                            mRef= FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("WishList");
+                            mRef.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                    //This is the process to call a fragment from any Adapter Class................
+
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                }
+                            });
 
 
 
@@ -246,7 +281,7 @@ public class DeliveryAdress extends Fragment {
                             hm.put("customerid",currentUser.getUid());
                             hm.put("phone",phoneNo);
                             hm.put("address",Add);
-                            hm.put("title","Hello");
+                            hm.put("title",Title);
                             hm.put("status","Pending");
                             hm.put("price",String.valueOf(sum+dc));
                             hm.put("delivary_slot",db_day+" "+db_time);
@@ -258,8 +293,6 @@ public class DeliveryAdress extends Fragment {
                             Log.d("@@@@@","Pending");
                             Log.d("@@@@@",String.valueOf(sum+dc));
                             Log.d("@@@@@",db_day+" "+db_time);
-
-
 
                             return hm;
                         }
