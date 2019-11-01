@@ -6,99 +6,197 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Register">
+    tools:context=".Activities.Register"
+    android:gravity="center"
+    android:background="#FFF"
+    android:layout_gravity="center">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/logo" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/fonthomimarket"
+                    android:padding="10dp" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/textfont1"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:text="Personal Details:"
+                android:textColor="@color/sideone"
+                android:textSize="20dp"
+                />
 
             <EditText
-                android:layout_marginTop="30dp"
                 android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/allcategoriesfont"
                 android:hint="Name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:textColor="@color/billpayment"
+                android:textSize="20dp" />
 
             <EditText
-                android:layout_marginTop="20dp"
                 android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/allcategoriesfont"
                 android:hint="Email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:textColor="@color/billpayment"
+                android:textSize="20dp" />
 
             <EditText
-                android:layout_marginTop="20dp"
-                android:id="@+id/phoneNo"
-                android:hint="Phone No"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <EditText
-                android:layout_marginTop="20dp"
                 android:id="@+id/pass"
-                android:hint="Password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/allcategoriesfont"
+                android:hint="Password"
+                android:textColor="@color/billpayment"
+                android:textSize="20dp"
+                android:inputType="textPassword"/>
 
             <EditText
-                android:layout_marginTop="20dp"
                 android:id="@+id/conPass"
-                android:hint="Confirm Password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/allcategoriesfont"
+                android:hint="Confirm Password"
+                android:textColor="@color/billpayment"
+                android:textSize="20dp"
+                android:inputType="textPassword"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/textfont1"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:text="Address Details :"
+                android:textColor="@color/sideone"
+                android:textSize="20dp" />
+            <EditText
+                android:id="@+id/phoneNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/allcategoriesfont"
+                android:hint="Phone No"
+                android:textColor="@color/billpayment"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/landmark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/allcategoriesfont"
+                android:hint="LandMark"
+                android:textColor="@color/billpayment"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/allcategoriesfont"
+                android:text="Malviyanagar,Jaipur"
+                android:textColor="@color/billpayment"
+                android:textSize="20dp" />
 
 
 
             <TextView
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="24sp"
-                android:text="Adress Details :"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <EditText
-                android:layout_marginTop="20dp"
-                android:id="@+id/area"
-                android:hint="Area"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <EditText
-                android:layout_marginTop="20dp"
                 android:id="@+id/pin"
-                android:hint="Pin"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <EditText
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:id="@+id/landmark"
-                android:hint="LandMark(Optional)"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:fontFamily="@font/allcategoriesfont"
+                android:text="302017"
+                android:textColor="@color/billpayment"
+                android:textSize="20dp" />
+
+
 
             <Button
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:text="Register"
                 android:id="@+id/register"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_marginTop="20dp"
-                android:textSize="24sp"
-                android:layout_gravity="center"
-                android:id="@+id/login"
-                android:text="Login"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:background="@color/buttoncolor"
+                android:fontFamily="@font/abc"
+                android:padding="20dp"
+
+                android:text="Register"
+                android:textColor="#FFF"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/allcategoriesfont"
+                    android:text="Already have an account?"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Login"
+                    android:textColor="@color/sideone"
+
+                    />
+            </LinearLayout>
 
 
         </LinearLayout>

@@ -42,16 +42,16 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textColor="#000"
-                    android:fontFamily="sans-serif-condensed"
                     android:id="@+id/name"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:textSize="18sp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/textfont1"
+                    android:maxLines="1"
                     android:text="Name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="#000"
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:visibility="gone"
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="sans-serif-condensed"
+                        android:fontFamily="@font/textfont1"
                         android:textSize="18sp"
                         android:text="by "
                         android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
                     <TextView
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:fontFamily="sans-serif-condensed"
+                        android:fontFamily="@font/textfont1"
                         android:id="@+id/brand"
                         android:textSize="18dp"
                         android:text="Brand"
@@ -86,7 +86,7 @@
 
                     <TextView
                         android:textColor="#E70505"
-                        android:fontFamily="sans-serif-condensed"
+                        android:fontFamily="@font/textfont1"
                         android:textSize="20dp"
                         android:text="₹"
                         android:layout_width="wrap_content"
@@ -96,7 +96,7 @@
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:textColor="#E70505"
-                        android:fontFamily="sans-serif-condensed"
+                        android:fontFamily="@font/textfont1"
                         android:id="@+id/price"
                         android:textSize="20dp"
                         android:text="Price"
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="sans-serif-condensed"
+                        android:fontFamily="@font/textfont1"
                         android:textSize="18sp"
                         android:text="20"
                         android:textColor="#36CF0C"
@@ -124,7 +124,7 @@
                     <TextView
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:fontFamily="sans-serif-condensed"
+                        android:fontFamily="@font/textfont1"
                         android:textSize="18dp"
                         android:text="% off"
                         android:textColor="#36CF0C"

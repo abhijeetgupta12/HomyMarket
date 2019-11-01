@@ -28,12 +28,12 @@ import java.util.Map;
 public class Register extends AppCompatActivity {
 
 
-    EditText name,email,phone,pass,conPass,area,pin,landmark;
+    EditText name,email,phone,pass,conPass,landmark;
     Button reg;
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
     DatabaseReference mRef;
-    TextView login;
+    TextView login,area,pin;
 
 
 
@@ -155,27 +155,6 @@ public class Register extends AppCompatActivity {
                 {
                     pass.setError("Password Mismatch");
                     pass.requestFocus();
-                    return;
-                }
-
-                if(t_area.equals(""))
-                {
-                    area.setError("Enter the area");
-                    area.requestFocus();
-                    return;
-                }
-
-                if(t_pin.equals(""))
-                {
-                    pin.setError("Enter the pin");
-                    pin.requestFocus();
-                    return;
-                }
-
-                if(t_pin.length()<6 && t_pin.length()>6)
-                {
-                    name.setError("Enter a valid pin");
-                    name.requestFocus();
                     return;
                 }
 

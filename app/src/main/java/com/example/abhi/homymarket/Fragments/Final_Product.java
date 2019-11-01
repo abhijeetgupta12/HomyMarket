@@ -124,8 +124,8 @@ public class Final_Product extends Fragment {
         //setting values to final page elements
         brand.setText(brand1);
         name.setText(name1);
-        markPrice.setText(mark_price1);
-        sellPrice.setText(sell_price1);
+        markPrice.setText("₹"+mark_price1);
+        sellPrice.setText("₹"+sell_price1);
         discount.setText(discount1);
         length.setText(length1);
         color.setText(color1);
@@ -135,7 +135,7 @@ public class Final_Product extends Fragment {
         material.setText(material1);
         desc.setText(description1);
 
-        if(cat.equals("STAT") || cat.equals("CHAK"))
+        if(cat.equals("STAT") || cat.equals("CHAK") || cat.equals("FRT") || cat.equals("DAI"))
         {
             brand.setVisibility(View.GONE);
 
@@ -155,6 +155,11 @@ public class Final_Product extends Fragment {
             v.findViewById(R.id.view5).setVisibility(View.GONE);
             v.findViewById(R.id.view6).setVisibility(View.GONE);
 
+        }
+
+        if(cat.equals("FRT"))
+        {
+            quantity[0] = "Select Quantity(in Kgs)";
         }
 
 
@@ -245,7 +250,7 @@ public class Final_Product extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(Qty.equals("Select Quantity"))
+                if(Qty.equals("Select Quantity") || Qty.equals("Select Quantity(in Kgs)"))
                 {
                     Toast.makeText(getActivity(),"Select Quantity",Toast.LENGTH_SHORT).show();
                     return;
@@ -284,7 +289,7 @@ public class Final_Product extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(Qty.equals("Select Quantity"))
+                if(Qty.equals("Select Quantity")|| Qty.equals("Select Quantity(in Kgs)"))
                 {
                     Toast.makeText(getActivity(),"Select Quantity",Toast.LENGTH_SHORT).show();
                     return;

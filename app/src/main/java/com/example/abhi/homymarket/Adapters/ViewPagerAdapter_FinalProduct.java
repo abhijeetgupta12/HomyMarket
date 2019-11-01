@@ -1,7 +1,6 @@
 package com.example.abhi.homymarket.Adapters;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.abhi.homymarket.R;
 import com.github.chrisbanes.photoview.PhotoView;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.squareup.picasso.Picasso;
 
 public class ViewPagerAdapter_FinalProduct extends PagerAdapter {
 
     Context context;
-    String img[] = new String[5];
+    String img[] = new String[2];
     LayoutInflater layoutInflater;
 
     // Integer []image={R.drawable.patiala1,R.drawable.patiala12,R.drawable.patiala13,R.drawable.patiala1,R.drawable.patiala12};
@@ -33,8 +31,8 @@ public class ViewPagerAdapter_FinalProduct extends PagerAdapter {
 
         Picasso.get()
                 .load(img[position])
-                .placeholder(R.drawable.loading)
-                .error(R.drawable.placeholder_image)
+                .placeholder(R.drawable.placeholder_picasso)
+                .error(R.drawable.error_picasso)
                 .fit()
                 .centerCrop()
                 .into(photoView);
@@ -56,9 +54,7 @@ public class ViewPagerAdapter_FinalProduct extends PagerAdapter {
         this.context = context;
         img[0]=img1;
         img[1]=img2;
-        img[2]=img3;
-        img[3]=img4;
-        img[4]=img5;
+
     }
 
     @Override

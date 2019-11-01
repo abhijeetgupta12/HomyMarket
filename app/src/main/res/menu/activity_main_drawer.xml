@@ -18,11 +18,11 @@
             android:title="Daily Products" />
         <item
             android:id="@+id/fruits"
-            android:icon="@drawable/daily_product"
+            android:icon="@drawable/cherry"
             android:title="Fruits" />
         <item
             android:id="@+id/dairy_products"
-            android:icon="@drawable/daily_product"
+            android:icon="@drawable/milk"
             android:title="Dairy Products" />
 
     </group>

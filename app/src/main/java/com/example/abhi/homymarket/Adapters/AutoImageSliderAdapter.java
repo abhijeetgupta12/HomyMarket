@@ -2,24 +2,33 @@ package com.example.abhi.homymarket.Adapters;
 
 
 import android.content.Context;
-import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.abhi.homymarket.Activities.NextActivity;
 import com.example.abhi.homymarket.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 public class AutoImageSliderAdapter extends SliderViewAdapter<AutoImageSliderAdapter.SliderAdapterVH> {
 
     private Context context;
     private int mCount;
+    private String ID,AUTO1,AUTO2,AUTO3,AUTO4,AUTO5;
 
-    public AutoImageSliderAdapter(Context context) {
+
+    public AutoImageSliderAdapter(Context context,String AUTO1,String AUTO2,String AUTO3,String AUTO4,String AUTO5) {
         this.context = context;
+        this.AUTO1 = AUTO1;
+        this.AUTO2 = AUTO2;
+        this.AUTO3 = AUTO3;
+        this.AUTO4 = AUTO4;
+        this.AUTO5 = AUTO5;
+
     }
 
     public void setCount(int count) {
@@ -47,26 +56,56 @@ public class AutoImageSliderAdapter extends SliderViewAdapter<AutoImageSliderAda
         });*/
 
 
+
         switch (position) {
             case 0:
-                Picasso.get().load("https://i.pinimg.com/originals/db/2a/4e/db2a4ed0b0a393fff2c55b0180053bbd.jpg").fit().into(viewHolder.imageViewBackground);
+                Picasso.get()
+                        .load(AUTO1)
+                        .placeholder(R.drawable.placeholder_picasso)
+                        .error(R.drawable.error_picasso)
+                        .fit()
+                        .into(viewHolder.imageViewBackground);
                 break;
 
             case 1:
-                Picasso.get().load("https://cached.imagescaler.hbpl.co.uk/resize/scaleToFit/1200/600/cached.offlinehbpl.hbpl.co.uk/galleries/WAC/445_53156_Johnlewis2.jpg").fit().into(viewHolder.imageViewBackground);
+                Picasso.get()
+                        .load(AUTO2)
+                        .placeholder(R.drawable.placeholder_picasso)
+                        .error(R.drawable.error_picasso)
+                        .fit()
+                        .into(viewHolder.imageViewBackground);
+
                 break;
 
             case 2:
-                Picasso.get().load("https://i.pinimg.com/originals/db/2a/4e/db2a4ed0b0a393fff2c55b0180053bbd.jpg").fit().into(viewHolder.imageViewBackground);
+                Picasso.get()
+                        .load(AUTO3)
+                        .placeholder(R.drawable.placeholder_picasso)
+                        .error(R.drawable.error_picasso)
+                        .fit()
+                        .into(viewHolder.imageViewBackground);
+
                 break;
 
             case 3:
-                Picasso.get().load("https://cached.imagescaler.hbpl.co.uk/resize/scaleToFit/1200/600/cached.offlinehbpl.hbpl.co.uk/galleries/WAC/445_53156_Johnlewis2.jpg").fit().into(viewHolder.imageViewBackground);
+                Picasso.get()
+                        .load(AUTO4)
+                        .placeholder(R.drawable.placeholder_picasso)
+                        .error(R.drawable.error_picasso)
+                        .fit()
+                        .into(viewHolder.imageViewBackground);
+
                 break;
 
 
             case 4:
-                Picasso.get().load("https://i.pinimg.com/originals/db/2a/4e/db2a4ed0b0a393fff2c55b0180053bbd.jpg").fit().into(viewHolder.imageViewBackground);
+                Picasso.get()
+                        .load(AUTO5)
+                        .placeholder(R.drawable.placeholder_picasso)
+                        .error(R.drawable.error_picasso)
+                        .fit()
+                        .into(viewHolder.imageViewBackground);
+
                 break;
             default:
 

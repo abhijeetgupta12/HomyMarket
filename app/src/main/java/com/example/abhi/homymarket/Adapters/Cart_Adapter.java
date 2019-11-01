@@ -83,8 +83,8 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
         holder.Title.setText(data.get(position).getName());
         Picasso.get()
                 .load(data.get(position).getImage1())
-                .placeholder(R.drawable.loading)
-                .error(R.drawable.placeholder_image)
+                .placeholder(R.drawable.placeholder_picasso)
+                .error(R.drawable.error_picasso)
                 .fit()
                 .into(holder.imageView);
 

@@ -4,6 +4,7 @@ package com.example.abhi.homymarket.Fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -44,9 +45,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -88,8 +92,11 @@ public class DeliveryAdress extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_delivery_adress, container, false);
 
+
         final String DAYS[] = {"SELECT DAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"};
         final String TIME[] = {"SELECT TIME","8:30 P.M-9:30 P.M","11:00 P.M-01:00 A.M"};
+
+
 
         days = v.findViewById(R.id.days);
         time = v.findViewById(R.id.time);
@@ -118,7 +125,9 @@ public class DeliveryAdress extends Fragment {
                 for(int i = 0;i<data.size();i++)
                 {
                     sum = sum + Integer.parseInt(qty.get(i).getPrice());
-                    Title = Title + qty.get(i).getName() + "*" + qty.get(i).getQuantity()+" ";
+                    Title = Title + qty.get(i).getName()+"--Rs"+
+                            Integer.parseInt(qty.get(i).getPrice())/Integer.parseInt(qty.get(i).getQuantity())
+                            + "--*" + qty.get(i).getQuantity()+"   ";
                 }
 
 
@@ -130,10 +139,10 @@ public class DeliveryAdress extends Fragment {
 
                 Add = "Name: "+name+" Area: "+area+" Landmark: "+landmark+" Pin: "+pin;
 
-                name1.setText("Name : "+name);
-                area1.setText("Area : "+area);
-                pin1.setText("Pin : "+pin);
-                landmark1.setText("Landmark : "+landmark);
+                name1.setText(name);
+                area1.setText(area);
+                pin1.setText(pin);
+                landmark1.setText(landmark);
 
                 if(sum<30)
                 {
@@ -205,9 +214,6 @@ public class DeliveryAdress extends Fragment {
 
                 else
                 {
-
-
-
                     progressDialog.setTitle("Placing Order");
                     progressDialog.setMessage("Please wait ...");
                     progressDialog.setCanceledOnTouchOutside(false);
@@ -250,7 +256,7 @@ public class DeliveryAdress extends Fragment {
                                 @Override
                                 public void onSuccess(Void aVoid) {
 
-                                    //This is the process to call a fragment from any Adapter Class................
+                            //This is the process to call a fragment from any Adapter Class................
 
 
                                 }
@@ -285,6 +291,7 @@ public class DeliveryAdress extends Fragment {
                             hm.put("status","Pending");
                             hm.put("price",String.valueOf(sum+dc));
                             hm.put("delivary_slot",db_day+" "+db_time);
+                            hm.put("date_time",new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
 
                             Log.d("@@@@@",currentUser.getUid());
                             Log.d("@@@@@",phoneNo);

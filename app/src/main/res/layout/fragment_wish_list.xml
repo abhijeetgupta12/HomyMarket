@@ -59,7 +59,7 @@
         android:textColor="#fff"
         android:id="@+id/proceed"
         android:background="@color/buttoncolor"
-        android:text="Confirm Delivary Address"
+        android:text="Confirm Delivery Address"
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

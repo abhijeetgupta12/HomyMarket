@@ -57,8 +57,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
 
         Picasso.get()
                 .load(data.get(position).getImage1())
-                .placeholder(R.drawable.loading)
-                .error(R.drawable.placeholder_image)
+                .placeholder(R.drawable.placeholder_picasso)
+                .error(R.drawable.error_picasso)
                 .fit()
                 .into(holder.image1);
 

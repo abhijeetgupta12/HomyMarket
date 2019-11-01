@@ -38,9 +38,9 @@ public class MyAccount extends Fragment {
     View v;
     private DatabaseReference db;
     private FirebaseAuth mAuth;
-    private TextView name1,email1,phone1,area1,pin1,landmark1;
+    private TextView name1,email1,phone1,area,pin,area1,pin1,landmark1;
     private FirebaseUser currentUser;
-    private EditText area,pin,landmark;
+    private EditText landmark;
     private Button update;
 
 
@@ -88,12 +88,12 @@ public class MyAccount extends Fragment {
                 String phone=dataSnapshot.child("Phone").getValue().toString();
 
 
-                name1.setText("Name : "+name);
-                email1.setText("Email : "+email);
-                phone1.setText("Phone No : "+phone);
-                area1.setText("Area : "+area);
-                pin1.setText("Pin : "+pin);
-                landmark1.setText("Landmark : "+landmark);
+                name1.setText(name);
+                email1.setText(email);
+                phone1.setText(phone);
+                area1.setText(area);
+                pin1.setText(pin);
+                landmark1.setText(landmark);
             }
 
             @Override
@@ -108,19 +108,6 @@ public class MyAccount extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(area.getText().toString().trim().equals(""))
-                {
-                    area.setError("Can't be Empty");
-                    area.requestFocus();
-                    return;
-                }
-
-                if(pin.getText().toString().trim().equals(""))
-                {
-                    pin.setError("Can't be Empty");
-                    pin.requestFocus();
-                    return;
-                }
 
                 if(pin.getText().toString().trim().length()<6 && pin.getText().toString().trim().length()>6)
                 {
@@ -129,12 +116,7 @@ public class MyAccount extends Fragment {
                     return;
                 }
 
-            db.child("Area").setValue(area.getText().toString().trim());
-            db.child("Pin").setValue(pin.getText().toString().trim());
             db.child("Landmark").setValue(landmark.getText().toString().trim());
-
-            area.setText("");
-            pin.setText("");
             landmark.setText("");
 
 
