@@ -25,7 +25,7 @@ public class Login extends AppCompatActivity {
     Button login;
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
-    TextView register;
+    TextView register,frgtpass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class Login extends AppCompatActivity {
         login=findViewById(R.id.loginBtn);
         progressDialog=new ProgressDialog(this);
         register =findViewById(R.id.register);
+        frgtpass = findViewById(R.id.forgotpass);
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -90,25 +91,32 @@ public class Login extends AppCompatActivity {
                             }
                             else{
                                 sendEmailVerification();
-
                                 progressDialog.dismiss();
-
-
                             }
-
                         }
 
                         else{
                             Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
-
                     }
                 });
+            }
+        });
 
+
+        frgtpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(Login.this,ForgotPassword.class));
 
             }
         });
+
+
+
+
     }
 
     private void sendEmailVerification(){

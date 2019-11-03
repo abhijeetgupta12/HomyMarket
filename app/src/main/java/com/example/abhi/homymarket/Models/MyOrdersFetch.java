@@ -2,9 +2,9 @@ package com.example.abhi.homymarket.Models;
 
 public class MyOrdersFetch {
 
-    private String ORDER_NO,TITLE,PRICE,STATUS,ADDRESS,PHONE,DELIVARY_SLOT;
+    private String ORDER_NO,TITLE,PRICE,STATUS,ADDRESS,PHONE,DELIVARY_SLOT,ORDER_TIME;
 
-    public MyOrdersFetch(String ORDER_NO, String TITLE, String PRICE, String STATUS, String ADDRESS, String PHONE, String DELIVARY_SLOT) {
+    public MyOrdersFetch(String ORDER_NO, String TITLE, String PRICE, String STATUS, String ADDRESS, String PHONE, String DELIVARY_SLOT,String ORDER_TIME) {
         this.ORDER_NO = ORDER_NO;
         this.TITLE = TITLE;
         this.PRICE = PRICE;
@@ -12,6 +12,7 @@ public class MyOrdersFetch {
         this.ADDRESS = ADDRESS;
         this.PHONE = PHONE;
         this.DELIVARY_SLOT = DELIVARY_SLOT;
+        this.ORDER_TIME = ORDER_TIME;
     }
 
     public String getORDER_NO() {
@@ -25,6 +26,8 @@ public class MyOrdersFetch {
     public String getPRICE() {
         return PRICE;
     }
+
+    public String getORDER_TIME() { return ORDER_TIME; }
 
     public String getSTATUS() {
         return STATUS;

@@ -10,15 +10,15 @@
 
         <item
             android:id="@+id/stationary"
-            android:icon="@drawable/bumperoffer"
+            android:icon="@drawable/stationary_nav_icon"
             android:title="Stationary" />
         <item
             android:id="@+id/chakhna"
-            android:icon="@drawable/daily_product"
+            android:icon="@drawable/daily_product_nav_icon"
             android:title="Daily Products" />
         <item
             android:id="@+id/fruits"
-            android:icon="@drawable/cherry"
+            android:icon="@drawable/fruits_nav_icon"
             android:title="Fruits" />
         <item
             android:id="@+id/dairy_products"

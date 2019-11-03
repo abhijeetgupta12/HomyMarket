@@ -157,9 +157,15 @@ public class Final_Product extends Fragment {
 
         }
 
+        if(discount1.equals("0"))
+        {
+            v.findViewById(R.id.markPrice).setVisibility(View.GONE);
+            v.findViewById(R.id.disc_linear).setVisibility(View.GONE);
+        }
+
         if(cat.equals("FRT"))
         {
-            quantity[0] = "Select Quantity(in Kgs)";
+            quantity[0] = "Select Quantity    (in Kgs)";
         }
 
 
@@ -250,7 +256,7 @@ public class Final_Product extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(Qty.equals("Select Quantity") || Qty.equals("Select Quantity(in Kgs)"))
+                if(Qty.equals("Select Quantity") || Qty.equals("Select Quantity    (in Kgs)"))
                 {
                     Toast.makeText(getActivity(),"Select Quantity",Toast.LENGTH_SHORT).show();
                     return;
@@ -289,7 +295,7 @@ public class Final_Product extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(Qty.equals("Select Quantity")|| Qty.equals("Select Quantity(in Kgs)"))
+                if(Qty.equals("Select Quantity")|| Qty.equals("Select Quantity    (in Kgs)"))
                 {
                     Toast.makeText(getActivity(),"Select Quantity",Toast.LENGTH_SHORT).show();
                     return;

@@ -1,6 +1,7 @@
 package com.example.abhi.homymarket.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,11 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.Progra
         holder.address.setText(data.get(position).getADDRESS());
         holder.phone.setText(data.get(position).getPHONE());
         holder.delivary_slot.setText(data.get(position).getDELIVARY_SLOT());
+        holder.order_time.setText(data.get(position).getORDER_TIME());
+
+        if(data.get(position).getSTATUS().equals("Delivered"))
+            holder.status.setTextColor(Color.parseColor("#1B3AD7"));
+
 
     }
 
@@ -53,7 +59,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.Progra
     }
 
     public class ProgrammingViewHolder extends RecyclerView.ViewHolder{
-        TextView title,orderno,price,status,address,phone,delivary_slot;
+        TextView title,orderno,price,status,address,phone,delivary_slot,order_time;
 
         public ProgrammingViewHolder(View itemView) {               //view sent to be kept in a viewholder
 
@@ -66,6 +72,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.Progra
             address = itemView.findViewById(R.id.address);
             phone = itemView.findViewById(R.id.phone);
             delivary_slot = itemView.findViewById(R.id.delivary_slot);
+            order_time = itemView.findViewById(R.id.orderTime);
 
         }
     }

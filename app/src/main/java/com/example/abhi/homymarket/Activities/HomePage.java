@@ -3,9 +3,11 @@ package com.example.abhi.homymarket.Activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +57,7 @@ public class HomePage extends AppCompatActivity
     private FirebaseAuth mAuth;
     private DatabaseReference db;
     private ImageButton Cart;
-    private TextView Notification,Home;
+    private ImageView HomiMarket;
 
 
     @Override
@@ -63,14 +65,7 @@ public class HomePage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Messaging Service.....
-
-
-
-
-        Home = findViewById(R.id.home1);
         fm.beginTransaction().replace(R.id.frame,new Home()).commit();//by default this fragment is used
-
 
         //As soon as the app opens if the user is already logged in this page opens with user details and a
         //dialouge appears saying "Loading Please wait....
@@ -81,10 +76,10 @@ public class HomePage extends AppCompatActivity
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-
         //The below coded lines are used to retrieve signed in user details ....
 
         mAuth=FirebaseAuth.getInstance();
+        Log.d("qqqqq","hello");
         FirebaseUser currentUser=mAuth.getCurrentUser();//gets the current user
         db = FirebaseDatabase.getInstance().getReference().child(currentUser.getUid());
         db.addValueEventListener(new ValueEventListener() {
@@ -104,7 +99,8 @@ public class HomePage extends AppCompatActivity
 
             @Override
             public void onCancelled( DatabaseError databaseError) {
-                progressDialog.dismiss();
+
+               progressDialog.dismiss();
 
             }
         });
@@ -113,7 +109,8 @@ public class HomePage extends AppCompatActivity
         //Below is the code for Custom_toolbar and its related component.........
 
         Cart=findViewById(R.id.cart);
-        Notification=findViewById(R.id.notification);
+        HomiMarket=findViewById(R.id.toolbar_homi);
+
         Toolbar toolbar = findViewById(R.id.toolbarcustom);
         setSupportActionBar(toolbar);
 
@@ -130,15 +127,16 @@ public class HomePage extends AppCompatActivity
             }
         });
 
-        Notification.setOnClickListener(new View.OnClickListener() {
+        HomiMarket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-                Toast.makeText(HomePage.this,"Notification",Toast.LENGTH_LONG).show();
+                fm.beginTransaction().replace(R.id.frame,new Home()).commit();
 
             }
         });
+
+
 
 
 

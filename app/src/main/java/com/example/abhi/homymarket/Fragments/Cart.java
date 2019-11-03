@@ -103,7 +103,7 @@ public class Cart extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                //counting the no of item in cart.......
+                //counting the no of item in cart_toolbar_icon.......
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     user = ds.getValue(CartFetch.class);
 

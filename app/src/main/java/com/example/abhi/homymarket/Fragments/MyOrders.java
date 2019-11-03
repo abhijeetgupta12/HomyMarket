@@ -75,8 +75,6 @@ public class MyOrders extends Fragment {
         currentUser=mAuth.getCurrentUser();
         String id = currentUser.getUid().trim();
 
-        Log.d("lllll",id);
-
         recyclerView=v.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -99,7 +97,7 @@ public class MyOrders extends Fragment {
                         Toast.makeText(getActivity(),"No Orders",Toast.LENGTH_SHORT).show();
                     }
 
-                    for(int i =0;i<ja.length();i++)
+                    for(int i =ja.length()-1;i>0;i--)
                     {
 
                         JSONObject jo1 = ja.getJSONObject(i);
@@ -111,12 +109,13 @@ public class MyOrders extends Fragment {
                         String ADDRESS=jo1.getString("ADDRESS");
                         String PHONE=jo1.getString("PHONE");
                         String DELIVARY_SLOT=jo1.getString("DELIVARY_SLOT");
+                        String ORDER_TIME=jo1.getString("TIME");
 
 
 
                         //Instead of creating many arrayList we can create model class and then create list of model
                         //we can assign values to model class by creating constructor and sending values like shown below
-                        MyOrdersFetch ob = new MyOrdersFetch(ORDER_NO,TITLE,PRICE,STATUS,ADDRESS,PHONE,DELIVARY_SLOT);
+                        MyOrdersFetch ob = new MyOrdersFetch(ORDER_NO,TITLE,PRICE,STATUS,ADDRESS,PHONE,DELIVARY_SLOT,ORDER_TIME);
 
                         data.add(ob);
 
@@ -147,10 +146,6 @@ public class MyOrders extends Fragment {
 
         sr.setShouldCache(false);
         rq.add(sr);
-
-
-
-
 
         return v;
     }

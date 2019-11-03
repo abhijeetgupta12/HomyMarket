@@ -33,13 +33,13 @@ import java.util.List;
 
 public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingViewHolder> {
 
-    Context ctx;
-    List<DataFetch> data;
-    List<CartFetch> pricedata;
-    FirebaseAuth mAuth;
-    DatabaseReference mRef;
-    String size;
-    float PriceFloat;
+    private Context ctx;
+    private List<DataFetch> data;
+    private List<CartFetch> pricedata;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mRef;
+    private String size;
+    private float PriceFloat;
 
     // data required in view is recieved here
     public Cart_Adapter(Context ctx, List<DataFetch> data,List<CartFetch> pricedata)
@@ -51,15 +51,6 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
 
     }
 
-
-
-
-
-
-
-
-
-
     @NonNull
     @Override
     public ProgrammingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -67,15 +58,6 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
         View view = inflater.inflate(R.layout.cart_resource,parent,false);       //view created
         return new ProgrammingViewHolder(view);
     }
-
-
-
-
-
-
-
-
-
 
     @Override
     public void onBindViewHolder(@NonNull final ProgrammingViewHolder holder, final int position) {
@@ -165,26 +147,12 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.ProgrammingV
             }
         });
 
-
-
-
     }
-
-
-
-
-
-
 
     @Override
     public int getItemCount() {
         return data.size();
     }
-
-
-
-
-
 
 
 

@@ -91,6 +91,7 @@
                             />
 
                        <LinearLayout
+                           android:layout_marginStart="10dp"
                            android:orientation="horizontal"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content">
@@ -151,6 +152,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="3dp"
+                                android:background="@drawable/spinner_bg"
                                 android:orientation="horizontal">
 
                                 <Spinner
@@ -161,7 +163,7 @@
                                     android:layout_gravity="center"
                                     android:background="@android:color/transparent"
                                     android:gravity="center"
-                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginStart="5dp"
                                     android:spinnerMode="dropdown" />
 
                                 <ImageView
@@ -170,7 +172,7 @@
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/drop" />
+                                    android:src="@drawable/spinner_dropdown_icon" />
 
                             </RelativeLayout>
 
@@ -227,6 +229,7 @@
                             android:textSize="20sp"/>
 
                         <LinearLayout
+                            android:id="@+id/disc_linear"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="2"

@@ -48,7 +48,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/spinner_dropdown_icon" />
 
             </RelativeLayout>
 
@@ -78,7 +78,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/spinner_dropdown_icon" />
 
             </RelativeLayout>
 

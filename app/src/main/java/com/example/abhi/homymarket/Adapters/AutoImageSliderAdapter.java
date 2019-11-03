@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.abhi.homymarket.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.squareup.picasso.MemoryPolicy;
@@ -65,6 +66,12 @@ public class AutoImageSliderAdapter extends SliderViewAdapter<AutoImageSliderAda
                         .error(R.drawable.error_picasso)
                         .fit()
                         .into(viewHolder.imageViewBackground);
+
+
+
+
+
+
                 break;
 
             case 1:

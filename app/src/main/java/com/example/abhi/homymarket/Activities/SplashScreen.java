@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,7 +38,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i=new Intent(SplashScreen.this, HomePage.class);
+                Intent i=new Intent(SplashScreen.this, Register.class);
                 startActivity(i);
                 finish();
 
@@ -48,6 +49,13 @@ public class SplashScreen extends AppCompatActivity {
 
 
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+                Toast.makeText(this,"Press back to exit",Toast.LENGTH_SHORT).show();
 
     }
 }

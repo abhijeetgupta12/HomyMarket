@@ -47,6 +47,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -91,6 +92,12 @@ public class DeliveryAdress extends Fragment {
                              Bundle savedInstanceState) {
 
         v = inflater.inflate(R.layout.fragment_delivery_adress, container, false);
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
+        final String _time = mdformat.format(calendar.getTime());
+
+        final String _date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
 
         final String DAYS[] = {"SELECT DAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"};
@@ -246,7 +253,7 @@ public class DeliveryAdress extends Fragment {
                             fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
 
 
-                            //clearing the cart..............
+                            //clearing the cart_toolbar_icon..............
 
                             DatabaseReference mRef;
                             mAuth = FirebaseAuth.getInstance();
@@ -291,15 +298,7 @@ public class DeliveryAdress extends Fragment {
                             hm.put("status","Pending");
                             hm.put("price",String.valueOf(sum+dc));
                             hm.put("delivary_slot",db_day+" "+db_time);
-                            hm.put("date_time",new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
-
-                            Log.d("@@@@@",currentUser.getUid());
-                            Log.d("@@@@@",phoneNo);
-                            Log.d("@@@@@",Add);
-                            Log.d("@@@@@",Title);
-                            Log.d("@@@@@","Pending");
-                            Log.d("@@@@@",String.valueOf(sum+dc));
-                            Log.d("@@@@@",db_day+" "+db_time);
+                            hm.put("date_time",_time+"  "+_date);
 
                             return hm;
                         }
