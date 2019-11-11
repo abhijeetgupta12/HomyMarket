@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -45,13 +46,13 @@ import java.util.ArrayList;
 public class MyOrders extends Fragment {
 
     private View v;
-    FirebaseAuth mAuth;
-    FirebaseUser currentUser;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
     private RecyclerView recyclerView;
-    ArrayList<MyOrdersFetch> data = new ArrayList<>();
+    private ArrayList<MyOrdersFetch> data = new ArrayList<>();
     private ProgressBar progressBar;
     private Animation animation;
-    private RelativeLayout relativeLayout;
+    private ImageView no_order_pic;
 
 
     public MyOrders() {
@@ -66,6 +67,7 @@ public class MyOrders extends Fragment {
         v = inflater.inflate(R.layout.fragment_my_orders, container, false);
 
 
+        no_order_pic = v.findViewById(R.id.norder);
         progressBar=v.findViewById(R.id.progress);
         animation= AnimationUtils.loadAnimation(getActivity(),R.anim.rotate);
         progressBar.startAnimation(animation);
@@ -94,10 +96,10 @@ public class MyOrders extends Fragment {
 
                     if(ja.length()==0)
                     {
-                        Toast.makeText(getActivity(),"No Orders",Toast.LENGTH_SHORT).show();
+                        no_order_pic.setVisibility(View.VISIBLE);
                     }
 
-                    for(int i =ja.length()-1;i>0;i--)
+                    for(int i =ja.length()-1;i>=0;i--)
                     {
 
                         JSONObject jo1 = ja.getJSONObject(i);

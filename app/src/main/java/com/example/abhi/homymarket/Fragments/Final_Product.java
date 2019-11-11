@@ -49,7 +49,7 @@ public class Final_Product extends Fragment {
     private Button add_to_cart, buy_now;
     Spinner spinner;
     TextView tvquantity;
-    String[] quantity = {"Select Quantity","1","2","3","4","5","6","7","8","9","10",
+    String[] quantity = {"Quantity","1","2","3","4","5","6","7","8","9","10",
                          "11","12","13","14","15","16","17","18","19","20",
                          "21","22","23","24","25","26","27","28","29","30",
                          "31","32","33","34","35","36","37","38","39","40",
@@ -76,7 +76,7 @@ public class Final_Product extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_final__product, container, false);
 
-        //retrieving data from previous fragment...............
+        //retrieving cart_data from previous fragment...............
         String brand1 = ob.getBrand();
         String name1 = ob.getName();
         String mark_price1 = ob.getMarkprice();
@@ -126,7 +126,7 @@ public class Final_Product extends Fragment {
         name.setText(name1);
         markPrice.setText("₹"+mark_price1);
         sellPrice.setText("₹"+sell_price1);
-        discount.setText(discount1);
+        discount.setText(discount1+"%");
         length.setText(length1);
         color.setText(color1);
         gender.setText(gender1);
@@ -161,11 +161,6 @@ public class Final_Product extends Fragment {
         {
             v.findViewById(R.id.markPrice).setVisibility(View.GONE);
             v.findViewById(R.id.disc_linear).setVisibility(View.GONE);
-        }
-
-        if(cat.equals("FRT"))
-        {
-            quantity[0] = "Select Quantity    (in Kgs)";
         }
 
 
@@ -256,7 +251,7 @@ public class Final_Product extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(Qty.equals("Select Quantity") || Qty.equals("Select Quantity    (in Kgs)"))
+                if(Qty.equals("Quantity") || Qty.equals("Quantity"))
                 {
                     Toast.makeText(getActivity(),"Select Quantity",Toast.LENGTH_SHORT).show();
                     return;
@@ -295,7 +290,7 @@ public class Final_Product extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(Qty.equals("Select Quantity")|| Qty.equals("Select Quantity    (in Kgs)"))
+                if(Qty.equals("Quantity")|| Qty.equals("Quantity"))
                 {
                     Toast.makeText(getActivity(),"Select Quantity",Toast.LENGTH_SHORT).show();
                     return;

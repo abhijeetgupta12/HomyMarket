@@ -1,9 +1,6 @@
 package com.example.abhi.homymarket.Fragments;
 
 
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -16,7 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -27,8 +25,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.abhi.homymarket.Adapters.AutoImageSliderAdapter;
-import com.example.abhi.homymarket.Adapters.RecyclerAdapter;
-import com.example.abhi.homymarket.Models.DataFetch;
 import com.example.abhi.homymarket.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,7 +33,6 @@ import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,6 +52,8 @@ public class Home extends Fragment {
     LinearLayout all;
     private CardView stationary,chakhna,fruits,dairy;
     private String ID,AUTO1,AUTO2,AUTO3,AUTO4,AUTO5;
+    EditText search;
+    ImageButton search_button;
 
 
 
@@ -86,6 +83,8 @@ public class Home extends Fragment {
         chakhna    = v.findViewById(R.id.snacks);
         fruits     = v.findViewById(R.id.fruits);
         dairy      = v.findViewById(R.id.dairy);
+        search     = v.findViewById(R.id.search);
+        search_button = v.findViewById(R.id.search_button);
 
 
         RequestQueue rq = Volley.newRequestQueue(getActivity());
@@ -169,7 +168,7 @@ public class Home extends Fragment {
             public void onClick(View view) {
 
                 FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();//Actual was---------FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.frame,new Chakhna()).addToBackStack(null).commit();//by default this fragment is used
+                fm.beginTransaction().replace(R.id.frame,new Snacks()).addToBackStack(null).commit();//by default this fragment is used
 
 
             }
@@ -196,6 +195,21 @@ public class Home extends Fragment {
 
             }
         });
+        search_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Search ob = new Search();
+                Bundle bundle = new Bundle();
+                bundle.putString("product",search.getText().toString());
+                ob.setArguments(bundle);
+                FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();//Actual was---------FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.frame,ob).addToBackStack(null).commit();//by default this fragment is used
+
+
+            }
+        });
+
         return v;
     }
 

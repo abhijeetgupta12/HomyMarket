@@ -40,6 +40,7 @@
                         android:textSize="30dp"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -294,7 +295,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="Select Delivery Slot:-"
+                        android:text="Select Delivery Day:-"
                         android:textSize="20sp"
                         />
                 </LinearLayout>
@@ -312,7 +313,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="15dp">
 
                         <Spinner
                             android:id="@+id/days"
@@ -335,35 +337,155 @@
 
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_marginTop="20dp"
+
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFF">
+
+                    <TextView
+                        android:textColor="@color/sideone"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/abc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="3dp"
-                        android:background="@drawable/spinner_bg"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="15dp">
+                        android:layout_marginLeft="10dp"
+                        android:text="Delivary Timings:-"
+                        android:textSize="20sp"/>
 
-                        <Spinner
-                            android:id="@+id/time"
-                            android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center"
-                            android:background="@android:color/transparent"
-                            android:gravity="center"
-                            android:layout_marginLeft="5dp"
-                            android:spinnerMode="dropdown" />
+                            android:layout_weight="0.6"
+                            android:fontFamily="@font/abc"
+                            android:textColor="#000"
+                            android:padding="5dp"
+                            android:text="Fruits:"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="15dp"/>
 
-                        <ImageView
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/billpayment"
+                            android:fontFamily="@font/allcategoriesfont"
+                            android:text="7:00-8:30 AM &amp; 7:30-9:00 PM "
+                            android:textStyle="bold"
+                            android:textSize="15dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.4"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginBottom="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center"
-                            android:src="@drawable/spinner_dropdown_icon" />
+                            android:layout_weight="0.6"
+                            android:fontFamily="@font/abc"
+                            android:textColor="#000"
+                            android:padding="5dp"
+                            android:text="Snacks:"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="15dp"/>
 
-                    </RelativeLayout>
+                        <TextView
+                            android:layout_gravity="center"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/billpayment"
+                            android:fontFamily="@font/allcategoriesfont"
+                            android:text="12:30-2:00 PM &amp; 7:30-9:00 PM &amp;  11:30 PM- 12:30 AM"
+                            android:textStyle="bold"
+                            android:textSize="15dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.4"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6"
+                            android:fontFamily="@font/abc"
+                            android:textColor="#000"
+                            android:padding="5dp"
+                            android:text="Stationary:"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="15dp"/>
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/billpayment"
+                            android:fontFamily="@font/allcategoriesfont"
+                            android:text="12:30-2:00 PM &amp; 7:30-9:00 PM &amp;   11:30 PM-12:30 AM"
+                            android:textStyle="bold"
+                            android:textSize="15dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.4"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6"
+                            android:fontFamily="@font/abc"
+                            android:textColor="#000"
+                            android:padding="5dp"
+                            android:text="Dairy:"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="15dp"/>
+
+                        <TextView
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/billpayment"
+                            android:fontFamily="@font/allcategoriesfont"
+                            android:text="7:00-8:30 AM &amp; 7:30-9:00 PM "
+                            android:textStyle="bold"
+                            android:textSize="15dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.4"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+
+
+
 
                 </LinearLayout>
 

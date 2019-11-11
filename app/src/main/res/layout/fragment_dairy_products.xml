@@ -24,13 +24,12 @@
         android:layout_height="match_parent">
 
         <ProgressBar
-            android:progressDrawable="@drawable/logo"
-            android:indeterminate="false"
-            android:indeterminateDrawable="@drawable/logo"
             android:id="@+id/progress"
-            android:stateListAnimator="@anim/rotate"
-            android:layout_width="165dp"
-            android:layout_height="200dp" />
+            android:indeterminateDrawable="@drawable/rotate"
+            android:layout_height="100dp"
+            android:layout_width="100dp">
+
+        </ProgressBar>
 
     </LinearLayout>
 

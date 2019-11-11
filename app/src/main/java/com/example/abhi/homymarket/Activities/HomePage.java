@@ -9,9 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,22 +17,16 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.abhi.homymarket.Fragments.BumperOffer;
-import com.example.abhi.homymarket.Fragments.Chakhna;
+import com.example.abhi.homymarket.Fragments.Snacks;
 import com.example.abhi.homymarket.Fragments.ContactUs;
 import com.example.abhi.homymarket.Fragments.DairyProducts;
 import com.example.abhi.homymarket.Fragments.Fruits;
 import com.example.abhi.homymarket.Fragments.Home;
-import com.example.abhi.homymarket.Fragments.Kids_Toys;
-import com.example.abhi.homymarket.Fragments.Men_Apparels;
 import com.example.abhi.homymarket.Fragments.MyAccount;
 import com.example.abhi.homymarket.Fragments.Cart;
 import com.example.abhi.homymarket.Fragments.MyOrders;
 import com.example.abhi.homymarket.Fragments.Stationary;
-import com.example.abhi.homymarket.Fragments.Women_Apparels;
 import com.example.abhi.homymarket.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,8 +35,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.FirebaseMessagingService;
 
 
 public class HomePage extends AppCompatActivity
@@ -218,7 +208,7 @@ public class HomePage extends AppCompatActivity
 
         } else if (id == R.id.chakhna) {
 
-            fm.beginTransaction().replace(R.id.frame,new Chakhna()).addToBackStack(null).commit();
+            fm.beginTransaction().replace(R.id.frame,new Snacks()).addToBackStack(null).commit();
 
         } else if (id == R.id.helpcenter) {
 

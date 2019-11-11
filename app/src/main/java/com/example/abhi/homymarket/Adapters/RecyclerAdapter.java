@@ -50,6 +50,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Progra
     @Override
     public void onBindViewHolder(@NonNull ProgrammingViewHolder1 holder, final int position) {
 
+
+
         holder.name1.setText(data.get(position).getName());
         holder.brand1.setText(data.get(position).getBrand());
         holder.price1.setText(data.get(position).getSellprice());

@@ -1,19 +1,15 @@
 package com.example.abhi.homymarket.Fragments;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Paint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +30,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.abhi.homymarket.Models.CartFetch;
 import com.example.abhi.homymarket.Models.DataFetch;
 import com.example.abhi.homymarket.R;
-import com.example.abhi.homymarket.Adapters.Cart_Adapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,7 +41,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -74,8 +68,8 @@ public class DeliveryAdress extends Fragment {
     private ArrayAdapter<String> spinner_days,spinner_time;
     private String db_day,db_time;
     private ProgressDialog progressDialog;
-    private List<DataFetch> data;
-    private List<CartFetch> qty;
+    private List<DataFetch> product_data;
+    private List<CartFetch> cart_data;
     private String phoneNo;
 
 
@@ -83,8 +77,8 @@ public class DeliveryAdress extends Fragment {
 
     public DeliveryAdress(List<DataFetch> data,List<CartFetch> qty) {
 
-        this.data = data;
-        this.qty = qty;
+        this.product_data = data;
+        this.cart_data = qty;
     }
 
     @Override
@@ -93,16 +87,8 @@ public class DeliveryAdress extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_delivery_adress, container, false);
 
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
-        final String _time = mdformat.format(calendar.getTime());
-
-        final String _date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-
 
         final String DAYS[] = {"SELECT DAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"};
-        final String TIME[] = {"SELECT TIME","8:30 P.M-9:30 P.M","11:00 P.M-01:00 A.M"};
-
 
 
         days = v.findViewById(R.id.days);
@@ -129,12 +115,12 @@ public class DeliveryAdress extends Fragment {
                 phoneNo = dataSnapshot.child("Phone").getValue().toString().trim();
 
 
-                for(int i = 0;i<data.size();i++)
+                for(int i = 0; i< product_data.size(); i++)
                 {
-                    sum = sum + Integer.parseInt(qty.get(i).getPrice());
-                    Title = Title + qty.get(i).getName()+"--Rs"+
-                            Integer.parseInt(qty.get(i).getPrice())/Integer.parseInt(qty.get(i).getQuantity())
-                            + "--*" + qty.get(i).getQuantity()+"   ";
+                    sum = sum + Integer.parseInt(cart_data.get(i).getPrice());
+                       Title = Title + cart_data.get(i).getName()+"--Rs"+
+                            Integer.parseInt(cart_data.get(i).getPrice())/Integer.parseInt(cart_data.get(i).getQuantity())
+                            + "--*" + cart_data.get(i).getQuantity()+"   ";
                 }
 
 
@@ -188,23 +174,7 @@ public class DeliveryAdress extends Fragment {
             }
         });
 
-        spinner_time = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,TIME);
-        time.setAdapter(spinner_time);
 
-        time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                db_time = time.getItemAtPosition(i).toString().trim();
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
 
 
@@ -214,100 +184,20 @@ public class DeliveryAdress extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(db_day.equals("SELECT DAY") || db_time.equals("SELECT TIME"))
+                if(db_day.equals("SELECT DAY") )
                 {
-                    Toast.makeText(getActivity(),"Enter Delivary Date and Time",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Enter Delivary Day",Toast.LENGTH_SHORT).show();
                 }
 
                 else
                 {
+
                     progressDialog.setTitle("Placing Order");
                     progressDialog.setMessage("Please wait ...");
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 
-                    RequestQueue rq = Volley.newRequestQueue(getActivity());
-                    String url="https://homimarket.com/wp-content/Alok/customer_order.php?";
-                    StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-
-
-                            progressDialog.dismiss();
-                            dc=0;
-                            sum=0;
-
-                            //as i clicked the order now button the screen is moved to MyOrders page but when from MyOrders page
-                            //i click on back button the net amount of payment increases....so dc and sum is kept as 0
-
-                            MyOrders ldf = new MyOrders();
-                            FragmentManager fm = (getActivity()).getSupportFragmentManager();
-
-                            //the below for loop is used to clear the addToBack
-                            int count = fm.getBackStackEntryCount();
-                            for(int i = 0; i < count; ++i) {
-                                fm.popBackStack();
-                            }
-
-                            fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
-
-
-                            //clearing the cart_toolbar_icon..............
-
-                            DatabaseReference mRef;
-                            mAuth = FirebaseAuth.getInstance();
-                            FirebaseUser user=mAuth.getCurrentUser();
-                            mRef= FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("WishList");
-                            mRef.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-
-                            //This is the process to call a fragment from any Adapter Class................
-
-
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-
-                                }
-                            });
-
-
-
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                            progressDialog.dismiss();
-                            Toast.makeText(getActivity(),"Plz..try again..",Toast.LENGTH_SHORT).show();
-
-                        }
-                    }){
-                        @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-
-                            HashMap<String,String> hm = new HashMap<String, String>();
-
-                            hm.put("customerid",currentUser.getUid());
-                            hm.put("phone",phoneNo);
-                            hm.put("address",Add);
-                            hm.put("title",Title);
-                            hm.put("status","Pending");
-                            hm.put("price",String.valueOf(sum+dc));
-                            hm.put("delivary_slot",db_day+" "+db_time);
-                            hm.put("date_time",_time+"  "+_date);
-
-                            return hm;
-                        }
-                    };
-
-                    sr.setShouldCache(false);
-                    rq.add(sr);
-
-
+                    order();
                 }
 
 
@@ -317,6 +207,100 @@ public class DeliveryAdress extends Fragment {
 
 
         return v;
+    }
+
+
+
+    public void order()
+    {
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
+        final String _time = mdformat.format(calendar.getTime());
+        final String _date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+
+
+
+        RequestQueue rq = Volley.newRequestQueue(getActivity());
+        String url="https://homimarket.com/wp-content/Alok/customer_order.php?";
+        StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+
+
+                progressDialog.dismiss();
+                dc=0;
+                sum=0;
+
+                //as i clicked the order now button the screen is moved to MyOrders page but when from MyOrders page
+                //i click on back button the net amount of payment increases....so dc and sum is kept as 0
+
+                MyOrders ldf = new MyOrders();
+                FragmentManager fm = (getActivity()).getSupportFragmentManager();
+
+                //the below for loop is used to clear the addToBack
+                int count = fm.getBackStackEntryCount();
+                for(int i = 0; i < count; ++i) {
+                    fm.popBackStack();
+                }
+
+                fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
+
+
+                //clearing the cart_toolbar_icon..............
+
+                DatabaseReference mRef;
+                mAuth = FirebaseAuth.getInstance();
+                FirebaseUser user=mAuth.getCurrentUser();
+                mRef= FirebaseDatabase.getInstance().getReference().child(user.getUid()).child("WishList");
+                mRef.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                progressDialog.dismiss();
+                Toast.makeText(getActivity(),"Plz..try again..",Toast.LENGTH_SHORT).show();
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                HashMap<String,String> hm = new HashMap<String, String>();
+
+                hm.put("customerid",currentUser.getUid());
+                hm.put("phone",phoneNo);
+                hm.put("address",Add);
+                hm.put("title",Title);
+                hm.put("status","Pending");
+                hm.put("price",String.valueOf(sum+dc));
+                hm.put("delivary_slot",db_day);
+                hm.put("date_time",_time+"  "+_date);
+
+                return hm;
+            }
+        };
+
+        sr.setShouldCache(false);
+        rq.add(sr);
+
     }
 
 }

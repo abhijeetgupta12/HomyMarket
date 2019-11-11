@@ -53,8 +53,8 @@ public class Cart extends Fragment {
     View v;
     private RecyclerView recyclerView;
     DatabaseReference mRef;
-    List<CartFetch> data = new ArrayList<>();
-    List<DataFetch> product = new ArrayList<>();
+    List<CartFetch> cart_data = new ArrayList<>();
+    List<DataFetch> product_data = new ArrayList<>();
     private FirebaseAuth mAuth;
     CartFetch user ;
     private Animation animation;
@@ -75,7 +75,7 @@ public class Cart extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        v = inflater.inflate(R.layout.fragment_wish_list, container, false);
+        v = inflater.inflate(R.layout.fragment_cart, container, false);
 
 
 
@@ -97,8 +97,8 @@ public class Cart extends Fragment {
         FirebaseUser User = mAuth.getCurrentUser();
         mRef= FirebaseDatabase.getInstance().getReference().child(User.getUid()).child("WishList");
 
-        data.clear();
-        product.clear();
+        cart_data.clear();
+        product_data.clear();
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -113,17 +113,17 @@ public class Cart extends Fragment {
                     String price = user.getPrice();
 
                     CartFetch ob = new CartFetch(id,qty,name,price);
-                    data.add(ob);
+                    cart_data.add(ob);
                 }
 
-                if(data.size()!=0)
+                if(cart_data.size()!=0)
                 {
-                    for (int j=0;j<data.size();j++)
+                    for (int j = 0; j< cart_data.size(); j++)
                     {
 
 
                         RequestQueue rq = Volley.newRequestQueue(getActivity());
-                        String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS where ID LIKE "+data.get(j).getProduct_ID();
+                        String url = "https://homimarket.com/wp-content/Android/products.php?get=select*from PRODUCTS where ID LIKE "+ cart_data.get(j).getProduct_ID();
                         StringRequest sr = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -161,7 +161,7 @@ public class Cart extends Fragment {
                                     DataFetch ob = new DataFetch(ID, NAME, BRAND, GENDER, DISCOUNT, DESC, SELL_PRICE, MARK_PRICE
                                             , RATING, TYPE, SIZE, CATEGORY, LENGTH, IMAGE1, IMAGE2, IMAGE3, IMAGE4, IMAGE5, SHOP, COLOR, STOCK, MATERIAL);
 
-                                    product.add(ob);
+                                    product_data.add(ob);
 
 
 
@@ -171,7 +171,7 @@ public class Cart extends Fragment {
                                 }
 
 
-                                recyclerView.setAdapter(new Cart_Adapter(getActivity(),product,data));
+                                recyclerView.setAdapter(new Cart_Adapter(getActivity(), product_data, cart_data));
                                 progressBar.clearAnimation();
                                 progressBar.setVisibility(View.INVISIBLE);
                                 Proceed.setVisibility(View.VISIBLE);
@@ -229,7 +229,7 @@ public class Cart extends Fragment {
             @Override
             public void onClick(View view) {
 
-                DeliveryAdress ldf = new DeliveryAdress(product,data);
+                DeliveryAdress ldf = new DeliveryAdress(product_data, cart_data);
                 FragmentManager fm = (getActivity()).getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.frame,ldf).addToBackStack(null).commit();
 

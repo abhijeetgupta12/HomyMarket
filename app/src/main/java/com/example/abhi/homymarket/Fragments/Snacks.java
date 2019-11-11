@@ -37,7 +37,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Chakhna extends Fragment {
+public class Snacks extends Fragment {
 
     View v;
     private RecyclerView recyclerView;
@@ -48,7 +48,7 @@ public class Chakhna extends Fragment {
 
 
 
-    public Chakhna() {
+    public Snacks() {
         // Required empty public constructor
     }
 
