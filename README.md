@@ -2,7 +2,8 @@
 
 This is an E-Commerce App designed on Android Studio using Java and XML.
 The app deals wth two kinds of databases ---Firebase(Realtime Database) & Mysql database.
-Third Party Libraries like Volley, Picasso etc has been used.
+Third Party Libraries like Volley, Picasso etc has been used. Elements like Navigation Drawer Bar, Recycler View has been used extinsively. 
+The whole app is designed using one Activity and several Fragments
 
 <p align="middle">
 <img  src="https://firebasestorage.googleapis.com/v0/b/answerit-2b273.appspot.com/o/Screenshot_2020-07-14-12-16-32-659_com.example.abhi.homymarket.png?alt=media&token=57b93ca7-97a7-4e5b-8175-d65dd1e6112b" width="200" height="400" >  
